@@ -1,20 +1,5 @@
-"""Agent 模块：Collector / Analyst / Generator 等。"""
+"""四个 Agent 的统一入口包。
 
-from src.agents.analyst import (
-    AnalystAgent,
-    AnalysisResult,
-    resolve_openai_settings,
-    resolve_zhipu_embedding_settings,
-)
-from src.agents.generator import GeneratorAgent
-from src.agents.reviewer import ReviewerAgent, ReviewAuditSchema
-
-__all__ = [
-    "AnalystAgent",
-    "AnalysisResult",
-    "GeneratorAgent",
-    "ReviewerAgent",
-    "ReviewAuditSchema",
-    "resolve_openai_settings",
-    "resolve_zhipu_embedding_settings",
-]
+每个 Agent 独占一个子目录，内部结构由各自负责人自行组织
+（例如可在 `skills/` 子目录下拆分多个工具函数文件）。
+"""

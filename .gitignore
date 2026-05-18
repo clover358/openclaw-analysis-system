@@ -1,10 +1,9 @@
 .env
 __pycache__/
 *.pyc
+*.tmp
 .venv/
 venv/
 data/processed/faiss_index/
-.env  
-__pycache__/  
-*.tmp  
-output/ 
+data/processed/*.md
+output/

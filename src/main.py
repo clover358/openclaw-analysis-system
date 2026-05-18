@@ -1,4 +1,4 @@
-"""大作业系统总入口：一键启动全链路自动化 Pipeline。"""
+"""系统总入口：一键启动全链路自动化 Pipeline。"""
 
 from __future__ import annotations
 
@@ -19,7 +19,6 @@ FINAL_OUTPUT_PATH = "data/processed/2025_product_sales_and_market_analysis_repor
 
 
 def _bootstrap_config() -> None:
-    """启动前加载 .env / config.yaml 并校验 API Key。"""
     config = load_app_config()
     keys = validate_api_keys(config)
     print("[Config] 已加载 .env 与 config/config.yaml")
@@ -41,13 +40,18 @@ def main() -> None:
             html_path=HTML_PATH,
             final_output_path=FINAL_OUTPUT_PATH,
         )
+    except NotImplementedError as exc:
+        print(f"\n[未实现] {exc}")
+        print("提示：四个 Agent 中存在尚未补全的实现，请到 src/agents/<agent>/ 下完成。")
+        sys.exit(2)
     except ConfigError as exc:
         print(f"\n[配置错误] {exc}")
         sys.exit(1)
     except KeyboardInterrupt:
         print("\n[中断] 用户取消执行")
         sys.exit(130)
-    except Exception:
+    except Exception as exc:
+        print(f"\n[运行失败] {type(exc).__name__}: {exc}")
         sys.exit(1)
 
 
