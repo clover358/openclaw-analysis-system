@@ -1,0 +1,38 @@
+{
+  "snapshot_id": "mock_collector_20260518_001",
+  "collected_at": "2026-05-18T10:30:00+08:00",
+  "agent": "Collector-Agent",
+  "phase": 2,
+  "sources": {
+    "excel": {
+      "source_type": "sales_excel",
+      "file_name": "sales_data.xlsx",
+      "status": "success",
+      "sheets": ["月度销售", "区域汇总", "产品排行"],
+      "preview_markdown": "| 月份 | 区域 | 产品 | 销量 | 销售额(万元) |\n| --- | --- | --- | --- | --- |\n| 2026-01 | 华东 | 智能手表A | 1250 | 312.5 |\n| 2026-01 | 华北 | 智能手表A | 980 | 245.0 |\n| 2026-02 | 华东 | 智能手表B | 1100 | 330.0 |",
+      "row_count": 156,
+      "note": "多 Sheet 已合并为 Markdown 表格文本，空值已 fillna 处理"
+    },
+    "pdf": {
+      "source_type": "industry_report",
+      "file_name": "industry_report.pdf",
+      "status": "success",
+      "page_count": 12,
+      "preview_text": "--- 第 1 页 ---\n2026年中国可穿戴设备行业研究报告\n\n摘要：本报告分析智能手表、手环等细分市场的规模与增速...\n\n--- 第 2 页 ---\n第一章 市场概况\n1.1 全球市场规模预计达 820 亿美元...",
+      "char_count": 28450,
+      "note": "逐页提取并标注页码"
+    },
+    "web": {
+      "source_type": "competitor_html",
+      "file_name": "competitor_site.html",
+      "status": "success",
+      "url_snapshot": "https://competitor.example.com/products/smartwatch",
+      "title": "竞品官网 - 智能手表产品线",
+      "preview_text": "智能手表 Pro 3\n\n搭载自研芯片，续航 14 天，支持血氧与睡眠监测。售价 ¥1999 起。\n\n核心参数：1.43 英寸 AMOLED、GPS 双频、5ATM 防水...",
+      "char_count": 4000,
+      "stripped_tags": ["script", "style", "nav", "footer"],
+      "note": "本地 HTML 快照，已剔除无用标签并截取前 4000 字"
+    }
+  },
+  "parallel_test_hint": "可将本 JSON 与 test_phase2.py 并行对照，无需真实 raw 文件即可验证解析逻辑结构"
+}

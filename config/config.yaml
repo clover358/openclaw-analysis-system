@@ -1,0 +1,85 @@
+# Collector-Agent 多源数据采集配置
+project:
+  name: "collector-agent-phase2"
+  version: "0.1.0"
+
+paths:
+  raw_data_dir: "data/raw"
+  mock_data_dir: "data/mock"
+  output_dir: "data/processed"
+
+collector:
+  excel:
+    default_file: "sales_data.xlsx"
+    fillna_value: ""
+  pdf:
+    default_file: "industry_report.pdf"
+    page_marker_template: "--- 第 {page} 页 ---"
+  web:
+    default_file: "competitor_site.html"
+    max_chars: 4000
+    strip_tags:
+      - script
+      - style
+      - nav
+      - footer
+      - header
+      - aside
+      - noscript
+
+test:
+  preview_chars: 300
+
+# ---------------------------------------------------------------------------
+# DeepSeek（OpenAI 兼容）：Chat 分析与审计（Analyst / Reviewer）
+# 若通过 GoodLuck 等国内网关调用，仅需修改 base_url 与 model
+# ---------------------------------------------------------------------------
+openai:
+  api_key: "${OPENAI_API_KEY}"
+  base_url: "https://api.deepseek.com/v1"
+  model: "deepseek-chat"
+  api_key_env: "OPENAI_API_KEY"
+  base_url_env: "OPENAI_API_BASE"
+
+# ---------------------------------------------------------------------------
+# 智谱 AI（OpenAI 兼容）：Embedding 向量化（Analyst RAG 建库）
+# ---------------------------------------------------------------------------
+zhipu:
+  api_key: "${ZHIPU_API_KEY}"
+  base_url: "https://open.bigmodel.cn/api/paas/v4"
+  embedding_model: "embedding-3"
+  api_key_env: "ZHIPU_API_KEY"
+  base_url_env: "ZHIPU_API_BASE"
+
+# Analyst-Agent：RAG 与商业分析
+analyst:
+  openai: {}
+  embedding:
+    model: ""
+  llm:
+    model: ""
+    temperature: 0.3
+  rag:
+    chunk_size: 500
+    chunk_overlap: 50
+    top_k: 3
+    vector_store_dir: "data/processed/faiss_index"
+  debug:
+    use_fake_embeddings: false
+  retrieval:
+    sales_query: "自身销售数据、产品销量、销售额、区域表现、2025年销售"
+    industry_query: "行业趋势、市场规模、增长率、政策环境、研究报告观点"
+    competitor_query: "竞品威胁、竞争对手产品、定价策略、功能对比、市场份额"
+
+# Generator-Agent：报告自动生成与回填
+generator:
+  report:
+    title: "2025年某产品销售与市场分析报告"
+    default_output: "data/processed/sales_and_market_report_2025.md"
+
+# Reviewer-Agent：闭环核查与修正
+reviewer:
+  openai: {}
+  llm:
+    model: ""
+    temperature: 0.2
