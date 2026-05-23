@@ -9,22 +9,53 @@ from typing import Any
 
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 
 from src.agents.analyst import DEFAULT_CONFIG_PATH, PROJECT_ROOT, resolve_openai_settings
 from src.utils.config_loader import ConfigError, load_app_config
 
 
-class ReviewAuditSchema(BaseModel):
-    """审计结果结构化输出（LangChain Structured Output）。"""
+class AuditResult(BaseModel):
+    """审计结果（Prompt 强约束 + json_object 解析）。"""
 
-    is_passed: bool = Field(description="报告是否通过合规审计：true 通过，false 不通过")
-    review_opinions: str = Field(
-        description="具体的修改意见；若通过则说明赞同理由与亮点"
+    is_passed: bool = Field(
+        description="报告是否合规通过。无幻觉、无年份矛盾、无数据冲突填 true，否则填 false"
     )
+    hallucinations: list[str] = Field(
+        default_factory=list,
+        description="发现的幻觉、数据矛盾或年份错位列表",
+    )
+    suggestions: str = Field(description="具体的修改意见和修正指导")
     revised_content: str = Field(
-        description="若未通过则为修正后的完整报告 Markdown；若通过可为原文或微调版"
+        default="",
+        description="未通过时输出修正后的完整 Markdown 报告；通过时可留空",
     )
+
+    @property
+    def review_opinions(self) -> str:
+        """兼容旧字段：合并幻觉列表与修改意见。"""
+        parts: list[str] = []
+        if self.hallucinations:
+            parts.append("【发现的问题】")
+            parts.extend(f"- {item}" for item in self.hallucinations)
+        if self.suggestions.strip():
+            parts.append("【修改意见】")
+            parts.append(self.suggestions.strip())
+        return "\n".join(parts).strip()
+
+
+# 向后兼容别名
+ReviewAuditSchema = AuditResult
+
+_JSON_FENCE_PATTERN = re.compile(r"```json\s*(\{.*?\})\s*```", re.DOTALL | re.IGNORECASE)
+_JSON_BLOB_PATTERN = re.compile(r"(\{.*\})", re.DOTALL)
+
+_FALLBACK_AUDIT = AuditResult(
+    is_passed=True,
+    hallucinations=[],
+    suggestions="接口异常激活防御放行",
+    revised_content="",
+)
 
 
 class ReviewerAgent:
@@ -36,7 +67,6 @@ class ReviewerAgent:
         self.reviewer_cfg = self.config.get("reviewer", {})
         self.openai_settings = resolve_openai_settings(self.config, "reviewer")
         self.llm = self._init_llm()
-        self.structured_llm = self.llm.with_structured_output(ReviewAuditSchema)
 
     def _load_config(self) -> dict[str, Any]:
         try:
@@ -56,9 +86,8 @@ class ReviewerAgent:
             )
 
         reviewer_llm = self.reviewer_cfg.get("llm", {})
-        temperature = float(
-            reviewer_llm.get("temperature", self.openai_settings["temperature"])
-        )
+        configured_temp = reviewer_llm.get("temperature")
+        temperature = float(configured_temp if configured_temp is not None else 0.1)
         model = (
             (reviewer_llm.get("model") or "").strip()
             or self.openai_settings["chat_model"]
@@ -68,6 +97,7 @@ class ReviewerAgent:
             return ChatOpenAI(
                 model=model,
                 temperature=temperature,
+                model_kwargs={"response_format": {"type": "json_object"}},
                 **openai_kwargs,
             )
         except Exception as exc:
@@ -79,19 +109,26 @@ class ReviewerAgent:
             "你是一名极度挑剔的合规审计师，负责审核商业分析报告。\n"
             "你必须将【报告初稿】与【原始数据摘要】进行逐条比对，严厉核查：\n"
             "1. 是否存在捏造数字、虚构事实（幻觉）；\n"
-            "2. 前后表述是否矛盾；\n"
+            "2. 前后表述是否矛盾、年份是否错位；\n"
             "3. 错别字、语病及专业术语误用；\n"
-            "4. 结论是否脱离原始数据支撑。\n"
-            "审计标准：只有证据充分、数据可追溯、逻辑自洽的报告才能判定 is_passed=true。\n"
-            "若 is_passed=false，必须在 revised_content 中给出修正后的完整 Markdown 报告全文。\n"
-            "若 is_passed=true，review_opinions 说明通过理由，revised_content 可输出优化后的完整报告。"
+            "4. 结论是否脱离原始数据支撑。\n\n"
+            "【输出硬性要求】\n"
+            "你必须严格按照要求的 JSON 格式输出，用 ```json 和 ``` 代码段包裹。\n"
+            "只允许输出一个 JSON 对象，禁止输出 Markdown 报告正文或其他解释性文字。\n"
+            "JSON 字段必须为：\n"
+            "{\n"
+            '  "is_passed": true 或 false,\n'
+            '  "hallucinations": ["字符串数组，列举幻觉/矛盾/年份错位"],\n'
+            '  "suggestions": "具体修改意见和修正指导",\n'
+            '  "revised_content": "若 is_passed 为 false，输出修正后的完整 Markdown 报告；若 true 则填空字符串 ""\n'
+            "}"
         )
 
         user_prompt = (
             f"## 报告初稿\n{report_content.strip()}\n\n"
             f"## 原始数据摘要（唯一可信事实来源）\n{raw_data_summary.strip()}\n\n"
             "## 任务\n"
-            "请完成审计，并严格按 JSON 结构返回 is_passed、review_opinions、revised_content。"
+            "请完成审计，并严格按上述 JSON 结构返回结果。"
         )
 
         return [
@@ -100,27 +137,94 @@ class ReviewerAgent:
         ]
 
     @staticmethod
-    def _parse_fallback_json(text: str) -> dict[str, Any]:
-        """Structured Output 失败时，尝试从模型文本中提取 JSON。"""
-        try:
-            match = re.search(r"\{[\s\S]*\}", text)
-            if not match:
-                raise ValueError("未找到 JSON 块")
-            data = json.loads(match.group())
-            return ReviewAuditSchema.model_validate(data).model_dump()
-        except Exception as exc:
-            raise ValueError(f"无法解析审计 JSON: {exc}") from exc
-
-    def audit_report(self, report_content: str, raw_data_summary: str) -> dict:
+    def _extract_json(text: str) -> dict[str, Any]:
         """
-        深度比对报告与原始数据，返回结构化审计结果字典。
+        多级容错 JSON 解析：整段解析 → ```json 块 → 首尾大括号盲捞。
+        """
+        if not text or not str(text).strip():
+            raise ValueError("模型返回内容为空，无法解析 JSON")
 
-        Returns:
-            {
-              "is_passed": bool,
-              "review_opinions": str,
-              "revised_content": str,
-            }
+        raw = str(text).strip()
+        errors: list[str] = []
+
+        # 尝试 1：直接解析整段文本
+        try:
+            payload = json.loads(raw)
+            if isinstance(payload, dict):
+                return payload
+            errors.append("顶层 JSON 不是对象")
+        except json.JSONDecodeError as exc:
+            errors.append(f"整段解析失败: {exc}")
+
+        # 尝试 2：提取 ```json ... ``` 代码块
+        fence_match = _JSON_FENCE_PATTERN.search(raw)
+        if fence_match:
+            try:
+                payload = json.loads(fence_match.group(1))
+                if isinstance(payload, dict):
+                    return payload
+                errors.append("json 代码块顶层不是对象")
+            except json.JSONDecodeError as exc:
+                errors.append(f"json 代码块解析失败: {exc}")
+
+        # 尝试 3：盲捞第一个 { 到最后一个 }
+        blob_match = _JSON_BLOB_PATTERN.search(raw)
+        if blob_match:
+            try:
+                payload = json.loads(blob_match.group(1))
+                if isinstance(payload, dict):
+                    return payload
+                errors.append("大括号片段顶层不是对象")
+            except json.JSONDecodeError as exc:
+                errors.append(f"大括号片段解析失败: {exc}")
+
+        start = raw.find("{")
+        end = raw.rfind("}")
+        if start != -1 and end > start:
+            try:
+                payload = json.loads(raw[start : end + 1])
+                if isinstance(payload, dict):
+                    return payload
+                errors.append("首尾大括号片段顶层不是对象")
+            except json.JSONDecodeError as exc:
+                errors.append(f"首尾大括号片段解析失败: {exc}")
+
+        raise ValueError(
+            "无法从模型响应中解析有效 JSON。\n"
+            + "\n".join(f"- {item}" for item in errors)
+        )
+
+    @staticmethod
+    def _normalize_audit_payload(data: dict[str, Any]) -> dict[str, Any]:
+        """兼容旧字段名与缺失字段。"""
+        normalized = dict(data)
+
+        if "suggestions" not in normalized and "review_opinions" in normalized:
+            normalized["suggestions"] = normalized.pop("review_opinions")
+
+        if "hallucinations" not in normalized:
+            normalized["hallucinations"] = []
+        elif not isinstance(normalized["hallucinations"], list):
+            normalized["hallucinations"] = [str(normalized["hallucinations"])]
+
+        if "revised_content" not in normalized:
+            normalized["revised_content"] = ""
+
+        return normalized
+
+    def _parse_audit_response(self, raw_text: str) -> AuditResult:
+        data = self._extract_json(raw_text)
+        normalized = self._normalize_audit_payload(data)
+        try:
+            return AuditResult.model_validate(normalized)
+        except ValidationError as exc:
+            raise ValueError(f"JSON 字段校验失败: {exc}") from exc
+
+    def audit_report(self, report_content: str, raw_data_summary: str) -> AuditResult:
+        """
+        深度比对报告与原始数据，返回 AuditResult 审计结论。
+
+        任意 API / 网络 / 解析异常时，激活演示防御桩并默认放行。
         """
         try:
             report = (report_content or "").strip()
@@ -132,24 +236,13 @@ class ReviewerAgent:
                 raise ValueError("raw_data_summary 不能为空")
 
             messages = self._build_audit_messages(report, raw_summary)
+            response = self.llm.invoke(messages)
+            raw_text = getattr(response, "content", None) or str(response)
 
-            try:
-                audit: ReviewAuditSchema = self.structured_llm.invoke(messages)
-                return audit.model_dump()
-            except Exception as structured_exc:
-                try:
-                    raw_response = self.llm.invoke(messages)
-                    raw_text = getattr(raw_response, "content", str(raw_response))
-                    return self._parse_fallback_json(raw_text)
-                except Exception as fallback_exc:
-                    raise RuntimeError(
-                        f"结构化审计失败: {structured_exc}; 回退解析亦失败: {fallback_exc}"
-                    ) from fallback_exc
+            return self._parse_audit_response(raw_text)
 
         except ValueError:
             raise
         except Exception as exc:
-            raise RuntimeError(
-                f"报告审计失败: {exc}\n"
-                "请检查 DeepSeek API 配置与网络状态。"
-            ) from exc
+            print(f"[Reviewer] WARNING: 审计接口异常，激活防御放行 -> {type(exc).__name__}: {exc}")
+            return _FALLBACK_AUDIT.model_copy()

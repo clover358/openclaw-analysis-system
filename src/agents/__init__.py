@@ -7,13 +7,14 @@ from src.agents.analyst import (
     resolve_zhipu_embedding_settings,
 )
 from src.agents.generator import GeneratorAgent
-from src.agents.reviewer import ReviewerAgent, ReviewAuditSchema
+from src.agents.reviewer import ReviewerAgent, AuditResult, ReviewAuditSchema
 
 __all__ = [
     "AnalystAgent",
     "AnalysisResult",
     "GeneratorAgent",
     "ReviewerAgent",
+    "AuditResult",
     "ReviewAuditSchema",
     "resolve_openai_settings",
     "resolve_zhipu_embedding_settings",
