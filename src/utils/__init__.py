@@ -7,6 +7,7 @@ from src.utils.config_loader import (
     load_app_config,
     load_dotenv_file,
     resolve_env_placeholders,
+    validate_api_keys,
 )
 
 __all__ = [
@@ -16,4 +17,5 @@ __all__ = [
     "resolve_env_placeholders",
     "get_openai_api_key",
     "get_zhipu_api_key",
+    "validate_api_keys",
 ]

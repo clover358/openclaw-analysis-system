@@ -1,1 +1,1 @@
-"""Collector-Agent 项目源码包。"""
+"""OpenClaw 多源异构数据自动化分析系统。"""
