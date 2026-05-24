@@ -1,0 +1,269 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+学术文档规范化智能体
+对自动生成的实验报告/课程报告/学术报告进行错误修正、格式标准化、内容润色、排版美化
+支持保留原始文档中的图表
+"""
+
+import re
+import os
+from docx import Document
+from docx.shared import Pt, RGBColor, Cm, Inches
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
+from docx.oxml.ns import qn
+
+def clean_text(text):
+    """清理文本中的乱码、特殊字符和Markdown符号"""
+    if not text:
+        return ""
+    
+    text = re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\xFF]', '', text)
+    text = re.sub(r'[^\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af\u0020-\u007E\n\u3000。，！？；：、（）【】《》「」『』—…·]', '', text)
+    text = re.sub(r'\*\*', '', text)
+    text = re.sub(r'__', '', text)
+    text = re.sub(r'`', '', text)
+    text = re.sub(r'^\s*[-+]\s+', '', text, flags=re.MULTILINE)
+    text = re.sub(r'^\s*#{1,6}\s+', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\|', '', text)
+    text = re.sub(r'>', '', text)
+    text = re.sub(r' +', ' ', text)
+    text = text.strip()
+    
+    return text
+
+def normalize_punctuation(text):
+    """规范标点符号，统一使用中文标点"""
+    text = text.replace('，', ',').replace('。', '.').replace('！', '!').replace('？', '?')
+    text = text.replace('：', ':').replace('；', ';').replace('（', '(').replace('）', ')')
+    text = text.replace('【', '[').replace('】', ']').replace('「', '"').replace('」', '"').replace('’', "'")
+    
+    text = text.replace(',', '，').replace('.', '。').replace('!', '！').replace('?', '？')
+    text = text.replace(':', '：').replace(';', '；')
+    text = text.replace('(', '（').replace(')', '）')
+    text = text.replace('[', '【').replace(']', '】')
+    text = text.replace("'", '’')
+    
+    text = re.sub(r'「([^「」]+)「', r'「\1」', text)
+    text = re.sub(r'"([^"]+)"', r'「\1」', text)
+    
+    return text
+
+def normalize_spacing(text):
+    """规范中英文之间的空格"""
+    text = re.sub(r'([\u4e00-\u9fff])([a-zA-Z0-9])', r'\1 \2', text)
+    text = re.sub(r'([a-zA-Z0-9])([\u4e00-\u9fff])', r'\1 \2', text)
+    text = re.sub(r' +', ' ', text)
+    
+    return text
+
+def is_chapter_title(text):
+    """判断是否为章节标题"""
+    pattern = r'^第[一二三三四五六七八九十]+章[\u4e00-\u9fff　\s]+$'
+    return re.match(pattern, text)
+
+def extract_images(doc, output_dir):
+    """提取文档中的图片并保存到指定目录"""
+    images = []
+    image_idx = 0
+    
+    for rel in doc.part.rels.values():
+        if "image" in rel.target_ref:
+            image_data = rel.target_part.blob
+            extension = rel.target_ref.split('.')[-1].lower()
+            if extension not in ['png', 'jpg', 'jpeg', 'gif', 'bmp']:
+                extension = 'png'
+            
+            image_path = os.path.join(output_dir, f'image_{image_idx}.{extension}')
+            with open(image_path, 'wb') as f:
+                f.write(image_data)
+            
+            images.append(image_path)
+            image_idx += 1
+    
+    return images
+
+def normalize_report(input_path, output_path):
+    """规范化报告文档，保留图表"""
+    doc = Document(input_path)
+    new_doc = Document()
+    
+    # 设置页面格式
+    section = new_doc.sections[0]
+    section.left_margin = Cm(1.91)
+    section.right_margin = Cm(1.91)
+    section.top_margin = Cm(2.54)
+    section.bottom_margin = Cm(2.54)
+    
+    # 设置默认样式
+    style = new_doc.styles['Normal']
+    style.font.name = '微软雅黑'
+    style.font.size = Pt(12)
+    style._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    style.paragraph_format.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
+    style.paragraph_format.first_line_indent = 425200
+    style.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    
+    # 创建临时目录存储图片
+    temp_img_dir = 'temp_images'
+    os.makedirs(temp_img_dir, exist_ok=True)
+    
+    # 提取图片
+    images = extract_images(doc, temp_img_dir)
+    image_idx = 0
+    
+    # 提取并处理内容
+    paragraph_count = 0
+    previous_was_chapter = False
+    in_toc_section = False
+    toc_paragraph_count = 0
+    
+    for para in doc.paragraphs:
+        raw_text = para.text
+        if not raw_text or raw_text.strip() in ['— 报告完 —', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━']:
+            continue
+        
+        lines = raw_text.split('\n')
+        
+        for line in lines:
+            text = clean_text(line)
+            
+            if not text:
+                continue
+            
+            text = normalize_punctuation(text)
+            text = normalize_spacing(text)
+            
+            paragraph_count += 1
+            
+            if '目 录' in text or '目录' in text:
+                in_toc_section = True
+                toc_paragraph_count = 0
+            
+            is_toc_entry = in_toc_section and is_chapter_title(text)
+            
+            if is_chapter_title(text) and not is_toc_entry:
+                if paragraph_count > 1 and not previous_was_chapter:
+                    new_doc.add_page_break()
+                previous_was_chapter = True
+            else:
+                previous_was_chapter = False
+            
+            if in_toc_section:
+                toc_paragraph_count += 1
+                if toc_paragraph_count > 20:
+                    in_toc_section = False
+            
+            # 根据内容判断标题级别
+            if is_chapter_title(text):
+                p = new_doc.add_heading(text, level=1)
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.first_line_indent = 0
+                p.paragraph_format.space_after = Pt(12)
+                p.paragraph_format.space_before = Pt(0)
+                for run in p.runs:
+                    run.font.color.rgb = RGBColor(0, 51, 102)
+                    run.font.size = Pt(18)
+                    run.font.bold = True
+                    run.font.name = '微软雅黑'
+                    run._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+            elif re.match(r'^[一二三四五六七八九十]+、', text):
+                p = new_doc.add_heading(text, level=2)
+                p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                p.paragraph_format.first_line_indent = 0
+                p.paragraph_format.space_before = Pt(12)
+                p.paragraph_format.space_after = Pt(6)
+                for run in p.runs:
+                    run.font.color.rgb = RGBColor(0, 51, 102)
+                    run.font.size = Pt(14)
+                    run.font.bold = True
+                    run.font.name = '微软雅黑'
+                    run._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+            elif re.match(r'^\d+\.\d+', text):
+                p = new_doc.add_heading(text, level=3)
+                p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                p.paragraph_format.first_line_indent = 0
+                p.paragraph_format.space_before = Pt(6)
+                for run in p.runs:
+                    run.font.size = Pt(12)
+                    run.font.bold = True
+                    run.font.name = '微软雅黑'
+                    run._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+            elif re.match(r'^【', text) or re.match(r'^\（\d+\）', text):
+                p = new_doc.add_heading(text, level=4)
+                p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                p.paragraph_format.first_line_indent = 0
+                p.paragraph_format.space_before = Pt(6)
+                for run in p.runs:
+                    run.font.size = Pt(12)
+                    run.font.name = '微软雅黑'
+                    run._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+            elif text.startswith('图') or text.startswith('表'):
+                p = new_doc.add_paragraph(text)
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.first_line_indent = 0
+                p.paragraph_format.space_before = Pt(6)
+                for run in p.runs:
+                    run.font.size = Pt(11)
+                    run.font.name = '微软雅黑'
+                    run._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+                
+                if image_idx < len(images):
+                    try:
+                        new_doc.add_picture(images[image_idx], width=Inches(6))
+                        image_idx += 1
+                    except Exception as e:
+                        pass
+            else:
+                p = new_doc.add_paragraph(text)
+                p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                p.paragraph_format.first_line_indent = 425200
+                p.paragraph_format.space_after = Pt(6)
+                p.paragraph_format.space_before = Pt(0)
+                for run in p.runs:
+                    run.font.name = '微软雅黑'
+                    run._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    
+    # 处理表格（保持原有结构和内容，仅美化格式）
+    for table in doc.tables:
+        num_cols = max(len(row.cells) for row in table.rows)
+        tbl = new_doc.add_table(rows=len(table.rows), cols=num_cols)
+        tbl.style = 'Table Grid'
+        
+        for i, row in enumerate(table.rows):
+            for j, cell in enumerate(row.cells):
+                if j < num_cols:
+                    tbl.cell(i, j).text = cell.text
+                    paragraphs = tbl.cell(i, j).paragraphs
+                    for p in paragraphs:
+                        p.paragraph_format.first_line_indent = 0
+                        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                        for run in p.runs:
+                            run.font.name = '微软雅黑'
+                            run.font.size = Pt(11)
+                            run._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    
+    # 添加报告结束标记
+    p = new_doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.first_line_indent = 0
+    p.paragraph_format.space_before = Pt(12)
+    run = p.add_run('— 报告完 —')
+    run.font.size = Pt(14)
+    run.font.bold = True
+    run.font.color.rgb = RGBColor(0, 51, 102)
+    run.font.name = '微软雅黑'
+    run._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    
+    # 保存规范化后的文档
+    new_doc.save(output_path)
+    print(f"✅ 规范化报告已保存：{output_path}")
+    
+    # 清理临时图片目录
+    import shutil
+    shutil.rmtree(temp_img_dir, ignore_errors=True)
+
+if __name__ == '__main__':
+    input_file = 'output/产品销售与市场分析报告_1779628249.docx'
+    output_file = 'output/市场分析报告_修正版.docx'
+    normalize_report(input_file, output_file)
