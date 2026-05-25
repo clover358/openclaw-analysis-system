@@ -1,4 +1,4 @@
-"""Agent 模块：Collector / Analyst / Generator 等。"""
+"""Agent 模块：Collector / Analyst / Generator / Reviewer。"""
 
 from src.agents.analyst import (
     AnalystAgent,
@@ -6,10 +6,12 @@ from src.agents.analyst import (
     resolve_openai_settings,
     resolve_zhipu_embedding_settings,
 )
+from src.agents.collector import CollectorAgent
 from src.agents.generator import GeneratorAgent
-from src.agents.reviewer import ReviewerAgent, AuditResult, ReviewAuditSchema
+from src.agents.reviewer import AuditResult, ReviewAuditSchema, ReviewerAgent
 
 __all__ = [
+    "CollectorAgent",
     "AnalystAgent",
     "AnalysisResult",
     "GeneratorAgent",

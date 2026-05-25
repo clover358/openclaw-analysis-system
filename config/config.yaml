@@ -28,17 +28,35 @@ zhipu:
   embedding_model: "embedding-3"
   api_key_env: "ZHIPU_API_KEY"
   base_url_env: "ZHIPU_API_BASE"
+  embedding_batch_size: 32
 
 # ---------------------------------------------------------------------------
-# 各 Agent 的独立配置段（占位，由对应负责人按需扩展）
+# 各 Agent 的独立配置段（由对应负责人按需扩展）
 # ---------------------------------------------------------------------------
-collector: {}
+collector:
+  apple_csv: "data/apple_global_sales_dataset.csv"
+  samsung_csv: "data/samsung_global_sales_dataset.csv"
+  industry_report_url: "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-economy/the-mobile-economy-2024/"
+  industry_report_pdf: "data/260224-The-Mobile-Economy-2024.pdf"
 
-analyst: {}
+analyst:
+  rag:
+    chunk_size: 500
+    chunk_overlap: 50
+    top_k: 3
+    vector_store_dir: "data/processed/faiss_index"
+  debug:
+    use_fake_embeddings: false
+  retrieval:
+    sales_query: "Apple sales product revenue units region channel customer segment"
+    industry_query: "mobile economy smartphone market 2024 2025 industry trend GSMA"
+    competitor_query: "Samsung sales competitor product revenue units region channel"
 
 generator:
   report:
-    title: "2025年某产品销售与市场分析报告"
-    default_output: "data/processed/sales_and_market_report_2025.md"
+    title: "2025年 Apple 产品销售与移动市场分析报告"
+    default_output: "data/processed/apple_sales_and_mobile_market_report_2025.md"
 
-reviewer: {}
+reviewer:
+  llm:
+    temperature: 0.1

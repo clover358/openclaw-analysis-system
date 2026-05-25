@@ -12,10 +12,10 @@ if str(PROJECT_ROOT) not in sys.path:
 from src.pipeline import run_automation_pipeline
 from src.utils.config_loader import ConfigError, load_app_config, validate_api_keys
 
-EXCEL_PATH = "data/raw/sales_data.xlsx"
-PDF_PATH = "data/raw/industry_report.pdf"
-HTML_PATH = "data/raw/competitor_site.html"
-FINAL_OUTPUT_PATH = "data/processed/2025_product_sales_and_market_analysis_report.md"
+APPLE_CSV_PATH = "data/apple_global_sales_dataset.csv"
+INDUSTRY_REPORT_PATH = "data/260224-The-Mobile-Economy-2024.pdf"
+SAMSUNG_CSV_PATH = "data/samsung_global_sales_dataset.csv"
+FINAL_OUTPUT_PATH = "data/processed/apple_sales_and_mobile_market_report_2025.md"
 
 
 def _bootstrap_config() -> None:
@@ -35,9 +35,9 @@ def main() -> None:
 
     try:
         run_automation_pipeline(
-            excel_path=EXCEL_PATH,
-            pdf_path=PDF_PATH,
-            html_path=HTML_PATH,
+            excel_path=APPLE_CSV_PATH,
+            pdf_path=INDUSTRY_REPORT_PATH,
+            html_path=SAMSUNG_CSV_PATH,
             final_output_path=FINAL_OUTPUT_PATH,
         )
     except NotImplementedError as exc:
