@@ -1,0 +1,1340 @@
+{
+  "day": [
+    {
+      "app_id": 3067167,
+      "total_tokens": "568881055948",
+      "total_requests": 8704946,
+      "rank": 1,
+      "app": {
+        "id": 3067167,
+        "created_at": "2026-03-12T23:26:33.624Z",
+        "description": "Hermes Agent is an open-source, self-improving AI agent by Nous Research that runs persistently with memory across sessions, and builds reusable skills from experience. It comes with 40+ built-in tools, including web search, browser automation, and vision, plus scheduled automations and subagents.",
+        "title": "Hermes Agent",
+        "main_url": null,
+        "origin_url": "https://hermes-agent.nousresearch.com/",
+        "slug": "hermes-agent",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": "https://nousresearch.com",
+        "categories": [
+          "personal-agent",
+          "cli-agent"
+        ],
+        "related_apps": [
+          2937781,
+          2964811
+        ]
+      }
+    },
+    {
+      "app_id": 2262242,
+      "total_tokens": "152696088265",
+      "total_requests": 2070517,
+      "rank": 4,
+      "app": {
+        "id": 2262242,
+        "created_at": "2025-04-09T15:16:20.620Z",
+        "description": "Kilo Code is an open-source AI coding agent that works across VS Code, JetBrains, and CLI to help developers ship code faster with agentic workflows.",
+        "title": "Kilo Code",
+        "main_url": "https://github.com/Kilo-Org/kilocode/",
+        "origin_url": "https://kilocode.ai/",
+        "slug": "kilo-code",
+        "source_code_url": null,
+        "icon_class_name": "dark:invert invert-0",
+        "favicon_url": "https://kilocode.ai/",
+        "categories": [
+          "cli-agent",
+          "ide-extension"
+        ],
+        "related_apps": [
+          2543560
+        ]
+      }
+    },
+    {
+      "app_id": 2725608,
+      "total_tokens": "152235774730",
+      "total_requests": 3225511,
+      "rank": 5,
+      "app": {
+        "id": 2725608,
+        "created_at": "2026-01-30T06:12:11.182Z",
+        "description": "OpenClaw is an open-source AI agent that connects to your messaging apps and takes real actions on your behalf, from running commands and browsing the web to managing files and sending emails.",
+        "title": "OpenClaw",
+        "main_url": null,
+        "origin_url": "https://openclaw.ai/",
+        "slug": "openclaw",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "personal-agent",
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3246161,
+      "total_tokens": "112762212454",
+      "total_requests": 1226675,
+      "rank": 6,
+      "app": {
+        "id": 3246161,
+        "created_at": "2026-04-06T20:13:50.960Z",
+        "description": null,
+        "title": "OpenClaude Test",
+        "main_url": null,
+        "origin_url": "https://gitlawb.com/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2308106,
+      "total_tokens": "69318218045",
+      "total_requests": 1144215,
+      "rank": 7,
+      "app": {
+        "id": 2308106,
+        "created_at": "2025-06-12T21:59:45.208Z",
+        "description": "AI Video & Podcast Editor",
+        "title": "Descript",
+        "main_url": null,
+        "origin_url": "https://descript.com/",
+        "slug": "descript",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "video-gen"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2627404,
+      "total_tokens": "53787010898",
+      "total_requests": 696108,
+      "rank": 9,
+      "app": {
+        "id": 2627404,
+        "created_at": "2025-12-23T22:23:47.378Z",
+        "description": "Claude Code is Anthropic's agentic coding tool that reads your entire codebase, plans and executes changes across files, runs tests, and iterates on failures, all from natural language prompts.",
+        "title": "Claude Code",
+        "main_url": null,
+        "origin_url": "https://claude.ai/",
+        "slug": "claude-code",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": "https://claude.ai/apple-touch-icon.png",
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2853275,
+      "total_tokens": "43785066641",
+      "total_requests": 881228,
+      "rank": 11,
+      "app": {
+        "id": 2853275,
+        "created_at": "2026-02-15T08:18:07.110Z",
+        "description": "There are many coding agents, but this one is yours.",
+        "title": "pi",
+        "main_url": null,
+        "origin_url": "https://pi.dev/",
+        "slug": "pi",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3876074,
+      "total_tokens": "34815488226",
+      "total_requests": 6309251,
+      "rank": 13,
+      "app": {
+        "id": 3876074,
+        "created_at": "2026-05-27T07:53:34.912Z",
+        "description": null,
+        "title": "gravity-science rewrite-pretrain",
+        "main_url": null,
+        "origin_url": "https://github.com/trillion-labs/gravity-science",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 169155,
+      "total_tokens": "30456360278",
+      "total_requests": 2235841,
+      "rank": 14,
+      "app": {
+        "id": 169155,
+        "created_at": "2023-12-09T18:30:01.148Z",
+        "description": "Janitor AI is a chatbot platform where users create and chat with custom AI characters for interactive roleplay, storytelling, and immersive fiction.",
+        "title": "Janitor AI",
+        "main_url": null,
+        "origin_url": "https://janitorai.com/",
+        "slug": "janitor-ai",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2699842,
+      "total_tokens": "24248364692",
+      "total_requests": 616826,
+      "rank": 16,
+      "app": {
+        "id": 2699842,
+        "created_at": "2026-01-21T19:15:22.288Z",
+        "description": "AI adventures. Travel with your favorite characters",
+        "title": "ISEKAI ZERO",
+        "main_url": null,
+        "origin_url": "https://www.isekai.world/",
+        "slug": "isekai-zero",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "game"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 831074,
+      "total_tokens": "21725491685",
+      "total_requests": 240959,
+      "rank": 17,
+      "app": {
+        "id": 831074,
+        "created_at": "2024-12-09T15:49:26.866Z",
+        "description": "Roo Code is a VS Code extension that gives you a team of specialized AI agents with customizable modes for coding, architecture, debugging, and review, all with flexibility across any LLM or model provider.",
+        "title": "Roo Code",
+        "main_url": "https://roocode.com/",
+        "origin_url": "https://github.com/RooVetGit/Roo-Cline",
+        "slug": "roo-code",
+        "source_code_url": "https://github.com/RooVetGit/Roo-Code",
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "ide-extension",
+          "cloud-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 190604,
+      "total_tokens": "20010645524",
+      "total_requests": 228690,
+      "rank": 19,
+      "app": {
+        "id": 190604,
+        "created_at": "2024-10-09T07:53:24.932Z",
+        "description": "Cline is an open-source AI coding agent that lives inside your IDE, autonomously exploring your codebase, editing files, running terminal commands, and using browser automation.",
+        "title": "Cline",
+        "main_url": null,
+        "origin_url": "https://cline.bot/",
+        "slug": "cline",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "ide-extension",
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2755681,
+      "total_tokens": "16212184264",
+      "total_requests": 1851102,
+      "rank": 21,
+      "app": {
+        "id": 2755681,
+        "created_at": "2026-02-04T18:26:22.875Z",
+        "description": "Pieces is a private, on-device, long-term memory layer for macOS, Linux, and Windows that proactively captures your work context as it happens. Over time, Pieces becomes your very own “internet of all context”—browse your artificial memories in the Pieces Desktop app, or plug them into the agents you already use: OpenClaw, Hermes, Claude, Cursor, Codex, etc.",
+        "title": "Pieces.app: Ambient Artificial Memory",
+        "main_url": null,
+        "origin_url": "https://pieces.app/",
+        "slug": "pieces",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "personal-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3296290,
+      "total_tokens": "15269241149",
+      "total_requests": 1155578,
+      "rank": 22,
+      "app": {
+        "id": 3296290,
+        "created_at": "2026-04-13T16:32:50.486Z",
+        "description": "Mira is a Telegram-native AI assistant.",
+        "title": "Mira",
+        "main_url": null,
+        "origin_url": "https://mira.tg/",
+        "slug": "mira",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "personal-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2637375,
+      "total_tokens": "13786537791",
+      "total_requests": 385003,
+      "rank": 23,
+      "app": {
+        "id": 2637375,
+        "created_at": "2025-12-28T17:23:36.463Z",
+        "description": "The AI tool for Roblox games.",
+        "title": "Lemonade",
+        "main_url": null,
+        "origin_url": "https://lemonade.gg/",
+        "slug": "lemonade",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "programming-app"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3356965,
+      "total_tokens": "11774610767",
+      "total_requests": 241490,
+      "rank": 24,
+      "app": {
+        "id": 3356965,
+        "created_at": "2026-04-22T01:40:58.408Z",
+        "description": "Inference API that improves with your traffic",
+        "title": "Pioneer (production)",
+        "main_url": null,
+        "origin_url": "https://pioneer.ai/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 169295,
+      "total_tokens": "10380607830",
+      "total_requests": 614188,
+      "rank": 25,
+      "app": {
+        "id": 169295,
+        "created_at": "2023-12-18T09:15:55.739Z",
+        "description": "Control panel for AI apps",
+        "title": "Portkey AI",
+        "main_url": null,
+        "origin_url": "https://portkey.ai/",
+        "slug": "portkey-ai",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "programming-app"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 189563,
+      "total_tokens": "9067681189",
+      "total_requests": 353476,
+      "rank": 26,
+      "app": {
+        "id": 189563,
+        "created_at": "2024-09-24T08:02:50.387Z",
+        "description": "AI coding agent that can run commands, browse the web, call APIs",
+        "title": "OpenHands",
+        "main_url": null,
+        "origin_url": "https://docs.all-hands.dev/",
+        "slug": "openhands",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 142576,
+      "total_tokens": "8501558073",
+      "total_requests": 516132,
+      "rank": 28,
+      "app": {
+        "id": 142576,
+        "created_at": "2023-07-21T00:27:58.324Z",
+        "description": "SillyTavern is the LLM frontend for power users, a chat interface that connects to any model and gives deep control through character creation, roleplay, and prompt customization.",
+        "title": "SillyTavern",
+        "main_url": null,
+        "origin_url": "https://sillytavern.app/",
+        "slug": "sillytavern",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2668297,
+      "total_tokens": "8120041679",
+      "total_requests": 109110,
+      "rank": 29,
+      "app": {
+        "id": 2668297,
+        "created_at": "2026-01-10T03:00:25.305Z",
+        "description": "A coding agent that helps you build and ship with AI",
+        "title": "Codex",
+        "main_url": "https://openai.com/codex",
+        "origin_url": "https://openai.com/codex/",
+        "slug": "codex",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    }
+  ],
+  "week": [
+    {
+      "app_id": 3067167,
+      "total_tokens": "3566643083019",
+      "total_requests": 56301276,
+      "rank": 1,
+      "app": {
+        "id": 3067167,
+        "created_at": "2026-03-12T23:26:33.624Z",
+        "description": "Hermes Agent is an open-source, self-improving AI agent by Nous Research that runs persistently with memory across sessions, and builds reusable skills from experience. It comes with 40+ built-in tools, including web search, browser automation, and vision, plus scheduled automations and subagents.",
+        "title": "Hermes Agent",
+        "main_url": null,
+        "origin_url": "https://hermes-agent.nousresearch.com/",
+        "slug": "hermes-agent",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": "https://nousresearch.com",
+        "categories": [
+          "personal-agent",
+          "cli-agent"
+        ],
+        "related_apps": [
+          2937781,
+          2964811
+        ]
+      }
+    },
+    {
+      "app_id": 2725608,
+      "total_tokens": "1073783254200",
+      "total_requests": 22966686,
+      "rank": 4,
+      "app": {
+        "id": 2725608,
+        "created_at": "2026-01-30T06:12:11.182Z",
+        "description": "OpenClaw is an open-source AI agent that connects to your messaging apps and takes real actions on your behalf, from running commands and browsing the web to managing files and sending emails.",
+        "title": "OpenClaw",
+        "main_url": null,
+        "origin_url": "https://openclaw.ai/",
+        "slug": "openclaw",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "personal-agent",
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2262242,
+      "total_tokens": "932395855974",
+      "total_requests": 13933494,
+      "rank": 5,
+      "app": {
+        "id": 2262242,
+        "created_at": "2025-04-09T15:16:20.620Z",
+        "description": "Kilo Code is an open-source AI coding agent that works across VS Code, JetBrains, and CLI to help developers ship code faster with agentic workflows.",
+        "title": "Kilo Code",
+        "main_url": "https://github.com/Kilo-Org/kilocode/",
+        "origin_url": "https://kilocode.ai/",
+        "slug": "kilo-code",
+        "source_code_url": null,
+        "icon_class_name": "dark:invert invert-0",
+        "favicon_url": "https://kilocode.ai/",
+        "categories": [
+          "cli-agent",
+          "ide-extension"
+        ],
+        "related_apps": [
+          2543560
+        ]
+      }
+    },
+    {
+      "app_id": 2308106,
+      "total_tokens": "425574050244",
+      "total_requests": 6696141,
+      "rank": 7,
+      "app": {
+        "id": 2308106,
+        "created_at": "2025-06-12T21:59:45.208Z",
+        "description": "AI Video & Podcast Editor",
+        "title": "Descript",
+        "main_url": null,
+        "origin_url": "https://descript.com/",
+        "slug": "descript",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "video-gen"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2627404,
+      "total_tokens": "366468089694",
+      "total_requests": 4725240,
+      "rank": 9,
+      "app": {
+        "id": 2627404,
+        "created_at": "2025-12-23T22:23:47.378Z",
+        "description": "Claude Code is Anthropic's agentic coding tool that reads your entire codebase, plans and executes changes across files, runs tests, and iterates on failures, all from natural language prompts.",
+        "title": "Claude Code",
+        "main_url": null,
+        "origin_url": "https://claude.ai/",
+        "slug": "claude-code",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": "https://claude.ai/apple-touch-icon.png",
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2853275,
+      "total_tokens": "270112059628",
+      "total_requests": 4526251,
+      "rank": 11,
+      "app": {
+        "id": 2853275,
+        "created_at": "2026-02-15T08:18:07.110Z",
+        "description": "There are many coding agents, but this one is yours.",
+        "title": "pi",
+        "main_url": null,
+        "origin_url": "https://pi.dev/",
+        "slug": "pi",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 169155,
+      "total_tokens": "213536546143",
+      "total_requests": 16333092,
+      "rank": 13,
+      "app": {
+        "id": 169155,
+        "created_at": "2023-12-09T18:30:01.148Z",
+        "description": "Janitor AI is a chatbot platform where users create and chat with custom AI characters for interactive roleplay, storytelling, and immersive fiction.",
+        "title": "Janitor AI",
+        "main_url": null,
+        "origin_url": "https://janitorai.com/",
+        "slug": "janitor-ai",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2699842,
+      "total_tokens": "183119142248",
+      "total_requests": 4810837,
+      "rank": 14,
+      "app": {
+        "id": 2699842,
+        "created_at": "2026-01-21T19:15:22.288Z",
+        "description": "AI adventures. Travel with your favorite characters",
+        "title": "ISEKAI ZERO",
+        "main_url": null,
+        "origin_url": "https://www.isekai.world/",
+        "slug": "isekai-zero",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "game"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 190604,
+      "total_tokens": "146305224402",
+      "total_requests": 1757552,
+      "rank": 16,
+      "app": {
+        "id": 190604,
+        "created_at": "2024-10-09T07:53:24.932Z",
+        "description": "Cline is an open-source AI coding agent that lives inside your IDE, autonomously exploring your codebase, editing files, running terminal commands, and using browser automation.",
+        "title": "Cline",
+        "main_url": null,
+        "origin_url": "https://cline.bot/",
+        "slug": "cline",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "ide-extension",
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 831074,
+      "total_tokens": "133869041870",
+      "total_requests": 1516423,
+      "rank": 17,
+      "app": {
+        "id": 831074,
+        "created_at": "2024-12-09T15:49:26.866Z",
+        "description": "Roo Code is a VS Code extension that gives you a team of specialized AI agents with customizable modes for coding, architecture, debugging, and review, all with flexibility across any LLM or model provider.",
+        "title": "Roo Code",
+        "main_url": "https://roocode.com/",
+        "origin_url": "https://github.com/RooVetGit/Roo-Cline",
+        "slug": "roo-code",
+        "source_code_url": "https://github.com/RooVetGit/Roo-Code",
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "ide-extension",
+          "cloud-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2637375,
+      "total_tokens": "124404265117",
+      "total_requests": 3920039,
+      "rank": 19,
+      "app": {
+        "id": 2637375,
+        "created_at": "2025-12-28T17:23:36.463Z",
+        "description": "The AI tool for Roblox games.",
+        "title": "Lemonade",
+        "main_url": null,
+        "origin_url": "https://lemonade.gg/",
+        "slug": "lemonade",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "programming-app"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3246161,
+      "total_tokens": "114819485965",
+      "total_requests": 1243180,
+      "rank": 20,
+      "app": {
+        "id": 3246161,
+        "created_at": "2026-04-06T20:13:50.960Z",
+        "description": null,
+        "title": "OpenClaude Test",
+        "main_url": null,
+        "origin_url": "https://gitlawb.com/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3356965,
+      "total_tokens": "113804571111",
+      "total_requests": 1908011,
+      "rank": 21,
+      "app": {
+        "id": 3356965,
+        "created_at": "2026-04-22T01:40:58.408Z",
+        "description": "Inference API that improves with your traffic",
+        "title": "Pioneer (production)",
+        "main_url": null,
+        "origin_url": "https://pioneer.ai/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3296290,
+      "total_tokens": "95949038951",
+      "total_requests": 6916345,
+      "rank": 23,
+      "app": {
+        "id": 3296290,
+        "created_at": "2026-04-13T16:32:50.486Z",
+        "description": "Mira is a Telegram-native AI assistant.",
+        "title": "Mira",
+        "main_url": null,
+        "origin_url": "https://mira.tg/",
+        "slug": "mira",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "personal-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2511276,
+      "total_tokens": "67844831631",
+      "total_requests": 1305083,
+      "rank": 25,
+      "app": {
+        "id": 2511276,
+        "created_at": "2025-10-31T03:48:14.023Z",
+        "description": "Generate music videos, shorts, and more from audio",
+        "title": "VidMuse",
+        "main_url": null,
+        "origin_url": "https://vidmuse.ai/",
+        "slug": "vidmuse",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "video-gen"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 142576,
+      "total_tokens": "59450801720",
+      "total_requests": 3638045,
+      "rank": 26,
+      "app": {
+        "id": 142576,
+        "created_at": "2023-07-21T00:27:58.324Z",
+        "description": "SillyTavern is the LLM frontend for power users, a chat interface that connects to any model and gives deep control through character creation, roleplay, and prompt customization.",
+        "title": "SillyTavern",
+        "main_url": null,
+        "origin_url": "https://sillytavern.app/",
+        "slug": "sillytavern",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2755681,
+      "total_tokens": "58835919030",
+      "total_requests": 6454570,
+      "rank": 27,
+      "app": {
+        "id": 2755681,
+        "created_at": "2026-02-04T18:26:22.875Z",
+        "description": "Pieces is a private, on-device, long-term memory layer for macOS, Linux, and Windows that proactively captures your work context as it happens. Over time, Pieces becomes your very own “internet of all context”—browse your artificial memories in the Pieces Desktop app, or plug them into the agents you already use: OpenClaw, Hermes, Claude, Cursor, Codex, etc.",
+        "title": "Pieces.app: Ambient Artificial Memory",
+        "main_url": null,
+        "origin_url": "https://pieces.app/",
+        "slug": "pieces",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "personal-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2524738,
+      "total_tokens": "50231174632",
+      "total_requests": 4219095,
+      "rank": 30,
+      "app": {
+        "id": 2524738,
+        "created_at": "2025-11-07T08:17:49.811Z",
+        "description": "",
+        "title": "LangChain",
+        "main_url": null,
+        "origin_url": "https://docs.langchain.com/",
+        "slug": "langchain",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2668297,
+      "total_tokens": "46480069452",
+      "total_requests": 596058,
+      "rank": 32,
+      "app": {
+        "id": 2668297,
+        "created_at": "2026-01-10T03:00:25.305Z",
+        "description": "A coding agent that helps you build and ship with AI",
+        "title": "Codex",
+        "main_url": "https://openai.com/codex",
+        "origin_url": "https://openai.com/codex/",
+        "slug": "codex",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2235067,
+      "total_tokens": "41665838983",
+      "total_requests": 12155547,
+      "rank": 35,
+      "app": {
+        "id": 2235067,
+        "created_at": "2025-03-04T06:20:28.828Z",
+        "description": "Chat with AI characters for free",
+        "title": "HammerAI",
+        "main_url": null,
+        "origin_url": "https://www.hammerai.com/",
+        "slug": "hammerai",
+        "source_code_url": null,
+        "icon_class_name": "dark:invert invert-0",
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
+    }
+  ],
+  "month": [
+    {
+      "app_id": 3067167,
+      "total_tokens": "10392216741183",
+      "total_requests": 180733743,
+      "rank": 1,
+      "app": {
+        "id": 3067167,
+        "created_at": "2026-03-12T23:26:33.624Z",
+        "description": "Hermes Agent is an open-source, self-improving AI agent by Nous Research that runs persistently with memory across sessions, and builds reusable skills from experience. It comes with 40+ built-in tools, including web search, browser automation, and vision, plus scheduled automations and subagents.",
+        "title": "Hermes Agent",
+        "main_url": null,
+        "origin_url": "https://hermes-agent.nousresearch.com/",
+        "slug": "hermes-agent",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": "https://nousresearch.com",
+        "categories": [
+          "personal-agent",
+          "cli-agent"
+        ],
+        "related_apps": [
+          2937781,
+          2964811
+        ]
+      }
+    },
+    {
+      "app_id": 2725608,
+      "total_tokens": "6133528985396",
+      "total_requests": 121035301,
+      "rank": 3,
+      "app": {
+        "id": 2725608,
+        "created_at": "2026-01-30T06:12:11.182Z",
+        "description": "OpenClaw is an open-source AI agent that connects to your messaging apps and takes real actions on your behalf, from running commands and browsing the web to managing files and sending emails.",
+        "title": "OpenClaw",
+        "main_url": null,
+        "origin_url": "https://openclaw.ai/",
+        "slug": "openclaw",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "personal-agent",
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2262242,
+      "total_tokens": "4739956218153",
+      "total_requests": 70940530,
+      "rank": 4,
+      "app": {
+        "id": 2262242,
+        "created_at": "2025-04-09T15:16:20.620Z",
+        "description": "Kilo Code is an open-source AI coding agent that works across VS Code, JetBrains, and CLI to help developers ship code faster with agentic workflows.",
+        "title": "Kilo Code",
+        "main_url": "https://github.com/Kilo-Org/kilocode/",
+        "origin_url": "https://kilocode.ai/",
+        "slug": "kilo-code",
+        "source_code_url": null,
+        "icon_class_name": "dark:invert invert-0",
+        "favicon_url": "https://kilocode.ai/",
+        "categories": [
+          "cli-agent",
+          "ide-extension"
+        ],
+        "related_apps": [
+          2543560
+        ]
+      }
+    },
+    {
+      "app_id": 2627404,
+      "total_tokens": "2165658256589",
+      "total_requests": 28405255,
+      "rank": 6,
+      "app": {
+        "id": 2627404,
+        "created_at": "2025-12-23T22:23:47.378Z",
+        "description": "Claude Code is Anthropic's agentic coding tool that reads your entire codebase, plans and executes changes across files, runs tests, and iterates on failures, all from natural language prompts.",
+        "title": "Claude Code",
+        "main_url": null,
+        "origin_url": "https://claude.ai/",
+        "slug": "claude-code",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": "https://claude.ai/apple-touch-icon.png",
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2308106,
+      "total_tokens": "1547716780731",
+      "total_requests": 27238869,
+      "rank": 8,
+      "app": {
+        "id": 2308106,
+        "created_at": "2025-06-12T21:59:45.208Z",
+        "description": "AI Video & Podcast Editor",
+        "title": "Descript",
+        "main_url": null,
+        "origin_url": "https://descript.com/",
+        "slug": "descript",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "video-gen"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2853275,
+      "total_tokens": "1233777933045",
+      "total_requests": 20552954,
+      "rank": 10,
+      "app": {
+        "id": 2853275,
+        "created_at": "2026-02-15T08:18:07.110Z",
+        "description": "There are many coding agents, but this one is yours.",
+        "title": "pi",
+        "main_url": null,
+        "origin_url": "https://pi.dev/",
+        "slug": "pi",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 169155,
+      "total_tokens": "837891852516",
+      "total_requests": 65335961,
+      "rank": 12,
+      "app": {
+        "id": 169155,
+        "created_at": "2023-12-09T18:30:01.148Z",
+        "description": "Janitor AI is a chatbot platform where users create and chat with custom AI characters for interactive roleplay, storytelling, and immersive fiction.",
+        "title": "Janitor AI",
+        "main_url": null,
+        "origin_url": "https://janitorai.com/",
+        "slug": "janitor-ai",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2699842,
+      "total_tokens": "783466444668",
+      "total_requests": 27494167,
+      "rank": 13,
+      "app": {
+        "id": 2699842,
+        "created_at": "2026-01-21T19:15:22.288Z",
+        "description": "AI adventures. Travel with your favorite characters",
+        "title": "ISEKAI ZERO",
+        "main_url": null,
+        "origin_url": "https://www.isekai.world/",
+        "slug": "isekai-zero",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "game"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 190604,
+      "total_tokens": "660549045911",
+      "total_requests": 7679267,
+      "rank": 14,
+      "app": {
+        "id": 190604,
+        "created_at": "2024-10-09T07:53:24.932Z",
+        "description": "Cline is an open-source AI coding agent that lives inside your IDE, autonomously exploring your codebase, editing files, running terminal commands, and using browser automation.",
+        "title": "Cline",
+        "main_url": null,
+        "origin_url": "https://cline.bot/",
+        "slug": "cline",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "ide-extension",
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2637375,
+      "total_tokens": "627342438451",
+      "total_requests": 16311993,
+      "rank": 15,
+      "app": {
+        "id": 2637375,
+        "created_at": "2025-12-28T17:23:36.463Z",
+        "description": "The AI tool for Roblox games.",
+        "title": "Lemonade",
+        "main_url": null,
+        "origin_url": "https://lemonade.gg/",
+        "slug": "lemonade",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "programming-app"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 831074,
+      "total_tokens": "604749126477",
+      "total_requests": 7074470,
+      "rank": 16,
+      "app": {
+        "id": 831074,
+        "created_at": "2024-12-09T15:49:26.866Z",
+        "description": "Roo Code is a VS Code extension that gives you a team of specialized AI agents with customizable modes for coding, architecture, debugging, and review, all with flexibility across any LLM or model provider.",
+        "title": "Roo Code",
+        "main_url": "https://roocode.com/",
+        "origin_url": "https://github.com/RooVetGit/Roo-Cline",
+        "slug": "roo-code",
+        "source_code_url": "https://github.com/RooVetGit/Roo-Code",
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "ide-extension",
+          "cloud-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3296290,
+      "total_tokens": "322250916125",
+      "total_requests": 20905560,
+      "rank": 18,
+      "app": {
+        "id": 3296290,
+        "created_at": "2026-04-13T16:32:50.486Z",
+        "description": "Mira is a Telegram-native AI assistant.",
+        "title": "Mira",
+        "main_url": null,
+        "origin_url": "https://mira.tg/",
+        "slug": "mira",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "personal-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2511276,
+      "total_tokens": "286593710466",
+      "total_requests": 6180759,
+      "rank": 20,
+      "app": {
+        "id": 2511276,
+        "created_at": "2025-10-31T03:48:14.023Z",
+        "description": "Generate music videos, shorts, and more from audio",
+        "title": "VidMuse",
+        "main_url": null,
+        "origin_url": "https://vidmuse.ai/",
+        "slug": "vidmuse",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "video-gen"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2524738,
+      "total_tokens": "246878612916",
+      "total_requests": 19003810,
+      "rank": 21,
+      "app": {
+        "id": 2524738,
+        "created_at": "2025-11-07T08:17:49.811Z",
+        "description": "",
+        "title": "LangChain",
+        "main_url": null,
+        "origin_url": "https://docs.langchain.com/",
+        "slug": "langchain",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 142576,
+      "total_tokens": "236518038528",
+      "total_requests": 14299192,
+      "rank": 23,
+      "app": {
+        "id": 142576,
+        "created_at": "2023-07-21T00:27:58.324Z",
+        "description": "SillyTavern is the LLM frontend for power users, a chat interface that connects to any model and gives deep control through character creation, roleplay, and prompt customization.",
+        "title": "SillyTavern",
+        "main_url": null,
+        "origin_url": "https://sillytavern.app/",
+        "slug": "sillytavern",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3356965,
+      "total_tokens": "219568481800",
+      "total_requests": 4239665,
+      "rank": 25,
+      "app": {
+        "id": 3356965,
+        "created_at": "2026-04-22T01:40:58.408Z",
+        "description": "Inference API that improves with your traffic",
+        "title": "Pioneer (production)",
+        "main_url": null,
+        "origin_url": "https://pioneer.ai/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2235067,
+      "total_tokens": "168112696290",
+      "total_requests": 48919284,
+      "rank": 29,
+      "app": {
+        "id": 2235067,
+        "created_at": "2025-03-04T06:20:28.828Z",
+        "description": "Chat with AI characters for free",
+        "title": "HammerAI",
+        "main_url": null,
+        "origin_url": "https://www.hammerai.com/",
+        "slug": "hammerai",
+        "source_code_url": null,
+        "icon_class_name": "dark:invert invert-0",
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 189563,
+      "total_tokens": "155030542658",
+      "total_requests": 4035172,
+      "rank": 31,
+      "app": {
+        "id": 189563,
+        "created_at": "2024-09-24T08:02:50.387Z",
+        "description": "AI coding agent that can run commands, browse the web, call APIs",
+        "title": "OpenHands",
+        "main_url": null,
+        "origin_url": "https://docs.all-hands.dev/",
+        "slug": "openhands",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2447026,
+      "total_tokens": "143574919223",
+      "total_requests": 2204985,
+      "rank": 32,
+      "app": {
+        "id": 2447026,
+        "created_at": "2025-09-23T13:52:48.730Z",
+        "description": "Capture, nurture and close new leads into bookings",
+        "title": "CSS AI Pro",
+        "main_url": null,
+        "origin_url": "https://app.gohighlevel.com/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 184102,
+      "total_tokens": "130664054331",
+      "total_requests": 6417199,
+      "rank": 34,
+      "app": {
+        "id": 184102,
+        "created_at": "2024-07-28T14:31:04.263Z",
+        "description": "Open WebUI is a self-hosted AI platform providing a chat interface for Large Language Models.",
+        "title": "Open WebUI",
+        "main_url": null,
+        "origin_url": "https://openwebui.com/",
+        "slug": "open-webui",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "general-chat"
+        ],
+        "related_apps": []
+      }
+    }
+  ]
+}
