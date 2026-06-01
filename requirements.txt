@@ -12,3 +12,10 @@ langchain-community>=0.3.0
 langchain-openai>=0.2.0
 langchain-text-splitters>=0.3.0
 faiss-cpu>=1.8.0
+# Collector (OpenRouter rankings 抓取)
+playwright>=1.40.0
+# Generator (Markdown → PDF & 可选图表)
+reportlab>=4.0.0
+matplotlib>=3.7.0
+numpy>=1.24.0
+

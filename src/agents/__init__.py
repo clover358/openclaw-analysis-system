@@ -1,8 +1,8 @@
 """Agent 模块：Collector / Analyst / Generator / Reviewer。"""
 
 from src.agents.analyst import (
-    AnalystAgent,
     AnalysisResult,
+    AnalystAgent,
     resolve_openai_settings,
     resolve_zhipu_embedding_settings,
 )

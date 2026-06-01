@@ -1,4 +1,7 @@
-"""系统总入口：一键启动全链路自动化 Pipeline。"""
+"""系统总入口：一键启动全链路自动化 Pipeline。
+
+主题：基于 OpenRouter API 中转站的 LLM 厂商商业格局分析。
+"""
 
 from __future__ import annotations
 
@@ -11,11 +14,6 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.pipeline import run_automation_pipeline
 from src.utils.config_loader import ConfigError, load_app_config, validate_api_keys
-
-APPLE_CSV_PATH = "data/apple_global_sales_dataset.csv"
-INDUSTRY_REPORT_PATH = "data/260224-The-Mobile-Economy-2024.pdf"
-SAMSUNG_CSV_PATH = "data/samsung_global_sales_dataset.csv"
-FINAL_OUTPUT_PATH = "data/processed/apple_sales_and_mobile_market_report_2025.md"
 
 
 def _bootstrap_config() -> None:
@@ -34,15 +32,10 @@ def main() -> None:
         sys.exit(1)
 
     try:
-        run_automation_pipeline(
-            excel_path=APPLE_CSV_PATH,
-            pdf_path=INDUSTRY_REPORT_PATH,
-            html_path=SAMSUNG_CSV_PATH,
-            final_output_path=FINAL_OUTPUT_PATH,
-        )
+        run_automation_pipeline()
     except NotImplementedError as exc:
         print(f"\n[未实现] {exc}")
-        print("提示：四个 Agent 中存在尚未补全的实现，请到 src/agents/<agent>/ 下完成。")
+        print("提示：四个 Agent 中存在尚未补全的实现，请到 src/agents/ 下完成。")
         sys.exit(2)
     except ConfigError as exc:
         print(f"\n[配置错误] {exc}")

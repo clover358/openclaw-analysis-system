@@ -14,6 +14,9 @@ from pydantic import BaseModel, Field, ValidationError
 from src.agents.analyst import DEFAULT_CONFIG_PATH, PROJECT_ROOT, resolve_openai_settings
 from src.utils.config_loader import ConfigError, load_app_config
 
+# PROJECT_ROOT 仅复用，避免未使用警告
+_ = PROJECT_ROOT
+
 
 class AuditResult(BaseModel):
     """审计结果（Prompt 强约束 + json_object 解析）。"""
@@ -106,12 +109,26 @@ class ReviewerAgent:
     @staticmethod
     def _build_audit_messages(report_content: str, raw_data_summary: str) -> list:
         system_prompt = (
-            "你是一名极度挑剔的合规审计师，负责审核商业分析报告。\n"
+            "你是一名极度挑剔的合规审计师，负责审核基于 OpenRouter 真实调用数据"
+            "撰写的 LLM 厂商商业分析报告。\n"
             "你必须将【报告初稿】与【原始数据摘要】进行逐条比对，严厉核查：\n"
             "1. 是否存在捏造数字、虚构事实（幻觉）；\n"
             "2. 前后表述是否矛盾、年份是否错位；\n"
             "3. 错别字、语病及专业术语误用；\n"
-            "4. 结论是否脱离原始数据支撑。\n\n"
+            "4. 结论是否脱离原始数据支撑；\n"
+            "5. 主体定义是否正确（主产品 = OpenAI 旗下所有模型；其余厂商 = 竞品）。\n\n"
+            "【年份一致性强约束】\n"
+            "报告中出现的所有四位年份（如 2024、2025、2026）必须能在【原始数据摘要】"
+            "里找到来源。若报告写了「2025 年度」但原始数据全是 2024 年的日期点，"
+            "必须判定 is_passed=false 并在 hallucinations 中明确指出年份错位。\n\n"
+            "【图片引用保留强约束】\n"
+            "报告初稿中可能包含若干 Markdown 图片引用，形如：\n"
+            "    > **图 N：标题**\n"
+            "    ![标题](report_xxxx_chartNN.png)\n"
+            "若需要输出 revised_content（即 is_passed=false 时），你必须把所有图片引用"
+            "（包括前一行的 `> **图 N：...**` 题注与紧邻的 `![](xxx.png)` 一行）"
+            "原样、逐字、连同周围空行保留在原所属章节内，严禁删除、改写、合并、替换为占位符，"
+            "也不得调整图片文件名。这一条违反将直接判定本次修订作废。\n\n"
             "【输出硬性要求】\n"
             "你必须严格按照要求的 JSON 格式输出，用 ```json 和 ``` 代码段包裹。\n"
             "只允许输出一个 JSON 对象，禁止输出 Markdown 报告正文或其他解释性文字。\n"
@@ -138,16 +155,13 @@ class ReviewerAgent:
 
     @staticmethod
     def _extract_json(text: str) -> dict[str, Any]:
-        """
-        多级容错 JSON 解析：整段解析 → ```json 块 → 首尾大括号盲捞。
-        """
+        """多级容错 JSON 解析：整段解析 → ```json 块 → 首尾大括号盲捞。"""
         if not text or not str(text).strip():
             raise ValueError("模型返回内容为空，无法解析 JSON")
 
         raw = str(text).strip()
         errors: list[str] = []
 
-        # 尝试 1：直接解析整段文本
         try:
             payload = json.loads(raw)
             if isinstance(payload, dict):
@@ -156,7 +170,6 @@ class ReviewerAgent:
         except json.JSONDecodeError as exc:
             errors.append(f"整段解析失败: {exc}")
 
-        # 尝试 2：提取 ```json ... ``` 代码块
         fence_match = _JSON_FENCE_PATTERN.search(raw)
         if fence_match:
             try:
@@ -167,7 +180,6 @@ class ReviewerAgent:
             except json.JSONDecodeError as exc:
                 errors.append(f"json 代码块解析失败: {exc}")
 
-        # 尝试 3：盲捞第一个 { 到最后一个 }
         blob_match = _JSON_BLOB_PATTERN.search(raw)
         if blob_match:
             try:
@@ -196,7 +208,6 @@ class ReviewerAgent:
 
     @staticmethod
     def _normalize_audit_payload(data: dict[str, Any]) -> dict[str, Any]:
-        """兼容旧字段名与缺失字段。"""
         normalized = dict(data)
 
         if "suggestions" not in normalized and "review_opinions" in normalized:
@@ -221,11 +232,7 @@ class ReviewerAgent:
             raise ValueError(f"JSON 字段校验失败: {exc}") from exc
 
     def audit_report(self, report_content: str, raw_data_summary: str) -> AuditResult:
-        """
-        深度比对报告与原始数据，返回 AuditResult 审计结论。
-
-        任意 API / 网络 / 解析异常时，激活演示防御桩并默认放行。
-        """
+        """深度比对报告与原始数据，返回 AuditResult 审计结论。"""
         try:
             report = (report_content or "").strip()
             raw_summary = (raw_data_summary or "").strip()
@@ -246,3 +253,13 @@ class ReviewerAgent:
         except Exception as exc:
             print(f"[Reviewer] WARNING: 审计接口异常，激活防御放行 -> {type(exc).__name__}: {exc}")
             return _FALLBACK_AUDIT.model_copy()
+
+    def run(self, report_content: str, raw_data_summary: str) -> dict[str, Any]:
+        audit = self.audit_report(report_content, raw_data_summary)
+        return {
+            "is_passed": audit.is_passed,
+            "review_opinions": audit.review_opinions,
+            "revised_content": audit.revised_content,
+            "hallucinations": audit.hallucinations,
+            "suggestions": audit.suggestions,
+        }
