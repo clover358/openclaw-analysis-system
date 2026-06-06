@@ -1,14 +1,14 @@
 # OpenClaw 多源异构分析系统 配置文件
-# 主题：基于 OpenRouter API 中转站的 LLM 厂商商业格局分析
-# 主产品：OpenAI 旗下所有模型；竞品：除 OpenAI 之外的所有厂商
+# 各 Agent 的子段仅给出推荐字段，具体扩展由各 Agent 负责人按需补充。
 
 project:
   name: "openclaw-analysis-system"
-  version: "0.2.0"
+  version: "0.1.0"
 
 paths:
   raw_data_dir: "data/raw"
   output_dir: "data/processed"
+  pdf_output_dir: "data/outputs"
 
 # ---------------------------------------------------------------------------
 # DeepSeek（OpenAI 兼容）：Chat 分析与审计
@@ -32,49 +32,54 @@ zhipu:
   embedding_batch_size: 32
 
 # ---------------------------------------------------------------------------
-# 各 Agent 的独立配置段
+# 各 Agent 的独立配置段（由对应负责人按需扩展）
 # ---------------------------------------------------------------------------
 collector:
-  # OpenRouter rankings 由 Playwright 交互式抓取后合并到 data/merged_rankings.json
-  rankings_json: "data/merged_rankings.json"
-  # 行业报告：Stanford HAI AI Index 2026 Chapter 4 Economy
-  industry_report_url: "https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_4_economy.pdf"
-  industry_report_pdf: "data/ai_index_report_2026_chapter_4_economy.pdf"
+  ai_api_sources:
+    - path: "data/Market Share.json"
+      label: "API 厂商市场份额（按 Token 调用量）"
+      source_type: "api_market_share"
+    - path: "data/Top Model.json"
+      label: "热门大模型 API 调用排行"
+      source_type: "api_model_ranking"
+    - path: "data/Context Length.json"
+      label: "上下文长度维度 API 使用分布"
+      source_type: "api_context_length"
+    - path: "data/merged_rankings.json"
+      label: "多维度综合 API 排行榜"
+      source_type: "api_merged_rankings"
 
 analyst:
-  preprocess:
-    rankings_json: "data/merged_rankings.json"
-    output_xlsx: "data/processed/openrouter_rankings.xlsx"
   rag:
-    chunk_size: 600
-    chunk_overlap: 80
-    top_k: 4
+    chunk_size: 500
+    chunk_overlap: 50
+    top_k: 3
     vector_store_dir: "data/processed/faiss_index"
   debug:
     use_fake_embeddings: false
   retrieval:
-    openai_query: "OpenAI GPT 模型 OpenRouter tokens 排名 份额 vendor_summary leaderboard"
-    competitor_query: "Anthropic Google Meta DeepSeek xAI Qwen Mistral 模型 份额 排名 竞品 leaderboard market_share"
-    industry_query: "AI Index 经济 应用 类别 编程语言 上下文长度 趋势 OpenRouter Top Apps categories programming"
-  # vendor 前缀 → 显示名（覆盖/补充 DEFAULT_VENDOR_MAPPING）
-  vendor_mapping:
-    openai: "OpenAI"
-    anthropic: "Anthropic"
-    google: "Google"
-    meta-llama: "Meta"
-    mistralai: "Mistral"
-    deepseek: "DeepSeek"
-    qwen: "Alibaba (Qwen)"
-    x-ai: "xAI"
-    moonshotai: "Moonshot"
+    sales_query: "DeepSeek OpenAI API token usage market share platform ranking"
+    industry_query: "LLM API industry trend context length model capability 2025"
+    competitor_query: "Anthropic Google Gemini Claude GPT competitor API comparison"
 
 generator:
   report:
-    # 标题留空，由 Generator 在运行时基于当前日期动态生成
-    # （形如 "OpenRouter LLM 厂商商业格局分析报告（YYYY-MM）"）
-    title: ""
-    default_output: "data/processed/openrouter_llm_market_report.md"
+    title: "2025年大模型 API 竞品分析报告"
+    default_output: "data/processed/ai_api_competitor_report_2025.md"
 
 reviewer:
   llm:
     temperature: 0.1
+
+# ---------------------------------------------------------------------------
+# 飞书 AI Agent（事件订阅，与群自定义机器人 Webhook 是两套机制）
+# ---------------------------------------------------------------------------
+feishu_agent:
+  webhook_path: "/feishu/webhook"
+  server_port: 8000
+  trigger_phrases:
+    - "给我发送竞品报告"
+    - "给我生成竞品报告"
+    - "生成竞品报告"
+    - "生成竞品分析报告"
+    - "竞品报告"

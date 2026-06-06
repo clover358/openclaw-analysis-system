@@ -1,0 +1,452 @@
+[
+  {
+    "x": "2026-05-07",
+    "ys": {
+      "tencent/hy3-preview-20260421:free": 152332594666.66672,
+      "moonshotai/kimi-k2.6-20260420": 70702353333.33333,
+      "deepseek/deepseek-v4-flash-20260423": 46577574666.66667,
+      "anthropic/claude-4.7-opus-20260416": 45263869333.333336,
+      "anthropic/claude-4.6-sonnet-20260217": 44193394666.66667,
+      "deepseek/deepseek-v4-pro-20260423": 37372060000,
+      "minimax/minimax-m2.7-20260318": 35713448000.00001,
+      "google/gemini-3-flash-preview-20251217": 32344322666.66667,
+      "x-ai/grok-4.1-fast": 30249464000.000008,
+      "Others": 510988929333.33374
+    }
+  },
+  {
+    "x": "2026-05-08",
+    "ys": {
+      "tencent/hy3-preview-20260421:free": 167364002666.66663,
+      "moonshotai/kimi-k2.6-20260420": 51201199999.999985,
+      "anthropic/claude-4.6-sonnet-20260217": 48074405333.333336,
+      "deepseek/deepseek-v4-flash-20260423": 47694005333.33333,
+      "minimax/minimax-m2.5-20260211": 43012373333.333336,
+      "deepseek/deepseek-v3.2-20251201": 41006850666.66666,
+      "anthropic/claude-4.7-opus-20260416": 36733485333.33333,
+      "minimax/minimax-m2.7-20260318": 34487169333.333336,
+      "deepseek/deepseek-v4-pro-20260423": 33304930666.666668,
+      "Others": 527657168833.3337
+    }
+  },
+  {
+    "x": "2026-05-09",
+    "ys": {
+      "tencent/hy3-preview-20260421": 144725846666.6666,
+      "deepseek/deepseek-v4-flash-20260423": 49901790666.66666,
+      "moonshotai/kimi-k2.6-20260420": 43790277333.33332,
+      "anthropic/claude-4.7-opus-20260416": 40623082666.66668,
+      "deepseek/deepseek-v3.2-20251201": 40316249333.333336,
+      "anthropic/claude-4.6-sonnet-20260217": 32968774666.66666,
+      "minimax/minimax-m2.7-20260318": 30798059999.999996,
+      "openai/gpt-5.5-20260423": 26840289333.333332,
+      "deepseek/deepseek-v4-pro-20260423": 25827926666.666668,
+      "Others": 388376490166.6666
+    }
+  },
+  {
+    "x": "2026-05-10",
+    "ys": {
+      "tencent/hy3-preview-20260421": 161896706666.66672,
+      "deepseek/deepseek-v4-flash-20260423": 56637392000,
+      "anthropic/claude-4.7-opus-20260416": 39997130666.66667,
+      "moonshotai/kimi-k2.6-20260420": 39811305333.33333,
+      "deepseek/deepseek-v3.2-20251201": 35546387999.99999,
+      "minimax/minimax-m2.7-20260318": 33913677333.333332,
+      "deepseek/deepseek-v4-pro-20260423": 28827360000.000004,
+      "anthropic/claude-4.6-sonnet-20260217": 28749556000.000004,
+      "openai/gpt-5.5-20260423": 26210954666.66667,
+      "Others": 425667809833.3336
+    }
+  },
+  {
+    "x": "2026-05-11",
+    "ys": {
+      "tencent/hy3-preview-20260421": 148308760000.00006,
+      "deepseek/deepseek-v4-flash-20260423": 64306210666.66667,
+      "moonshotai/kimi-k2.6-20260420": 51272593333.33333,
+      "anthropic/claude-4.7-opus-20260416": 50448688000,
+      "minimax/minimax-m2.7-20260318": 46500129333.33334,
+      "anthropic/claude-4.6-sonnet-20260217": 45874322666.66667,
+      "google/gemini-3-flash-preview-20251217": 39673108000.00001,
+      "deepseek/deepseek-v3.2-20251201": 38001501333.33334,
+      "openrouter/owl-alpha": 33739577333.33334,
+      "Others": 517169772000
+    }
+  },
+  {
+    "x": "2026-05-12",
+    "ys": {
+      "tencent/hy3-preview-20260421": 134297018666.66672,
+      "anthropic/claude-4.7-opus-20260416": 66973366666.666664,
+      "deepseek/deepseek-v4-flash-20260423": 65028626666.66667,
+      "moonshotai/kimi-k2.6-20260420": 57020309333.33334,
+      "anthropic/claude-4.6-sonnet-20260217": 56446593333.333336,
+      "qwen/qwen3-235b-a22b-07-25": 40720057333.333336,
+      "deepseek/deepseek-v4-pro-20260423": 39450661333.33333,
+      "deepseek/deepseek-v3.2-20251201": 38991184000,
+      "minimax/minimax-m2.7-20260318": 38979839999.999985,
+      "Others": 613852909666.6659
+    }
+  },
+  {
+    "x": "2026-05-13",
+    "ys": {
+      "tencent/hy3-preview-20260421": 106848526666.66664,
+      "anthropic/claude-4.6-sonnet-20260217": 75119490666.66667,
+      "deepseek/deepseek-v4-flash-20260423": 72911601333.33331,
+      "anthropic/claude-4.7-opus-20260416": 63033191999.99999,
+      "moonshotai/kimi-k2.6-20260420": 61924937333.333336,
+      "minimax/minimax-m2.7-20260318": 43042781333.33331,
+      "deepseek/deepseek-v3.2-20251201": 42222980000.00001,
+      "qwen/qwen3.6-plus-04-02": 42206104000.00002,
+      "openrouter/owl-alpha": 39228893333.33332,
+      "Others": 624720848500.0009
+    }
+  },
+  {
+    "x": "2026-05-14",
+    "ys": {
+      "tencent/hy3-preview-20260421": 113059397333.33337,
+      "deepseek/deepseek-v4-flash-20260423": 78411812000,
+      "anthropic/claude-4.7-opus-20260416": 63383150666.66665,
+      "anthropic/claude-4.6-sonnet-20260217": 56090374666.666664,
+      "deepseek/deepseek-v3.2-20251201": 47444558666.66666,
+      "openrouter/owl-alpha": 44607817333.33333,
+      "minimax/minimax-m2.7-20260318": 38946282666.66668,
+      "google/gemini-3-flash-preview-20251217": 37914925333.33333,
+      "moonshotai/kimi-k2.6-20260420": 37593642666.66666,
+      "Others": 584714167500.0002
+    }
+  },
+  {
+    "x": "2026-05-15",
+    "ys": {
+      "tencent/hy3-preview-20260421": 114538749333.3333,
+      "deepseek/deepseek-v4-flash-20260423": 97016206666.66669,
+      "anthropic/claude-4.7-opus-20260416": 64246414666.66667,
+      "z-ai/glm-5.1-20260406": 61882032000,
+      "openrouter/owl-alpha": 54778636000.00002,
+      "anthropic/claude-4.6-sonnet-20260217": 49428386666.66666,
+      "deepseek/deepseek-v3.2-20251201": 46423074666.66665,
+      "minimax/minimax-m2.7-20260318": 38892193333.33335,
+      "moonshotai/kimi-k2.6-20260420": 36140477333.333336,
+      "Others": 611941706499.9999
+    }
+  },
+  {
+    "x": "2026-05-16",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 111878421333.33334,
+      "tencent/hy3-preview-20260421": 111468602666.66664,
+      "openrouter/owl-alpha": 51177508000.00001,
+      "deepseek/deepseek-v3.2-20251201": 42895408000,
+      "openai/gpt-5.5-20260423": 42009124000,
+      "anthropic/claude-4.6-sonnet-20260217": 37410824000,
+      "google/gemini-3-flash-preview-20251217": 32354511999.999992,
+      "deepseek/deepseek-v4-pro-20260423": 30877990666.666664,
+      "anthropic/claude-4.7-opus-20260416": 30645068000,
+      "Others": 447265899500.0003
+    }
+  },
+  {
+    "x": "2026-05-17",
+    "ys": {
+      "tencent/hy3-preview-20260421": 150985478666.66663,
+      "deepseek/deepseek-v4-flash-20260423": 123445405333.33334,
+      "openrouter/owl-alpha": 76063185333.33331,
+      "deepseek/deepseek-v3.2-20251201": 46733776000.000015,
+      "openai/gpt-5.5-20260423": 35904620000,
+      "stepfun/step-3.5-flash": 33616133333.333332,
+      "anthropic/claude-4.6-sonnet-20260217": 32897792000.000004,
+      "google/gemini-3-flash-preview-20251217": 32369990666.666656,
+      "deepseek/deepseek-v4-pro-20260423": 30872255999.999996,
+      "Others": 450078902333.3337
+    }
+  },
+  {
+    "x": "2026-05-18",
+    "ys": {
+      "tencent/hy3-preview-20260421": 144067165333.3333,
+      "deepseek/deepseek-v4-flash-20260423": 123854846666.66666,
+      "openrouter/owl-alpha": 68530390666.666664,
+      "deepseek/deepseek-v3.2-20251201": 50280513333.333336,
+      "deepseek/deepseek-v4-pro-20260423": 47079330666.666664,
+      "anthropic/claude-4.6-sonnet-20260217": 41358851999.999985,
+      "anthropic/claude-4.7-opus-20260416": 38273056000.000015,
+      "google/gemini-3-flash-preview-20251217": 37484445333.33334,
+      "moonshotai/kimi-k2.6-20260420": 33741308000,
+      "Others": 535090313833.3333
+    }
+  },
+  {
+    "x": "2026-05-19",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 138964306666.66666,
+      "tencent/hy3-preview-20260421": 132327661333.33342,
+      "openrouter/owl-alpha": 63507125333.333336,
+      "deepseek/deepseek-v3.2-20251201": 59308145333.33333,
+      "anthropic/claude-4.6-sonnet-20260217": 56439799999.999985,
+      "deepseek/deepseek-v4-pro-20260423": 55677126666.666664,
+      "anthropic/claude-4.7-opus-20260416": 41793716000.00001,
+      "moonshotai/kimi-k2.6-20260420": 39910553333.33333,
+      "google/gemini-3-flash-preview-20251217": 36009769333.333336,
+      "Others": 548102676666.66614
+    }
+  },
+  {
+    "x": "2026-05-20",
+    "ys": {
+      "tencent/hy3-preview-20260421": 190888929333.33316,
+      "deepseek/deepseek-v4-flash-20260423": 175280217333.33337,
+      "deepseek/deepseek-v3.2-20251201": 91197964000.00002,
+      "openrouter/owl-alpha": 78371693333.33331,
+      "deepseek/deepseek-v4-pro-20260423": 76055326666.66669,
+      "anthropic/claude-4.6-sonnet-20260217": 69531488000,
+      "anthropic/claude-4.7-opus-20260416": 59631853333.33334,
+      "google/gemini-3-flash-preview-20251217": 53722361333.33332,
+      "moonshotai/kimi-k2.6-20260420": 51049699999.999985,
+      "Others": 769432346666.6671
+    }
+  },
+  {
+    "x": "2026-05-21",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 187024581333.3333,
+      "tencent/hy3-preview-20260421": 178119488000.00003,
+      "anthropic/claude-4.6-sonnet-20260217": 80983861333.33331,
+      "anthropic/claude-4.7-opus-20260416": 79062284000,
+      "google/gemini-3.1-pro-preview-20260219": 75084110666.66667,
+      "deepseek/deepseek-v3.2-20251201": 65327045333.33333,
+      "deepseek/deepseek-v4-pro-20260423": 64927941333.33334,
+      "google/gemini-3-flash-preview-20251217": 51121621333.33337,
+      "moonshotai/kimi-k2.6-20260420": 40046888000,
+      "Others": 681738337833.3333
+    }
+  },
+  {
+    "x": "2026-05-22",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 299742963999.99994,
+      "tencent/hy3-preview-20260421": 152811530666.6667,
+      "anthropic/claude-4.7-opus-20260416": 114859489333.33333,
+      "anthropic/claude-4.6-sonnet-20260217": 100540692000.00002,
+      "deepseek/deepseek-v4-pro-20260423": 75872026666.66666,
+      "deepseek/deepseek-v3.2-20251201": 64990302666.66667,
+      "google/gemini-3-flash-preview-20251217": 47177525333.333336,
+      "openai/gpt-5.5-20260423": 40090000000,
+      "google/gemini-2.5-flash-lite": 39872288000,
+      "Others": 714626658666.667
+    }
+  },
+  {
+    "x": "2026-05-23",
+    "ys": {
+      "tencent/hy3-preview-20260421": 170378866666.66672,
+      "deepseek/deepseek-v4-flash-20260423": 101814471999.99998,
+      "anthropic/claude-4.7-opus-20260416": 75340184000,
+      "deepseek/deepseek-v3.2-20251201": 73735082666.66666,
+      "openrouter/owl-alpha": 69792837333.33334,
+      "deepseek/deepseek-v4-pro-20260423": 67351532000,
+      "anthropic/claude-4.6-sonnet-20260217": 55196533333.333336,
+      "moonshotai/kimi-k2.6-20260420": 34633805333.33333,
+      "google/gemini-3-flash-preview-20251217": 34131900000,
+      "Others": 595763323166.6664
+    }
+  },
+  {
+    "x": "2026-05-24",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 277819494666.6668,
+      "tencent/hy3-preview-20260421": 148400510666.66653,
+      "deepseek/deepseek-v4-pro-20260423": 88051856000,
+      "openrouter/owl-alpha": 74985861333.33337,
+      "deepseek/deepseek-v3.2-20251201": 64294337333.33332,
+      "anthropic/claude-4.7-opus-20260416": 60823886666.66666,
+      "anthropic/claude-4.6-sonnet-20260217": 60029424000.000015,
+      "google/gemini-3-flash-preview-20251217": 38395538666.66665,
+      "moonshotai/kimi-k2.6-20260420": 35991634666.66666,
+      "Others": 569597307000.0002
+    }
+  },
+  {
+    "x": "2026-05-25",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 214338297333.3333,
+      "tencent/hy3-preview-20260421": 165926112000.00006,
+      "anthropic/claude-4.7-opus-20260416": 90153494666.66666,
+      "deepseek/deepseek-v4-pro-20260423": 82717061333.33333,
+      "openrouter/owl-alpha": 76828817333.3333,
+      "anthropic/claude-4.6-sonnet-20260217": 74768898666.66666,
+      "deepseek/deepseek-v3.2-20251201": 62723026666.66667,
+      "google/gemini-3-flash-preview-20251217": 39130451999.99999,
+      "openai/gpt-5.5-20260423": 33216314666.66667,
+      "Others": 602691136666.667
+    }
+  },
+  {
+    "x": "2026-05-26",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 198159366666.6667,
+      "tencent/hy3-preview-20260421": 160920177333.3334,
+      "anthropic/claude-4.7-opus-20260416": 155610445333.33337,
+      "deepseek/deepseek-v3.2-20251201": 96755147999.99997,
+      "anthropic/claude-4.6-sonnet-20260217": 95807312000.00002,
+      "openrouter/owl-alpha": 89898304000,
+      "deepseek/deepseek-v4-pro-20260423": 70669625333.33333,
+      "google/gemini-3-flash-preview-20251217": 44070120000.000015,
+      "xiaomi/mimo-v2.5-pro-20260422": 43123517333.333336,
+      "Others": 685643408833.3328
+    }
+  },
+  {
+    "x": "2026-05-27",
+    "ys": {
+      "tencent/hy3-preview-20260421": 176625314666.66663,
+      "deepseek/deepseek-v4-flash-20260423": 159578569333.33334,
+      "anthropic/claude-4.7-opus-20260416": 104183461333.33331,
+      "deepseek/deepseek-v3.2-20251201": 99395573333.33336,
+      "anthropic/claude-4.6-sonnet-20260217": 97139322666.66664,
+      "openrouter/owl-alpha": 96665326666.66664,
+      "deepseek/deepseek-v4-pro-20260423": 71670200000.00002,
+      "moonshotai/kimi-k2.6-20260420": 46023182666.666664,
+      "xiaomi/mimo-v2.5-pro-20260422": 44963504000,
+      "Others": 736365123666.666
+    }
+  },
+  {
+    "x": "2026-05-28",
+    "ys": {
+      "tencent/hy3-preview-20260421": 230846209333.33322,
+      "deepseek/deepseek-v4-flash-20260423": 128335462666.66666,
+      "openrouter/owl-alpha": 101843825333.33334,
+      "deepseek/deepseek-v3.2-20251201": 92346031999.99998,
+      "anthropic/claude-4.7-opus-20260416": 91547341333.33334,
+      "anthropic/claude-4.6-sonnet-20260217": 85864669333.33334,
+      "xiaomi/mimo-v2.5-20260422": 75702381333.33333,
+      "deepseek/deepseek-v4-pro-20260423": 69312477333.33334,
+      "moonshotai/kimi-k2.6-20260420": 46541900000.00001,
+      "Others": 788217761666.666
+    }
+  },
+  {
+    "x": "2026-05-29",
+    "ys": {
+      "tencent/hy3-preview-20260421": 152290999999.99997,
+      "deepseek/deepseek-v4-flash-20260423": 142174577333.33334,
+      "xiaomi/mimo-v2.5-20260422": 111848644000.00002,
+      "openrouter/owl-alpha": 105528934666.66666,
+      "deepseek/deepseek-v3.2-20251201": 90833966666.66669,
+      "deepseek/deepseek-v4-pro-20260423": 75185810666.66666,
+      "anthropic/claude-4.6-sonnet-20260217": 68974727999.99998,
+      "xiaomi/mimo-v2.5-pro-20260422": 51588629333.33332,
+      "anthropic/claude-4.7-opus-20260416": 49517182666.66667,
+      "Others": 732167881333.334
+    }
+  },
+  {
+    "x": "2026-05-30",
+    "ys": {
+      "tencent/hy3-preview-20260421": 158701564000,
+      "deepseek/deepseek-v4-flash-20260423": 122766233333.3333,
+      "xiaomi/mimo-v2.5-20260422": 109256785333.33334,
+      "openrouter/owl-alpha": 104808165333.33333,
+      "deepseek/deepseek-v3.2-20251201": 65867210666.66662,
+      "deepseek/deepseek-v4-pro-20260423": 59543984000.00001,
+      "xiaomi/mimo-v2.5-pro-20260422": 58605278666.66666,
+      "anthropic/claude-4.6-sonnet-20260217": 47412221333.333336,
+      "anthropic/claude-4.7-opus-20260416": 38113334666.666664,
+      "Others": 608169370333.3334
+    }
+  },
+  {
+    "x": "2026-05-31",
+    "ys": {
+      "tencent/hy3-preview-20260421": 148840930666.6666,
+      "deepseek/deepseek-v4-flash-20260423": 130205550666.66669,
+      "openrouter/owl-alpha": 127970010666.66666,
+      "xiaomi/mimo-v2.5-20260422": 100599211999.99998,
+      "deepseek/deepseek-v3.2-20251201": 93246609333.33328,
+      "xiaomi/mimo-v2.5-pro-20260422": 55023997333.33333,
+      "deepseek/deepseek-v4-pro-20260423": 54838572000,
+      "anthropic/claude-4.6-sonnet-20260217": 54695922666.66666,
+      "anthropic/claude-4.7-opus-20260416": 54304439999.999985,
+      "Others": 622322398666.6671
+    }
+  },
+  {
+    "x": "2026-06-01",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 133800417333.33331,
+      "tencent/hy3-preview-20260421": 131305082666.66667,
+      "openrouter/owl-alpha": 130303382666.66667,
+      "deepseek/deepseek-v3.2-20251201": 97546526666.66667,
+      "anthropic/claude-4.6-sonnet-20260217": 69334381333.33336,
+      "deepseek/deepseek-v4-pro-20260423": 65300500000.000015,
+      "xiaomi/mimo-v2.5-20260422": 64791829333.33334,
+      "xiaomi/mimo-v2.5-pro-20260422": 61284215999.99999,
+      "anthropic/claude-4.7-opus-20260416": 45974687999.99999,
+      "Others": 745601837833.3333
+    }
+  },
+  {
+    "x": "2026-06-02",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 154237636000,
+      "tencent/hy3-preview-20260421": 130993100000.00005,
+      "openrouter/owl-alpha": 128819496000.00006,
+      "deepseek/deepseek-v3.2-20251201": 100498414666.66669,
+      "xiaomi/mimo-v2.5-20260422": 74650148000.00002,
+      "anthropic/claude-4.6-sonnet-20260217": 73518745333.33333,
+      "minimax/minimax-m3-20260531": 65756533333.333336,
+      "deepseek/deepseek-v4-pro-20260423": 62354376000,
+      "google/gemini-2.5-flash": 45082606666.66668,
+      "Others": 809012431999.9998
+    }
+  },
+  {
+    "x": "2026-06-03",
+    "ys": {
+      "minimax/minimax-m3-20260531": 182068238666.66672,
+      "deepseek/deepseek-v4-flash-20260423": 147055892000,
+      "openrouter/owl-alpha": 135257261333.33334,
+      "tencent/hy3-preview-20260421": 128554022666.66661,
+      "xiaomi/mimo-v2.5-20260422": 117961009333.33344,
+      "deepseek/deepseek-v3.2-20251201": 90913578666.66667,
+      "anthropic/claude-4.6-sonnet-20260217": 85051569333.33334,
+      "deepseek/deepseek-v4-pro-20260423": 62358197333.333336,
+      "anthropic/claude-4.8-opus-20260528": 53083646666.666664,
+      "Others": 791170113166.6669
+    }
+  },
+  {
+    "x": "2026-06-04",
+    "ys": {
+      "minimax/minimax-m3-20260531": 135713498666.66663,
+      "tencent/hy3-preview-20260421": 118785374666.66663,
+      "deepseek/deepseek-v4-flash-20260423": 113036801333.33333,
+      "openrouter/owl-alpha": 97953026666.66667,
+      "deepseek/deepseek-v3.2-20251201": 96880938666.66667,
+      "anthropic/claude-4.6-sonnet-20260217": 88549469333.33331,
+      "xiaomi/mimo-v2.5-20260422": 79717673333.3333,
+      "anthropic/claude-4.8-opus-20260528": 57863574666.66667,
+      "deepseek/deepseek-v4-pro-20260423": 53441784000.000015,
+      "Others": 705097226999.9993
+    }
+  },
+  {
+    "x": "2026-06-05",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 149159492000.00003,
+      "tencent/hy3-preview-20260421": 131472955999.99998,
+      "minimax/minimax-m3-20260531": 99522644000,
+      "deepseek/deepseek-v3.2-20251201": 94415353333.3333,
+      "deepseek/deepseek-v4-pro-20260423": 89959261333.33334,
+      "anthropic/claude-4.6-sonnet-20260217": 77833412000,
+      "openai/gpt-5.5-20260423": 59674484000.00001,
+      "xiaomi/mimo-v2.5-20260422": 58992129333.33334,
+      "anthropic/claude-4.8-opus-20260528": 49855946666.66667,
+      "Others": 783445051166.6664
+    }
+  }
+]

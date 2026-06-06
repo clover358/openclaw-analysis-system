@@ -28,7 +28,7 @@ from src.agents.base import BaseAgent
 # ────────────────────────────────────────────────────────────────────────────
 # 配置区
 # ────────────────────────────────────────────────────────────────────────────
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 SAVE_DIR = str((PROJECT_ROOT / "data").resolve())
 os.makedirs(SAVE_DIR, exist_ok=True)
 MERGED_FILE_PATH = os.path.join(SAVE_DIR, "merged_rankings.json")
@@ -126,11 +126,19 @@ def data_processor_thread():
             json_data = parse_rsc_text(raw_text)
 
             if json_data:
+                file_name = classify_and_name_data(json_data, current_view)
+
+                if file_name and file_name.endswith("_leaderboard.json"):
+                    file_path = os.path.join(SAVE_DIR, file_name)
+                    with open(file_path, "w", encoding="utf-8") as f:
+                        json.dump(json_data, f, ensure_ascii=False, indent=2)
+                    print(f"🎯 [命中目标] 成功捕捉并保存: {file_name}")
+                    data_queue.task_done()
+                    continue
+
                 fingerprint = get_data_fingerprint(json_data)
 
                 if fingerprint not in collected_fingerprints:
-                    file_name = classify_and_name_data(json_data, current_view)
-
                     if file_name:
                         collected_fingerprints.add(fingerprint)
                         file_path = os.path.join(SAVE_DIR, file_name)
@@ -172,9 +180,19 @@ def merge_json_files():
 
 def run_agent():
     """通过 Playwright 连接已开启 CDP 的 Chromium，监听并保存 OpenRouter 榜单数据。"""
-    global agent_running
+    global agent_running, sequential_chart_count
 
-    from playwright.sync_api import sync_playwright  # 延迟导入，避免无 GUI 环境直接报错
+    from playwright.sync_api import sync_playwright
+
+    agent_running = True
+    sequential_chart_count = 0
+    collected_fingerprints.clear()
+    while not data_queue.empty():
+        try:
+            data_queue.get_nowait()
+            data_queue.task_done()
+        except queue.Empty:
+            break
 
     processor = threading.Thread(target=data_processor_thread)
     processor.start()
@@ -302,8 +320,7 @@ def extract_pdf_text(pdf_path: Path, max_pages: int = 30) -> str:
 class CollectorAgent(BaseAgent):
     """多源异构数据采集 Agent。
 
-    - 若 `merged_rankings.json` 已存在则直接复用（避免每次运行都重新人工抓取）；
-    - 否则调用 `run_agent()` 启动 Playwright 交互式采集；
+    - 每次调用都启动 Playwright 交互式采集 OpenRouter rankings；
     - 始终联网下载 Stanford AI Index 行业报告 PDF；
     - 最终返回 `(raw_texts, summary)` 供下游 Analyst-Agent RAG 使用。
     """
@@ -313,8 +330,6 @@ class CollectorAgent(BaseAgent):
     def run(self, *args: Any, **kwargs: Any) -> tuple[list[dict[str, Any]], str]:
         save_dir = Path(SAVE_DIR)
 
-        # 1. OpenRouter rankings：每次都启动 Playwright 完整抓取
-        #    （需要先在 9222 端口启动 chrome --remote-debugging-port=9222）
         print("[Collector] 启动 Playwright 交互式采集 OpenRouter rankings ...")
         run_agent()
 
@@ -327,13 +342,10 @@ class CollectorAgent(BaseAgent):
         with open(MERGED_FILE_PATH, "r", encoding="utf-8") as f:
             merged_data: dict[str, Any] = json.load(f)
 
-        # 2. 行业报告 PDF：联网下载并抽取文本
         pdf_path = save_dir / INDUSTRY_REPORT_FILENAME
         industry_pdf = download_industry_report(pdf_path)
         industry_text = extract_pdf_text(industry_pdf)
 
-        # 3. 组装 raw_texts。Analyst 会自行从磁盘读取 merged_rankings.json
-        # 做结构化解析，所以这里只保留：榜单清单（便于 Reviewer 确认数据来源）+ 行业 PDF。
         ranking_inventory_lines = [
             f"- `{key}.json`：约 {self._estimate_size(value)} 字节，"
             f"主键示例 = {self._sample_keys(value)}"
@@ -358,7 +370,6 @@ class CollectorAgent(BaseAgent):
             },
         ]
 
-        # 4. 汇总文本（供 Reviewer 比对原始数据，包含榜单 Top 行的关键字段）
         summary_blocks: list[str] = [f"## openrouter_rankings_inventory\n\n{ranking_inventory}"]
         for key, value in merged_data.items():
             preview = self._preview_ranking(value)
@@ -369,8 +380,6 @@ class CollectorAgent(BaseAgent):
         )
         summary = re.sub(r"\n{3,}", "\n\n", "\n\n".join(summary_blocks)).strip()
         return raw_texts, summary
-
-    # ── 工具方法 ─────────────────────────────────────────────────────────────
 
     @staticmethod
     def _estimate_size(value: Any) -> int:

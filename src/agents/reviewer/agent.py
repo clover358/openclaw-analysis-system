@@ -11,10 +11,9 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field, ValidationError
 
-from src.agents.analyst import DEFAULT_CONFIG_PATH, PROJECT_ROOT, resolve_openai_settings
+from src.agents.analyst.agent import DEFAULT_CONFIG_PATH, PROJECT_ROOT, resolve_openai_settings
 from src.utils.config_loader import ConfigError, load_app_config
 
-# PROJECT_ROOT 仅复用，避免未使用警告
 _ = PROJECT_ROOT
 
 
@@ -47,7 +46,6 @@ class AuditResult(BaseModel):
         return "\n".join(parts).strip()
 
 
-# 向后兼容别名
 ReviewAuditSchema = AuditResult
 
 _JSON_FENCE_PATTERN = re.compile(r"```json\s*(\{.*?\})\s*```", re.DOTALL | re.IGNORECASE)

@@ -12,10 +12,10 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
-from src.agents.analyst import AnalystAgent
-from src.agents.collector import CollectorAgent
-from src.agents.generator import GeneratorAgent
-from src.agents.reviewer import ReviewerAgent
+from src.agents.analyst.agent import AnalystAgent
+from src.agents.collector.agent import CollectorAgent
+from src.agents.generator.agent import GeneratorAgent
+from src.agents.reviewer.agent import ReviewerAgent
 from src.utils.config_loader import ConfigError, load_app_config, validate_api_keys
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
