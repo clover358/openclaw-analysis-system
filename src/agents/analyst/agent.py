@@ -325,7 +325,43 @@ def _timeseries_to_dataframes(
     snapshot_df["rank"] = range(1, len(snapshot_df) + 1)
     total_tokens = float(snapshot_df["tokens"].sum() or 0)
     snapshot_df["share_pct"] = 0.0 if total_tokens <= 0 else (snapshot_df["tokens"] / total_tokens * 100).round(2)
-    return snapshot_df, snapshot_df
+
+    full_df = df.sort_values(["period", "tokens"], ascending=[False, False]).reset_index(drop=True)
+    full_df["rank"] = full_df.groupby("period")["tokens"].rank(method="first", ascending=False).astype(int)
+    period_totals = full_df.groupby("period")["tokens"].transform("sum")
+    full_df["share_pct"] = (full_df["tokens"] / period_totals.replace(0, pd.NA) * 100).fillna(0).round(2)
+    retained_df = _retain_latest_plus_openai_periods(full_df, "period")
+    return retained_df, snapshot_df
+
+
+def _row_contains_openai(row: pd.Series) -> bool:
+    text = " ".join(str(v).lower() for v in row.to_dict().values())
+    return bool(re.search(r"openai|gpt[-\w]*|chatgpt|\bo1\b|\bo3\b|\bo4\b|o1[-\w]*|o3[-\w]*|o4[-\w]*", text))
+
+
+def _retain_latest_plus_openai_periods(df: pd.DataFrame, date_col: str = "period") -> pd.DataFrame:
+    if df.empty or date_col not in df.columns:
+        return df
+    out = df.copy()
+    parsed_col = f"{date_col}_retain_dt"
+    out[parsed_col] = out[date_col].map(_parse_date)
+    valid = out.dropna(subset=[parsed_col])
+    if valid.empty:
+        return df
+    latest_dt = valid[parsed_col].max()
+    keep_dates = {latest_dt}
+    openai_dates = (
+        valid[valid.apply(_row_contains_openai, axis=1)][parsed_col]
+        .dropna()
+        .drop_duplicates()
+        .sort_values(ascending=False)
+        .head(3)
+        .tolist()
+    )
+    keep_dates.update(openai_dates)
+    kept = out[out[parsed_col].isin(keep_dates)].copy()
+    kept = kept.drop(columns=[parsed_col])
+    return kept.sort_values([date_col, "tokens"] if "tokens" in kept.columns else [date_col], ascending=[False, False] if "tokens" in kept.columns else [False]).reset_index(drop=True)
 
 
 def _latest_rows_by_date(df: pd.DataFrame, date_col: str) -> pd.DataFrame:
@@ -1007,10 +1043,10 @@ class AnalystAgent:
                 return
             for block_name, series in blocks:
                 sheet_key = name if block_name in {"series", "data"} else f"{name}_{block_name}"
-                _unused_df, snapshot_df = _timeseries_to_dataframes(series, entity_col=entity_col)
+                retained_df, snapshot_df = _timeseries_to_dataframes(series, entity_col=entity_col)
                 if snapshot_df.empty:
                     continue
-                sheets[sheet_key] = snapshot_df
+                sheets[sheet_key] = retained_df if not retained_df.empty else snapshot_df
                 snapshot_tables[sheet_key] = snapshot_df
                 result.sheet_summaries[sheet_key] = _summarize_timeseries_sheet(
                     sheet_key, snapshot_df, snapshot_df

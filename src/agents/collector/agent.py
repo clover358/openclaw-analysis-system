@@ -251,20 +251,10 @@ def run_agent():
                 print("=======================================================")
                 print(f"🟢 已加载 {task['view']} 视图！")
                 print("👉 【请在浏览器中手动向下滚动网页】，触发所有的榜单数据加载。")
-                print("👉 看到终端显示成功保存了你需要的榜单后，在这里按回车键！")
+                print("👉 5 秒后将自动切换到下一个视图。")
                 print("=======================================================")
 
-                print("⌨️ 滚动完成后，请在这里按【回车键】继续...")
-                enter_pressed = [False]
-
-                def wait_for_enter():
-                    input()
-                    enter_pressed[0] = True
-
-                threading.Thread(target=wait_for_enter, daemon=True).start()
-
-                while not enter_pressed[0]:
-                    page.wait_for_timeout(200)
+                page.wait_for_timeout(5000)
 
             except Exception as e:
                 print(f"⚠️ 访问 {task['url']} 时出现异常: {e}")

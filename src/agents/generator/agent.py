@@ -234,8 +234,9 @@ _POLISH_SYSTEM = """\
   1. 不得修改、增减或捏造任何数值、百分比、年份、日期、周期、产品名称、机构名称等具体数据。
   2. 不得改变原文的核心结论与事实判断。
   3. 不得删除任何原有内容段落或要点。
-  4. 保留原有 Markdown 格式标记（**加粗**、- 列表、### 小标题等）。
-  5. 清除文本中任何形如"【章节标题】..."的提示词残留，不要将其输出。
+  4. 保留原有 Markdown 格式标记（**加粗**、编号列表、### 小标题等）。
+  5. 禁止输出 Markdown 连字符列表（- item），请改用编号列表或自然段，避免 PDF 渲染异常。
+  6. 清除文本中任何形如"【章节标题】..."的提示词残留，不要将其输出。
 
 【输出要求】直接输出润色后的文本，不要添加任何说明、前缀、后缀或注释。\
 """
@@ -630,10 +631,10 @@ def _parse_json_date(value: Any) -> datetime | None:
     return None
 
 
-def _latest_timeseries_points(payload: Any) -> tuple[str, dict[str, float]] | None:
+def _timeseries_candidates(payload: Any) -> list[tuple[datetime, str, dict[str, float]]]:
     series = payload.get("data") if isinstance(payload, dict) and isinstance(payload.get("data"), list) else payload
     if not isinstance(series, list):
-        return None
+        return []
     candidates: list[tuple[datetime, str, dict[str, float]]] = []
     for item in series:
         if not isinstance(item, dict) or not isinstance(item.get("ys"), dict):
@@ -649,15 +650,19 @@ def _latest_timeseries_points(payload: Any) -> tuple[str, dict[str, float]] | No
                 continue
         if ys:
             candidates.append((parsed, parsed.strftime("%Y-%m-%d"), ys))
+    return candidates
+
+
+def _latest_timeseries_points(payload: Any) -> tuple[str, dict[str, float]] | None:
+    candidates = _timeseries_candidates(payload)
     if not candidates:
         return None
     _dt, period, ys = max(candidates, key=lambda row: row[0])
     return period, ys
 
 
-def build_market_share_chart_meta() -> dict[str, Any] | None:
-    """直接读取 Market Share JSON 的最新完整组生成图表数据，不经过 LLM 抽取。"""
-    payload = _load_json_file(PROJECT_ROOT / "data" / "Market Share.json")
+def _build_share_chart_meta(file_name: str, title_prefix: str, *, entity_label: str, top_n: int | None = None) -> dict[str, Any] | None:
+    payload = _load_json_file(PROJECT_ROOT / "data" / file_name)
     latest = _latest_timeseries_points(payload)
     if latest is None:
         return None
@@ -665,24 +670,85 @@ def build_market_share_chart_meta() -> dict[str, Any] | None:
     if len(ys) < 3:
         return None
     sorted_items = sorted(ys.items(), key=lambda kv: kv[1], reverse=True)
+    if top_n is not None:
+        sorted_items = sorted_items[:top_n]
     total = sum(value for _name, value in sorted_items)
     if total <= 0:
         return None
-    labels = [name for name, _value in sorted_items]
-    values = [round(value / total * 100, 2) for _name, value in sorted_items]
-    tokens = [value for _name, value in sorted_items]
     return {
         "need_chart": True,
         "chart_type": "bar",
-        "title": f"OpenRouter平台主要厂商市场份额对比（{period}）",
-        "x_label": "厂商",
+        "title": f"{title_prefix}（{period}）",
+        "x_label": entity_label,
         "y_label": "Token 份额（%）",
-        "labels": labels,
-        "values": values,
+        "labels": [name for name, _value in sorted_items],
+        "values": [round(value / total * 100, 2) for _name, value in sorted_items],
         "source_period": period,
-        "source_file": "data/Market Share.json",
-        "tokens": tokens,
+        "source_file": f"data/{file_name}",
+        "tokens": [value for _name, value in sorted_items],
     }
+
+
+def _openai_trend_chart_meta(file_name: str, title_prefix: str) -> dict[str, Any] | None:
+    payload = _load_json_file(PROJECT_ROOT / "data" / file_name)
+    candidates = _timeseries_candidates(payload)
+    points: list[tuple[datetime, str, float]] = []
+    for dt, period, ys in candidates:
+        openai_tokens = sum(value for name, value in ys.items() if re.search(r"openai|gpt[-\w]*|chatgpt|\bo1\b|\bo3\b|\bo4\b|o1[-\w]*|o3[-\w]*|o4[-\w]*", name.lower()))
+        if openai_tokens > 0:
+            points.append((dt, period, openai_tokens))
+    points = sorted(points, key=lambda row: row[0])[-3:]
+    if len(points) < 2:
+        return None
+    return {
+        "need_chart": True,
+        "chart_type": "bar",
+        "title": f"{title_prefix}OpenAI近三期表现",
+        "x_label": "周期",
+        "y_label": "OpenAI tokens",
+        "labels": [period for _dt, period, _tokens in points],
+        "values": [tokens for _dt, _period, tokens in points],
+        "source_period": f"{points[0][1]} → {points[-1][1]}",
+        "source_file": f"data/{file_name}",
+    }
+
+
+def build_structured_chart_metas(section_title: str) -> list[dict[str, Any]]:
+    charts: list[dict[str, Any]] = []
+    if section_title == "二、主流 API 平台使用表现":
+        for meta in (
+            _build_share_chart_meta("Market Share.json", "OpenRouter平台主要厂商市场份额对比", entity_label="厂商", top_n=None),
+            _build_share_chart_meta("Top Model.json", "OpenRouter平台热门模型份额对比", entity_label="模型", top_n=10),
+            _openai_trend_chart_meta("Market Share.json", "Market Share "),
+            _openai_trend_chart_meta("Top Model.json", "Top Model "),
+        ):
+            if meta:
+                charts.append(meta)
+    elif section_title == "三、大模型 API 行业趋势研判":
+        for file_name, prefix in (
+            ("Categories.json", "Categories榜单热门模型份额对比"),
+            ("Programming.json", "Programming榜单热门模型份额对比"),
+            ("Languages.json", "Languages榜单热门模型份额对比"),
+            ("Context Length.json", "Context Length榜单热门模型份额对比"),
+        ):
+            meta = _build_share_chart_meta(file_name, prefix, entity_label="模型", top_n=10)
+            if meta:
+                charts.append(meta)
+    elif section_title == "四、竞品 API 威胁与机会":
+        for file_name, prefix in (
+            ("Categories.json", "Categories "),
+            ("Programming.json", "Programming "),
+            ("Languages.json", "Languages "),
+            ("Context Length.json", "Context Length "),
+        ):
+            meta = _openai_trend_chart_meta(file_name, prefix)
+            if meta:
+                charts.append(meta)
+    return charts[:3]
+
+
+def build_market_share_chart_meta() -> dict[str, Any] | None:
+    return _build_share_chart_meta("Market Share.json", "OpenRouter平台主要厂商市场份额对比", entity_label="厂商", top_n=None)
 
 
 def generate_markdown_table(labels: list[str], values: list[float], title: str) -> str:
@@ -1028,9 +1094,7 @@ class GeneratorAgent:
             f"| --- | --- |\n"
             f"| 报告类型 | OpenRouter 大模型 API 竞品分析 |\n"
             f"| 分析周期 | {analysis_period} |\n"
-            f"| 日期口径 | 所有日期与年份均来自 Analyst-Agent 注入的榜单 period/date 或数据观测范围，不使用生成时间推断 |\n"
-            f"| 生成时间 | {generated_at} |\n"
-            f"| 生成引擎 | Generator-Agent v2（DeepSeek 润色 + 结构化数据图表 + 自动标题） |\n\n"
+            f"| 生成时间 | {generated_at} |\n\n"
             f"---\n\n"
         )
 
@@ -1050,27 +1114,29 @@ class GeneratorAgent:
             elif self.enable_polish and self._client:
                 print("    [润色] 检测到数字/日期，跳过润色以避免改写事实。")
 
-            # Step 2：图表判断与渲染（仅条形图，数据验证失败则降级为表格）
+            # Step 2：结构化图表渲染（直接读取本地 JSON，不使用 LLM 抽取数据）
             chart_md = ""
             if self.enable_chart and self._client:
-                print("    [图表] 使用结构化 JSON 数据生成 Market Share 图表 ...")
-                meta = build_market_share_chart_meta() if section_title == "二、主流 API 平台使用表现" else None
-                if meta:
-                    chart_filename = f"{report_stem}_chart{chart_idx:02d}.png"
-                    chart_path = self.output_dir / chart_filename
-                    print(f"    [图表] 标题={meta['title']}，数据点={len(meta['values'])}个，来源={meta['source_file']}")
-                    if render_chart(meta, chart_path):
-                        chart_md = (
-                            f"\n\n> **图 {chart_idx}：{meta['title']}**  \n"
-                            f"> 数据来源：`{meta['source_file']}` 最新完整周期 `{meta['source_period']}`；"
-                            f"包含该周期 Market Share 全部 {len(meta['values'])} 项。\n\n"
-                            f"![{meta['title']}]({chart_filename})\n"
-                        )
-                        print(f"    [图表] 已保存 → {chart_filename}")
-                        chart_idx += 1
-                    else:
-                        print("    [表格] 图表渲染失败，生成表格替代")
-                        chart_md = generate_markdown_table(meta["labels"], meta["values"], meta["title"])
+                print("    [图表] 使用结构化 JSON 数据生成图表 ...")
+                metas = build_structured_chart_metas(section_title)
+                if metas:
+                    blocks: list[str] = []
+                    for meta in metas:
+                        chart_filename = f"{report_stem}_chart{chart_idx:02d}.png"
+                        chart_path = self.output_dir / chart_filename
+                        print(f"    [图表] 标题={meta['title']}，数据点={len(meta['values'])}个，来源={meta['source_file']}")
+                        if render_chart(meta, chart_path):
+                            blocks.append(
+                                f"\n\n> **图 {chart_idx}：{meta['title']}**  \n"
+                                f"> 数据来源：`{meta['source_file']}`；周期 `{meta['source_period']}`；"
+                                f"包含 {len(meta['values'])} 个结构化数据点。\n\n"
+                                f"![{meta['title']}]({chart_filename})\n"
+                            )
+                            print(f"    [图表] 已保存 → {chart_filename}")
+                            chart_idx += 1
+                        else:
+                            blocks.append(generate_markdown_table(meta["labels"], meta["values"], meta["title"]))
+                    chart_md = "".join(blocks)
                 else:
                     print("    [图表] 无可用结构化图表数据，跳过图表")
 

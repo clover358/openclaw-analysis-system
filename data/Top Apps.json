@@ -215,7 +215,7 @@
         "id": 3356965,
         "created_at": "2026-04-22T01:40:58.408Z",
         "description": "Inference API that improves with your traffic",
-        "title": "Pioneer (staging)",
+        "title": "Pioneer (production)",
         "main_url": null,
         "origin_url": "https://pioneer.ai/",
         "slug": null,
@@ -281,7 +281,7 @@
         "id": 3296290,
         "created_at": "2026-04-13T16:32:50.486Z",
         "description": "Mira is a Telegram-native AI assistant.",
-        "title": "Mira",
+        "title": "Mira is the leading AI agent inside Telegram",
         "main_url": null,
         "origin_url": "https://mira.tg/",
         "slug": "mira",
@@ -345,7 +345,7 @@
         "id": 2344758,
         "created_at": "2025-07-22T19:28:05.101Z",
         "description": "All-in-one creator store",
-        "title": "Stanley",
+        "title": "Sahasra",
         "main_url": null,
         "origin_url": "https://stan.store/",
         "slug": "stan",
@@ -442,8 +442,8 @@
   "week": [
     {
       "app_id": 3067167,
-      "total_tokens": "5033115957553",
-      "total_requests": 74607732,
+      "total_tokens": "5213957358565",
+      "total_requests": 77403651,
       "rank": 1,
       "app": {
         "id": 3067167,
@@ -468,8 +468,8 @@
     },
     {
       "app_id": 2725608,
-      "total_tokens": "1282970039620",
-      "total_requests": 25600733,
+      "total_tokens": "1325873768513",
+      "total_requests": 26471107,
       "rank": 4,
       "app": {
         "id": 2725608,
@@ -491,8 +491,8 @@
     },
     {
       "app_id": 2262242,
-      "total_tokens": "1244160309531",
-      "total_requests": 16389086,
+      "total_tokens": "1296614903584",
+      "total_requests": 17119747,
       "rank": 5,
       "app": {
         "id": 2262242,
@@ -516,8 +516,8 @@
     },
     {
       "app_id": 2627404,
-      "total_tokens": "616429218661",
-      "total_requests": 7691942,
+      "total_tokens": "644171050394",
+      "total_requests": 8036999,
       "rank": 7,
       "app": {
         "id": 2627404,
@@ -538,8 +538,8 @@
     },
     {
       "app_id": 2308106,
-      "total_tokens": "460555057346",
-      "total_requests": 6886518,
+      "total_tokens": "473644586630",
+      "total_requests": 7062520,
       "rank": 8,
       "app": {
         "id": 2308106,
@@ -560,8 +560,8 @@
     },
     {
       "app_id": 2853275,
-      "total_tokens": "387495955537",
-      "total_requests": 6278117,
+      "total_tokens": "396495212968",
+      "total_requests": 6413481,
       "rank": 9,
       "app": {
         "id": 2853275,
@@ -582,8 +582,8 @@
     },
     {
       "app_id": 2637375,
-      "total_tokens": "321388869848",
-      "total_requests": 9415409,
+      "total_tokens": "327761500740",
+      "total_requests": 9596808,
       "rank": 10,
       "app": {
         "id": 2637375,
@@ -604,8 +604,8 @@
     },
     {
       "app_id": 3356965,
-      "total_tokens": "270945669983",
-      "total_requests": 3274773,
+      "total_tokens": "278789063509",
+      "total_requests": 3389940,
       "rank": 13,
       "app": {
         "id": 3356965,
@@ -624,8 +624,8 @@
     },
     {
       "app_id": 3747309,
-      "total_tokens": "253760745254",
-      "total_requests": 2676050,
+      "total_tokens": "254191642700",
+      "total_requests": 2682120,
       "rank": 14,
       "app": {
         "id": 3747309,
@@ -646,8 +646,8 @@
     },
     {
       "app_id": 169155,
-      "total_tokens": "222029209923",
-      "total_requests": 16300535,
+      "total_tokens": "229839200184",
+      "total_requests": 16868309,
       "rank": 15,
       "app": {
         "id": 169155,
@@ -668,8 +668,8 @@
     },
     {
       "app_id": 2699842,
-      "total_tokens": "214033883030",
-      "total_requests": 5101622,
+      "total_tokens": "220942444475",
+      "total_requests": 5266387,
       "rank": 16,
       "app": {
         "id": 2699842,
@@ -690,8 +690,8 @@
     },
     {
       "app_id": 190604,
-      "total_tokens": "169969348799",
-      "total_requests": 1887951,
+      "total_tokens": "176050256438",
+      "total_requests": 1960000,
       "rank": 17,
       "app": {
         "id": 190604,
@@ -713,8 +713,8 @@
     },
     {
       "app_id": 2755681,
-      "total_tokens": "132287372120",
-      "total_requests": 14576471,
+      "total_tokens": "137606605837",
+      "total_requests": 15147934,
       "rank": 19,
       "app": {
         "id": 2755681,
@@ -735,8 +735,8 @@
     },
     {
       "app_id": 3296290,
-      "total_tokens": "129856106909",
-      "total_requests": 11184746,
+      "total_tokens": "134680824229",
+      "total_requests": 11556952,
       "rank": 20,
       "app": {
         "id": 3296290,
@@ -757,14 +757,14 @@
     },
     {
       "app_id": 3744553,
-      "total_tokens": "128327048123",
-      "total_requests": 53175594,
+      "total_tokens": "129059612971",
+      "total_requests": 53492634,
       "rank": 21,
       "app": {
         "id": 3744553,
         "created_at": "2026-05-18T22:13:24.387Z",
         "description": null,
-        "title": "llmv:sentiment",
+        "title": "llmv:competitors",
         "main_url": null,
         "origin_url": "https://llmvis.searchatlas.com/",
         "slug": null,
@@ -777,8 +777,8 @@
     },
     {
       "app_id": 3261377,
-      "total_tokens": "104575035071",
-      "total_requests": 1381257,
+      "total_tokens": "109776467119",
+      "total_requests": 1453309,
       "rank": 22,
       "app": {
         "id": 3261377,
@@ -800,8 +800,8 @@
     },
     {
       "app_id": 189563,
-      "total_tokens": "85329864962",
-      "total_requests": 1999576,
+      "total_tokens": "90753602517",
+      "total_requests": 2080244,
       "rank": 23,
       "app": {
         "id": 189563,
@@ -821,30 +821,10 @@
       }
     },
     {
-      "app_id": 2279192,
-      "total_tokens": "75516001597",
-      "total_requests": 12904962,
-      "rank": 25,
-      "app": {
-        "id": 2279192,
-        "created_at": "2025-05-05T20:35:07.459Z",
-        "description": "Applied research lab for frontier models",
-        "title": "AA-LCR Benchmark",
-        "main_url": null,
-        "origin_url": "https://afterquery.com/",
-        "slug": null,
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 2668297,
-      "total_tokens": "75245520835",
-      "total_requests": 904136,
-      "rank": 26,
+      "total_tokens": "77805388062",
+      "total_requests": 936763,
+      "rank": 25,
       "app": {
         "id": 2668297,
         "created_at": "2026-01-10T03:00:25.305Z",
@@ -863,9 +843,29 @@
       }
     },
     {
+      "app_id": 2279192,
+      "total_tokens": "76781470058",
+      "total_requests": 13195782,
+      "rank": 26,
+      "app": {
+        "id": 2279192,
+        "created_at": "2025-05-05T20:35:07.459Z",
+        "description": "Applied research lab for frontier models",
+        "title": "AA-LCR Benchmark",
+        "main_url": null,
+        "origin_url": "https://afterquery.com/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
       "app_id": 142576,
-      "total_tokens": "62375420715",
-      "total_requests": 3685591,
+      "total_tokens": "64331881773",
+      "total_requests": 3797143,
       "rank": 28,
       "app": {
         "id": 142576,
@@ -888,8 +888,8 @@
   "month": [
     {
       "app_id": 3067167,
-      "total_tokens": "15065045151987",
-      "total_requests": 236049428,
+      "total_tokens": "15245889485193",
+      "total_requests": 238845400,
       "rank": 1,
       "app": {
         "id": 3067167,
@@ -914,8 +914,8 @@
     },
     {
       "app_id": 2725608,
-      "total_tokens": "5064312273440",
-      "total_requests": 103954909,
+      "total_tokens": "5107216372508",
+      "total_requests": 104825290,
       "rank": 4,
       "app": {
         "id": 2725608,
@@ -937,8 +937,8 @@
     },
     {
       "app_id": 2262242,
-      "total_tokens": "4570392020281",
-      "total_requests": 65850778,
+      "total_tokens": "4622846783962",
+      "total_requests": 66581444,
       "rank": 5,
       "app": {
         "id": 2262242,
@@ -962,8 +962,8 @@
     },
     {
       "app_id": 2627404,
-      "total_tokens": "1871566601033",
-      "total_requests": 23672124,
+      "total_tokens": "1899309072477",
+      "total_requests": 24017189,
       "rank": 7,
       "app": {
         "id": 2627404,
@@ -984,8 +984,8 @@
     },
     {
       "app_id": 2308106,
-      "total_tokens": "1720242916060",
-      "total_requests": 27649835,
+      "total_tokens": "1733332473722",
+      "total_requests": 27825839,
       "rank": 8,
       "app": {
         "id": 2308106,
@@ -1006,8 +1006,8 @@
     },
     {
       "app_id": 2853275,
-      "total_tokens": "1334106924036",
-      "total_requests": 22397251,
+      "total_tokens": "1343106181467",
+      "total_requests": 22532615,
       "rank": 10,
       "app": {
         "id": 2853275,
@@ -1028,8 +1028,8 @@
     },
     {
       "app_id": 169155,
-      "total_tokens": "884238021760",
-      "total_requests": 67419595,
+      "total_tokens": "892048264422",
+      "total_requests": 67987389,
       "rank": 12,
       "app": {
         "id": 169155,
@@ -1050,8 +1050,8 @@
     },
     {
       "app_id": 2637375,
-      "total_tokens": "808445406617",
-      "total_requests": 21851733,
+      "total_tokens": "814818214247",
+      "total_requests": 22033137,
       "rank": 13,
       "app": {
         "id": 2637375,
@@ -1072,8 +1072,8 @@
     },
     {
       "app_id": 2699842,
-      "total_tokens": "799814813951",
-      "total_requests": 21853167,
+      "total_tokens": "806723585317",
+      "total_requests": 22017933,
       "rank": 14,
       "app": {
         "id": 2699842,
@@ -1094,8 +1094,8 @@
     },
     {
       "app_id": 190604,
-      "total_tokens": "637547674404",
-      "total_requests": 7343424,
+      "total_tokens": "643628716145",
+      "total_requests": 7415475,
       "rank": 15,
       "app": {
         "id": 190604,
@@ -1117,8 +1117,8 @@
     },
     {
       "app_id": 3747309,
-      "total_tokens": "589852158178",
-      "total_requests": 6184803,
+      "total_tokens": "590283121779",
+      "total_requests": 6190874,
       "rank": 16,
       "app": {
         "id": 3747309,
@@ -1139,8 +1139,8 @@
     },
     {
       "app_id": 3356965,
-      "total_tokens": "535117234992",
-      "total_requests": 8333102,
+      "total_tokens": "542960919604",
+      "total_requests": 8448273,
       "rank": 17,
       "app": {
         "id": 3356965,
@@ -1159,8 +1159,8 @@
     },
     {
       "app_id": 831074,
-      "total_tokens": "493463869490",
-      "total_requests": 5521877,
+      "total_tokens": "495625920866",
+      "total_requests": 5545498,
       "rank": 19,
       "app": {
         "id": 831074,
@@ -1182,8 +1182,8 @@
     },
     {
       "app_id": 3296290,
-      "total_tokens": "454372085066",
-      "total_requests": 33230521,
+      "total_tokens": "459196876556",
+      "total_requests": 33602729,
       "rank": 20,
       "app": {
         "id": 3296290,
@@ -1204,9 +1204,9 @@
     },
     {
       "app_id": 2755681,
-      "total_tokens": "248270196176",
-      "total_requests": 27439666,
-      "rank": 25,
+      "total_tokens": "253589494286",
+      "total_requests": 28011141,
+      "rank": 24,
       "app": {
         "id": 2755681,
         "created_at": "2026-02-04T18:26:22.875Z",
@@ -1226,9 +1226,9 @@
     },
     {
       "app_id": 142576,
-      "total_tokens": "247610955599",
-      "total_requests": 14910664,
-      "rank": 26,
+      "total_tokens": "249567427108",
+      "total_requests": 15022217,
+      "rank": 25,
       "app": {
         "id": 142576,
         "created_at": "2023-07-21T00:27:58.324Z",
@@ -1248,8 +1248,8 @@
     },
     {
       "app_id": 2279192,
-      "total_tokens": "215691946633",
-      "total_requests": 15368022,
+      "total_tokens": "216957438580",
+      "total_requests": 15658846,
       "rank": 29,
       "app": {
         "id": 2279192,
@@ -1267,30 +1267,10 @@
       }
     },
     {
-      "app_id": 2524738,
-      "total_tokens": "207917483514",
-      "total_requests": 24826989,
-      "rank": 30,
-      "app": {
-        "id": 2524738,
-        "created_at": "2025-11-07T08:17:49.811Z",
-        "description": "",
-        "title": "LangChain",
-        "main_url": null,
-        "origin_url": "https://docs.langchain.com/",
-        "slug": "langchain",
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 189563,
-      "total_tokens": "206174796871",
-      "total_requests": 5286271,
-      "rank": 31,
+      "total_tokens": "211598589767",
+      "total_requests": 5366940,
+      "rank": 30,
       "app": {
         "id": 189563,
         "created_at": "2024-09-24T08:02:50.387Z",
@@ -1309,9 +1289,29 @@
       }
     },
     {
+      "app_id": 2524738,
+      "total_tokens": "209384743669",
+      "total_requests": 25293388,
+      "rank": 31,
+      "app": {
+        "id": 2524738,
+        "created_at": "2025-11-07T08:17:49.811Z",
+        "description": "",
+        "title": "LangChain",
+        "main_url": null,
+        "origin_url": "https://docs.langchain.com/",
+        "slug": "langchain",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
       "app_id": 2511276,
-      "total_tokens": "195109882538",
-      "total_requests": 3906786,
+      "total_tokens": "195111701368",
+      "total_requests": 3906997,
       "rank": 33,
       "app": {
         "id": 2511276,

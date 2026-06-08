@@ -377,16 +377,16 @@
   {
     "x": "2026-06-08",
     "ys": {
-      "deepseek/deepseek-v4-flash-20260423": 1155006,
-      "google/gemini-2.5-flash-lite": 955186,
-      "google/gemini-2.5-flash": 861384,
-      "deepseek/deepseek-v3.2-20251201": 763931,
-      "google/gemini-3-flash-preview-20251217": 672523,
-      "z-ai/glm-4.5-air": 632730,
-      "google/gemini-3.1-flash-lite-20260507": 605561,
-      "mistralai/mistral-nemo": 561406,
-      "meta-llama/llama-3.1-8b-instruct": 558206,
-      "Others": 8109136
+      "deepseek/deepseek-v4-flash-20260423": 6492110,
+      "google/gemini-2.5-flash": 6270652,
+      "google/gemini-2.5-flash-lite": 5502422,
+      "google/gemini-3-flash-preview-20251217": 3783864,
+      "deepseek/deepseek-v3.2-20251201": 3610055,
+      "google/gemini-3.1-flash-lite-20260507": 2568605,
+      "mistralai/mistral-nemo": 2510349,
+      "meta-llama/llama-3.1-8b-instruct": 2456676,
+      "openai/gpt-oss-120b": 2433078,
+      "Others": 46416033
     }
   }
 ]
