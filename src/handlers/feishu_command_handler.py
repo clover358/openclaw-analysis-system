@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from src.pipeline import run_automation_pipeline
-from src.skills.feishu_bot_skill import markdown_to_lark_md, split_text_chunks
+from src.skills.feishu_bot_skill import markdown_to_lark_md
 from src.skills.feishu_openapi_skill import (
     FeishuIncomingMessage,
     FeishuOpenApiError,
@@ -65,19 +65,19 @@ def should_trigger_pipeline(text: str) -> bool:
     return False
 
 
-def _extract_executive_summary(markdown_text: str, max_chars: int = 500) -> str:
+def _extract_report_outline(markdown_text: str) -> str:
     text = (markdown_text or "").strip()
     if not text:
-        return "（暂无摘要）"
-    match = re.search(
-        r"^#{1,3}\s*[^\n]*执行摘要[^\n]*\n+(.*?)(?=^#{1,3}\s|\Z)",
-        text,
-        flags=re.MULTILINE | re.DOTALL,
-    )
-    body = match.group(1).strip() if match else text
-    if len(body) > max_chars:
-        body = body[:max_chars].rstrip() + "…"
-    return body
+        return "- 暂无可展示提纲"
+    headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+    cleaned = []
+    for heading in headings:
+        title = re.sub(r"^[一二三四五六七八九十\d、.．\s-]+", "", heading).strip()
+        if title and title not in cleaned:
+            cleaned.append(title)
+    if not cleaned:
+        return "- 执行摘要\n- 主流 API 平台使用表现\n- 行业趋势与竞品分析\n- 战略建议与风险提示"
+    return "\n".join(f"- {title}" for title in cleaned[:6])
 
 
 def _dedupe_message(message_id: str) -> bool:
@@ -105,25 +105,25 @@ def _run_pipeline_and_reply(chat_id: str) -> None:
         )
 
         md_path = result.final_report_path
-        pdf_path = md_path.with_suffix(".pdf")
+        pdf_path = result.final_pdf_path
         report_text = md_path.read_text(encoding="utf-8") if md_path.is_file() else ""
-        summary = markdown_to_lark_md(_extract_executive_summary(report_text))
+        outline = markdown_to_lark_md(_extract_report_outline(report_text))
 
         audit = "审计通过" if result.audit_result.get("is_passed") else "已采用 Reviewer 修正稿"
-        pdf_hint = str(pdf_path) if pdf_path else str(md_path)
 
         send_interactive_card_to_chat(
             chat_id,
             title="📊 OpenClaw 自动化分析报告已生成",
             lark_md_content=(
                 f"**大模型 API 竞品报告** 已生成完成。\n\n"
-                f"{summary}\n\n"
+                f"**报告提纲**\n{outline}\n\n"
                 f"---\n\n"
                 f"- **审计状态**：{audit}\n"
-                f"- **Markdown**：`{md_path.name}`"
+                f"- **Markdown**：`{md_path.name}`\n"
+                f"- **PDF**：`{Path(pdf_path).name}`"
             ),
             header_template="orange",
-            note=f"📄 完整版 PDF 报告已自动输出至本地：{pdf_hint}",
+            note="📄 完整版 PDF 报告将作为文件发送到群聊。",
         )
 
         if pdf_path and pdf_path.is_file():
@@ -132,17 +132,8 @@ def _run_pipeline_and_reply(chat_id: str) -> None:
                 send_file_to_chat(chat_id, file_key)
             except FeishuOpenApiError as exc:
                 send_text_to_chat(chat_id, f"PDF 已生成但上传飞书失败：{exc}。请从本地打开：{pdf_path}")
-
-        if report_text.strip():
-            chunks = split_text_chunks(report_text)
-            total = len(chunks)
-            if total:
-                send_text_to_chat(chat_id, f"📄 完整报告正文共 {total} 条，即将逐条发送…")
-                for index, chunk in enumerate(chunks, start=1):
-                    send_text_to_chat(
-                        chat_id,
-                        f"——— 报告正文 ({index}/{total}) ———\n\n{chunk}",
-                    )
+        else:
+            send_text_to_chat(chat_id, f"PDF 生成失败，未发送正文分片。Markdown 已保存至：{md_path}")
 
     except Exception as exc:
         err = traceback.format_exc()

@@ -20,6 +20,7 @@
 
 from __future__ import annotations
 
+import sys
 import base64
 import hashlib
 import hmac
@@ -30,6 +31,10 @@ from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
 from typing import Any
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 import requests
 

@@ -225,13 +225,8 @@ _POLISH_SYSTEM = """\
   - 疏通逻辑衔接，使段落过渡自然流畅。
   - 适当提升词汇精准度和句式多样性。
 
-【日期与年份硬约束】
-  1. 报告中的所有日期、年份、观测周期必须严格保留原文中的 period/date/数据观测范围，不得自行推断、补写或改写年份。
-  2. 当前任务发生在 2026 年；如果原文数据日期为 2026 年，严禁润色成 2025 年或其他年份。
-  3. 若原文未提供某个日期或年份，必须保留“数据未提供/证据不足”的含义，不得为了行文完整而补日期。
-
 【严格禁止】
-  1. 不得修改、增减或捏造任何数值、百分比、年份、日期、周期、产品名称、机构名称等具体数据。
+  1. 不得修改、增减或捏造任何数值、百分比、年份、产品名称、机构名称等具体数据。
   2. 不得改变原文的核心结论与事实判断。
   3. 不得删除任何原有内容段落或要点。
   4. 保留原有 Markdown 格式标记（**加粗**、- 列表、### 小标题等）。
@@ -247,12 +242,11 @@ _TITLE_GENERATOR_SYSTEM = """\
 【任务】根据用户提供的分析文本，生成一个简洁、专业的报告标题。
 
 【要求】
-  1. 标题必须准确反映 OpenRouter LLM 厂商/API 调用格局分析主题。
-  2. 如果文本中出现“数据观测范围：YYYY-MM-DD → YYYY-MM-DD”，标题月份必须使用右侧最新日期的 YYYY-MM。
-  3. 严禁使用旧样例年份、生成时间或模型常识推断标题年份；年份只能来自分析文本中的日期字段。
-  4. 当前任务发生在 2026 年；如果分析文本日期为 2026 年，严禁改写为 2025 年。
-  5. 推荐格式：OpenRouter LLM 厂商商业格局分析报告（YYYY-MM）。
-  6. 长度不超过 35 个汉字。
+  1. 标题必须能准确反映报告的核心内容和分析对象。
+  2. 必须包含年份（从文本中提取或使用当前年份）。
+  3. 长度不超过 30 个汉字。
+  4. 格式：[年份][分析对象][报告类型]
+  5. 示例："2025年大模型 API 竞品分析报告"、"2025年云计算市场趋势报告"
 
 【输出要求】直接输出标题文本，不要添加任何说明、前缀、后缀或注释。\
 """
@@ -291,50 +285,6 @@ def polish_section(
         return body
 
 
-def _contains_sensitive_data(text: str) -> bool:
-    return bool(re.search(r"\d{4}[-/.年]\d{1,2}|\d+(?:\.\d+)?\s*(?:B|M|T|K|%|tokens?)", text, re.IGNORECASE))
-
-
-def _parse_period_date(value: str) -> datetime | None:
-    text = str(value or "").strip()
-    if not text:
-        return None
-    normalized = text.replace("年", "-").replace("月", "-").replace("日", "")
-    normalized = normalized.replace("/", "-").replace(".", "-")
-    normalized = re.sub(r"\s+", "", normalized)
-    normalized = re.sub(r"-+", "-", normalized).strip("-")
-    normalized = re.sub(r"^(\d{4})-(\d{1,2})$", r"\1-\2-01", normalized)
-    normalized = re.sub(r"^(\d{4})(\d{2})(\d{2})$", r"\1-\2-\3", normalized)
-    normalized = re.sub(r"^(\d{4})(\d{2})$", r"\1-\2-01", normalized)
-    for fmt in ("%Y-%m-%d", "%Y-%m"):
-        try:
-            return datetime.strptime(normalized, fmt)
-        except ValueError:
-            continue
-    return None
-
-
-def _format_period_date(value: str) -> str:
-    parsed = _parse_period_date(value)
-    return parsed.strftime("%Y-%m-%d") if parsed else str(value or "").replace("/", "-")
-
-
-def _extract_observation_period(analysis_text: str) -> tuple[str, str, str]:
-    """从 Analyst 输出中提取数据观测范围，返回 (start, end, end_ym)。"""
-    date_pattern = r"\d{4}(?:[-/.年]?\d{1,2})(?:[-/.月]?\d{1,2}日?)?"
-    match = re.search(
-        rf"数据观测范围[:：]\s*({date_pattern})\s*(?:→|至|到|~|—|–)\s*({date_pattern})",
-        analysis_text,
-    )
-    if not match:
-        return "", "", ""
-    start = _format_period_date(match.group(1))
-    end = _format_period_date(match.group(2))
-    end_dt = _parse_period_date(end)
-    end_ym = end_dt.strftime("%Y-%m") if end_dt else end[:7]
-    return start, end, end_ym
-
-
 def generate_report_title(
     client:         DeepSeekClient,
     analysis_text:  str,
@@ -347,14 +297,10 @@ def generate_report_title(
         analysis_text: Analyst-Agent 输出的分析文本。
 
     Returns:
-        生成的报告标题字符串。如果文本包含数据观测范围，优先用最新月份生成稳定标题。
+        生成的报告标题字符串。如果生成失败，返回基于当前年份的默认标题。
     """
     if not analysis_text or not analysis_text.strip():
         return f"{datetime.now().year}年市场分析报告"
-
-    _start, _end, end_ym = _extract_observation_period(analysis_text)
-    if end_ym:
-        return f"OpenRouter LLM 厂商商业格局分析报告（{end_ym}）"
 
     try:
         messages = [
@@ -607,105 +553,28 @@ def judge_and_extract_chart(
         return None
 
 
-def _load_json_file(path: Path) -> Any:
-    if not path.is_file():
-        return None
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return None
-
-
-def _parse_json_date(value: Any) -> datetime | None:
-    text = str(value or "").strip()
-    if not text:
-        return None
-    text = text.replace("T", " ").split(" ")[0]
-    text = text.replace("/", "-").replace(".", "-")
-    for fmt in ("%Y-%m-%d", "%Y-%m"):
-        try:
-            return datetime.strptime(text, fmt)
-        except ValueError:
-            continue
-    return None
-
-
-def _latest_timeseries_points(payload: Any) -> tuple[str, dict[str, float]] | None:
-    series = payload.get("data") if isinstance(payload, dict) and isinstance(payload.get("data"), list) else payload
-    if not isinstance(series, list):
-        return None
-    candidates: list[tuple[datetime, str, dict[str, float]]] = []
-    for item in series:
-        if not isinstance(item, dict) or not isinstance(item.get("ys"), dict):
-            continue
-        parsed = _parse_json_date(item.get("x"))
-        if parsed is None:
-            continue
-        ys: dict[str, float] = {}
-        for key, value in item["ys"].items():
-            try:
-                ys[str(key)] = float(value or 0)
-            except (TypeError, ValueError):
-                continue
-        if ys:
-            candidates.append((parsed, parsed.strftime("%Y-%m-%d"), ys))
-    if not candidates:
-        return None
-    _dt, period, ys = max(candidates, key=lambda row: row[0])
-    return period, ys
-
-
-def build_market_share_chart_meta() -> dict[str, Any] | None:
-    """直接读取 Market Share JSON 的最新完整组生成图表数据，不经过 LLM 抽取。"""
-    payload = _load_json_file(PROJECT_ROOT / "data" / "Market Share.json")
-    latest = _latest_timeseries_points(payload)
-    if latest is None:
-        return None
-    period, ys = latest
-    if len(ys) < 3:
-        return None
-    sorted_items = sorted(ys.items(), key=lambda kv: kv[1], reverse=True)
-    total = sum(value for _name, value in sorted_items)
-    if total <= 0:
-        return None
-    labels = [name for name, _value in sorted_items]
-    values = [round(value / total * 100, 2) for _name, value in sorted_items]
-    tokens = [value for _name, value in sorted_items]
-    return {
-        "need_chart": True,
-        "chart_type": "bar",
-        "title": f"OpenRouter平台主要厂商市场份额对比（{period}）",
-        "x_label": "厂商",
-        "y_label": "Token 份额（%）",
-        "labels": labels,
-        "values": values,
-        "source_period": period,
-        "source_file": "data/Market Share.json",
-        "tokens": tokens,
-    }
-
-
 def generate_markdown_table(labels: list[str], values: list[float], title: str) -> str:
     """
     当无法生成图表时，生成 Markdown 表格作为替代。
-
+    
     Args:
         labels: 标签列表
         values: 数值列表
         title: 表格标题
-
+        
     Returns:
         Markdown 表格字符串
     """
     if len(labels) != len(values):
         return ""
-
+    
     table_lines = [f"> **表：{title}**\n",]
     table_lines.append("\n")
     table_lines.append("| 项目 | 数值 |\n")
     table_lines.append("| --- | --- |\n")
-
+    
     for label, val in zip(labels, values):
+        # 格式化数值显示
         if abs(val) >= 1000000:
             val_str = f"{val/1000000:.1f}M"
         elif abs(val) >= 1000:
@@ -715,7 +584,7 @@ def generate_markdown_table(labels: list[str], values: list[float], title: str) 
         else:
             val_str = f"{val:g}"
         table_lines.append(f"| {label} | {val_str} |\n")
-
+    
     return "".join(table_lines)
 
 
@@ -992,12 +861,6 @@ class GeneratorAgent:
         tz_cn        = timezone(timedelta(hours=8))
         now          = datetime.now(tz_cn)
         generated_at = now.strftime("%Y-%m-%d %H:%M:%S")
-        observation_start, observation_end, observation_ym = _extract_observation_period(content)
-        analysis_period = (
-            f"{observation_start} 至 {observation_end}"
-            if observation_start and observation_end
-            else f"{now.year} 年度"
-        )
 
         if not report_filename:
             report_filename = f"report_{now.strftime('%Y%m%d_%H%M%S')}.md"
@@ -1010,11 +873,7 @@ class GeneratorAgent:
             current_title = generate_report_title(self._client, content)
             print(f"[Generator] [标题] 生成完成: {current_title}")
         elif not current_title:
-            current_title = (
-                f"OpenRouter LLM 厂商商业格局分析报告（{observation_ym}）"
-                if observation_ym
-                else f"{now.year}年市场分析报告"
-            )
+            current_title = f"{now.year}年市场分析报告"
             print(f"[Generator] [标题] 使用默认标题: {current_title}")
 
         print(f"\n[Generator] 共 {len(self.report_sections)} 个章节，"
@@ -1026,11 +885,10 @@ class GeneratorAgent:
             f"# {current_title}\n\n"
             f"| 项目 | 内容 |\n"
             f"| --- | --- |\n"
-            f"| 报告类型 | OpenRouter 大模型 API 竞品分析 |\n"
-            f"| 分析周期 | {analysis_period} |\n"
-            f"| 日期口径 | 所有日期与年份均来自 Analyst-Agent 注入的榜单 period/date 或数据观测范围，不使用生成时间推断 |\n"
+            f"| 报告类型 | 销售与市场综合分析 |\n"
+            f"| 分析周期 | {now.year} 年度 |\n"
             f"| 生成时间 | {generated_at} |\n"
-            f"| 生成引擎 | Generator-Agent v2（DeepSeek 润色 + 结构化数据图表 + 自动标题） |\n\n"
+            f"| 生成引擎 | Generator-Agent v2（DeepSeek 润色 + 智能图表 + 自动标题） |\n\n"
             f"---\n\n"
         )
 
@@ -1043,36 +901,35 @@ class GeneratorAgent:
             body = self._build_section_body(section_title, parsed)
 
             # Step 1：语义润色
-            if self.enable_polish and self._client and not _contains_sensitive_data(body):
+            if self.enable_polish and self._client:
                 print("    [润色] 调用 DeepSeek ...")
                 body = polish_section(self._client, section_title, body)
                 print(f"    [润色] 完成（{len(body)} 字）")
-            elif self.enable_polish and self._client:
-                print("    [润色] 检测到数字/日期，跳过润色以避免改写事实。")
 
             # Step 2：图表判断与渲染（仅条形图，数据验证失败则降级为表格）
             chart_md = ""
             if self.enable_chart and self._client:
-                print("    [图表] 使用结构化 JSON 数据生成 Market Share 图表 ...")
-                meta = build_market_share_chart_meta() if section_title == "二、主流 API 平台使用表现" else None
+                print("    [图表] 从原文提取数据并验证 ...")
+                meta = judge_and_extract_chart(self._client, section_title, body)
                 if meta:
                     chart_filename = f"{report_stem}_chart{chart_idx:02d}.png"
-                    chart_path = self.output_dir / chart_filename
-                    print(f"    [图表] 标题={meta['title']}，数据点={len(meta['values'])}个，来源={meta['source_file']}")
+                    chart_path     = self.output_dir / chart_filename
+                    print(f"    [图表] 标题={meta['title']}，数据点={len(meta['values'])}个")
                     if render_chart(meta, chart_path):
                         chart_md = (
-                            f"\n\n> **图 {chart_idx}：{meta['title']}**  \n"
-                            f"> 数据来源：`{meta['source_file']}` 最新完整周期 `{meta['source_period']}`；"
-                            f"包含该周期 Market Share 全部 {len(meta['values'])} 项。\n\n"
+                            f"\n\n> **图 {chart_idx}：{meta['title']}**\n\n"
                             f"![{meta['title']}]({chart_filename})\n"
                         )
                         print(f"    [图表] 已保存 → {chart_filename}")
                         chart_idx += 1
                     else:
+                        # 图表渲染失败，尝试生成表格
                         print("    [表格] 图表渲染失败，生成表格替代")
-                        chart_md = generate_markdown_table(meta["labels"], meta["values"], meta["title"])
+                        chart_md = generate_markdown_table(
+                            meta["labels"], meta["values"], meta["title"]
+                        )
                 else:
-                    print("    [图表] 无可用结构化图表数据，跳过图表")
+                    print("    [图表] 无法提取可验证数据，跳过图表")
 
             section_blocks.append(f"## {section_title}\n\n{body}{chart_md}\n")
 
@@ -1089,8 +946,8 @@ class GeneratorAgent:
         footer = (
             "\n---\n\n"
             "*本报告由 Generator-Agent v2 自动生成，内容来源于多源数据采集与 RAG 分析链路，"
-            "经 DeepSeek 语义润色与结构化数据图表增强。图表数据直接来自本地结构化 JSON/核心表，"
-            "不使用 LLM 自由抽取或编造图表数据。图表渲染失败时自动降级为表格展示。仅供课程大作业与商业研讨参考，"
+            "经 DeepSeek 语义润色与智能图表增强。所有图表数据均经过严格验证，确保来源于原始分析文本，"
+            "绝不捏造。图表渲染失败时自动降级为表格展示。仅供课程大作业与商业研讨参考，"
             "不构成任何投资或商业决策建议。*\n"
         )
 

@@ -1,12 +1,8 @@
-"""Collector-Agent 底层数据采集 Skills。"""
+"""OpenClaw Skills 包。
 
-from src.skills.excel_parser import parse_sales_excel
-from src.skills.pdf_extractor import extract_pdf_text
-from src.skills.web_scraper import scrape_competitor_html
+不要在包初始化阶段导入可选 Skill，避免缺少某个历史模块时影响其他功能。
+请在使用处直接导入具体模块，例如：
+    from src.skills.feishu_bot_skill import FeishuBotSkill
+"""
 
-
-__all__ = [
-    "parse_sales_excel",
-    "extract_pdf_text",
-    "scrape_competitor_html",
-]
+__all__: list[str] = []

@@ -1,6 +1,4 @@
-"""Markdown → PDF 转换 Skill（Windows 友好，纯 Python）。
-
-选用 ``markdown`` + ``xhtml2pdf``，无需安装 wkhtmltopdf / GTK（WeasyPrint 在 Windows 上依赖较重）。
+"""Markdown → PDF 转换 Skill（Windows 友好，Playwright 渲染）。
 
 用法::
 
@@ -14,22 +12,23 @@
 
 from __future__ import annotations
 
-import os
 import re
-from io import BytesIO
 from pathlib import Path
 
 import markdown
-from xhtml2pdf import pisa
+from playwright.sync_api import Error as PlaywrightError
+from playwright.sync_api import sync_playwright
 
-# 报告 PDF 样式（xhtml2pdf 兼容的子集 CSS）
+_MARKDOWN_EXTENSIONS = ["tables", "fenced_code", "nl2br", "sane_lists"]
+
 _REPORT_CSS = """
 @page {
     size: A4;
     margin: 2cm;
 }
 body {
-    font-family: MicrosoftYaHei, SimSun, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+        "Microsoft YaHei", "SimHei", "PingFang SC", sans-serif;
     font-size: 11pt;
     line-height: 1.65;
     color: #2c3e50;
@@ -44,7 +43,7 @@ h1 {
 h2 {
     color: #2d5f8a;
     font-size: 15pt;
-    margin-top: 20px;
+    margin-top: 22px;
 }
 h3 {
     color: #4a8db7;
@@ -53,16 +52,20 @@ h3 {
 table {
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
     margin: 12px 0;
-    font-size: 10pt;
+    font-size: 9.5pt;
 }
 th, td {
     border: 1px solid #d0dce8;
     padding: 6px 8px;
     text-align: left;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 th {
     background-color: #f4f7fa;
+    font-weight: bold;
 }
 blockquote {
     border-left: 4px solid #2d5f8a;
@@ -71,15 +74,19 @@ blockquote {
     color: #566573;
 }
 code {
+    font-family: Consolas, "Courier New", monospace;
     background-color: #f4f7fa;
     padding: 2px 4px;
     font-size: 9pt;
+    border-radius: 4px;
 }
 pre {
     background-color: #f4f7fa;
     padding: 10px;
     font-size: 9pt;
     white-space: pre-wrap;
+    word-wrap: break-word;
+    border-radius: 6px;
 }
 hr {
     border: none;
@@ -90,6 +97,12 @@ ul, ol {
     margin: 8px 0;
     padding-left: 24px;
 }
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 12px auto;
+}
 .meta {
     color: #7f8c8d;
     font-size: 9pt;
@@ -97,56 +110,25 @@ ul, ol {
 }
 """
 
-_MARKDOWN_EXTENSIONS = ["tables", "fenced_code", "nl2br", "sane_lists"]
-_fonts_registered = False
-
 
 class MarkdownPdfError(Exception):
     """Markdown 转 PDF 失败。"""
 
 
-def _register_chinese_fonts() -> None:
-    """注册 Windows 常见中文字体，避免 PDF 中文显示为方框。"""
-    global _fonts_registered
-    if _fonts_registered:
-        return
-
-    try:
-        from reportlab.pdfbase import pdfmetrics
-        from reportlab.pdfbase.ttfonts import TTFont
-    except ImportError:
-        return
-
-    fonts_dir = Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts"
-    candidates = [
-        ("MicrosoftYaHei", fonts_dir / "msyh.ttc"),
-        ("MicrosoftYaHei", fonts_dir / "msyhbd.ttc"),
-        ("SimSun", fonts_dir / "simsun.ttc"),
-        ("SimHei", fonts_dir / "simhei.ttf"),
-    ]
-    registered: set[str] = set()
-    for font_name, font_path in candidates:
-        if font_name in registered or not font_path.is_file():
-            continue
-        try:
-            pdfmetrics.registerFont(TTFont(font_name, str(font_path)))
-            registered.add(font_name)
-        except Exception:
-            continue
-
-    _fonts_registered = bool(registered)
+def _project_root() -> Path:
+    return Path(__file__).resolve().parent.parent.parent
 
 
 def _resolve_output_path(pdf_file_path: str | Path) -> Path:
     path = Path(pdf_file_path)
     if not path.is_absolute():
-        project_root = Path(__file__).resolve().parent.parent.parent
-        path = project_root / path
+        path = _project_root() / path
     return path
 
 
 def _rewrite_image_paths(html: str, md_dir: Path) -> str:
-    """将 HTML 中相对路径图片改写为绝对 file:// 路径，便于 xhtml2pdf 嵌入。"""
+    """将 HTML 中相对路径图片改写为绝对 file:// 路径，便于 Playwright 渲染。"""
+
     def _replace(match: re.Match[str]) -> str:
         before, src, after = match.group(1), match.group(2), match.group(3)
         if src.startswith(("http://", "https://", "data:", "file:")):
@@ -171,7 +153,7 @@ def _build_html_document(markdown_text: str, *, title: str = "分析报告", md_
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>{safe_title}</title>
     <style>{_REPORT_CSS}</style>
 </head>
@@ -206,8 +188,7 @@ def markdown_to_pdf(md_file_path: str | Path, pdf_file_path: str | Path) -> Path
     """
     md_path = Path(md_file_path)
     if not md_path.is_absolute():
-        project_root = Path(__file__).resolve().parent.parent.parent
-        md_path = project_root / md_path
+        md_path = _project_root() / md_path
 
     if not md_path.is_file():
         raise MarkdownPdfError(f"Markdown 文件不存在: {md_path}")
@@ -219,28 +200,38 @@ def markdown_to_pdf(md_file_path: str | Path, pdf_file_path: str | Path) -> Path
     pdf_path = _resolve_output_path(pdf_file_path)
     pdf_path.parent.mkdir(parents=True, exist_ok=True)
 
-    _register_chinese_fonts()
     title = _extract_title_from_markdown(content, fallback=md_path.stem)
     html_doc = _build_html_document(content, title=title, md_dir=md_path.parent)
 
-    buffer = BytesIO()
     try:
-        status = pisa.CreatePDF(
-            html_doc.encode("utf-8"),
-            dest=buffer,
-            encoding="utf-8",
-        )
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(args=["--allow-file-access-from-files"])
+            page = browser.new_page()
+            temp_html_path = md_path.parent / f".{md_path.stem}_temp_render.html"
+            temp_html_path.write_text(html_doc, encoding="utf-8")
+            try:
+                page.goto(temp_html_path.resolve().as_uri(), wait_until="networkidle")
+                page.pdf(
+                    path=str(pdf_path),
+                    format="A4",
+                    margin={"top": "1in", "right": "0.8in", "bottom": "1in", "left": "0.8in"},
+                    print_background=True,
+                )
+            finally:
+                browser.close()
+                if temp_html_path.exists():
+                    temp_html_path.unlink()
+    except PlaywrightError as exc:
+        raise MarkdownPdfError(
+            f"Playwright PDF 引擎异常: {exc}\n"
+            "请确认已安装浏览器内核：python -m playwright install chromium"
+        ) from exc
     except Exception as exc:
         raise MarkdownPdfError(f"PDF 引擎异常: {exc}") from exc
 
-    if status.err:
-        raise MarkdownPdfError(f"PDF 生成失败（xhtml2pdf 返回错误）: {md_path}")
-
-    pdf_bytes = buffer.getvalue()
-    if not pdf_bytes:
+    if not pdf_path.is_file() or pdf_path.stat().st_size == 0:
         raise MarkdownPdfError(f"PDF 输出为空: {pdf_path}")
 
-    pdf_path.write_bytes(pdf_bytes)
     return pdf_path.resolve()
 
 
@@ -254,5 +245,5 @@ def md_to_pdf_path(
     stem = md.stem
     out_dir = Path(output_dir)
     if not out_dir.is_absolute():
-        out_dir = Path(__file__).resolve().parent.parent.parent / out_dir
+        out_dir = _project_root() / out_dir
     return out_dir / f"{stem}.pdf"

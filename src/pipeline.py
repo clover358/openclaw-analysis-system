@@ -16,6 +16,7 @@ from src.agents.analyst.agent import AnalystAgent
 from src.agents.collector.agent import CollectorAgent
 from src.agents.generator.agent import GeneratorAgent
 from src.agents.reviewer.agent import ReviewerAgent
+from src.skills.markdown_pdf_skill import markdown_to_pdf, md_to_pdf_path
 from src.utils.config_loader import ConfigError, load_app_config, validate_api_keys
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -36,6 +37,7 @@ class PipelineResult:
     draft_report: str
     audit_result: dict[str, Any]
     final_report_path: Path
+    final_pdf_path: Path
     used_revised: bool
 
 
@@ -234,10 +236,20 @@ def run_automation_pipeline(
 
     saved_path = generator.save(final_content, output)
 
+    _log("Pipeline", "Step 6: Markdown 报告转换为 PDF...")
+    pdf_output_dir = (config.get("paths") or {}).get("pdf_output_dir", "data/outputs")
+    pdf_path = md_to_pdf_path(saved_path, output_dir=pdf_output_dir)
+    try:
+        saved_pdf_path = markdown_to_pdf(saved_path, pdf_path)
+        _log("Pipeline", f"PDF 已生成: {saved_pdf_path}")
+    except Exception as exc:
+        raise RuntimeError(f"PDF 转换失败: {exc}") from exc
+
     print("\n" + "=" * 62)
     print("全链路执行成功".center(62))
     print("=" * 62)
     print(f"  最终报告路径 : {saved_path}")
+    print(f"  PDF 报告路径 : {saved_pdf_path}")
     print(f"  是否采用修正稿: {'是' if used_revised else '否'}")
     print(f"  审计是否通过 : {'是' if is_passed else '否'}")
     print("=" * 62 + "\n")
@@ -248,5 +260,6 @@ def run_automation_pipeline(
         draft_report=draft_report,
         audit_result=audit_result,
         final_report_path=saved_path,
+        final_pdf_path=saved_pdf_path,
         used_revised=used_revised,
     )

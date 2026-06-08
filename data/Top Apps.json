@@ -2,8 +2,8 @@
   "day": [
     {
       "app_id": 3067167,
-      "total_tokens": "668672352421",
-      "total_requests": 10032668,
+      "total_tokens": "746916054742",
+      "total_requests": 10827693,
       "rank": 1,
       "app": {
         "id": 3067167,
@@ -28,8 +28,8 @@
     },
     {
       "app_id": 2262242,
-      "total_tokens": "175148496212",
-      "total_requests": 2389870,
+      "total_tokens": "186221351813",
+      "total_requests": 2382206,
       "rank": 4,
       "app": {
         "id": 2262242,
@@ -53,8 +53,8 @@
     },
     {
       "app_id": 2725608,
-      "total_tokens": "159540451581",
-      "total_requests": 3097519,
+      "total_tokens": "152632618350",
+      "total_requests": 3011198,
       "rank": 5,
       "app": {
         "id": 2725608,
@@ -76,8 +76,8 @@
     },
     {
       "app_id": 2627404,
-      "total_tokens": "96620069170",
-      "total_requests": 1272919,
+      "total_tokens": "73313391753",
+      "total_requests": 931153,
       "rank": 7,
       "app": {
         "id": 2627404,
@@ -97,31 +97,31 @@
       }
     },
     {
-      "app_id": 2853275,
-      "total_tokens": "69041930723",
-      "total_requests": 1094119,
+      "app_id": 2637375,
+      "total_tokens": "55567122489",
+      "total_requests": 1580275,
       "rank": 8,
       "app": {
-        "id": 2853275,
-        "created_at": "2026-02-15T08:18:07.110Z",
-        "description": "There are many coding agents, but this one is yours.",
-        "title": "pi",
+        "id": 2637375,
+        "created_at": "2025-12-28T17:23:36.463Z",
+        "description": "The AI tool for Roblox games.",
+        "title": "Lemonade",
         "main_url": null,
-        "origin_url": "https://pi.dev/",
-        "slug": "pi",
+        "origin_url": "https://lemonade.gg/",
+        "slug": "lemonade",
         "source_code_url": null,
-        "icon_class_name": "",
+        "icon_class_name": null,
         "favicon_url": null,
         "categories": [
-          "cli-agent"
+          "programming-app"
         ],
         "related_apps": []
       }
     },
     {
       "app_id": 2308106,
-      "total_tokens": "67731299589",
-      "total_requests": 1016185,
+      "total_tokens": "48024296545",
+      "total_requests": 618480,
       "rank": 9,
       "app": {
         "id": 2308106,
@@ -141,94 +141,32 @@
       }
     },
     {
-      "app_id": 2637375,
-      "total_tokens": "50378151067",
-      "total_requests": 1471810,
-      "rank": 10,
+      "app_id": 2853275,
+      "total_tokens": "36861217417",
+      "total_requests": 531968,
+      "rank": 11,
       "app": {
-        "id": 2637375,
-        "created_at": "2025-12-28T17:23:36.463Z",
-        "description": "The AI tool for Roblox games.",
-        "title": "Lemonade",
+        "id": 2853275,
+        "created_at": "2026-02-15T08:18:07.110Z",
+        "description": "There are many coding agents, but this one is yours.",
+        "title": "pi",
         "main_url": null,
-        "origin_url": "https://lemonade.gg/",
-        "slug": "lemonade",
+        "origin_url": "https://pi.dev/",
+        "slug": "pi",
         "source_code_url": null,
-        "icon_class_name": null,
+        "icon_class_name": "",
         "favicon_url": null,
         "categories": [
-          "programming-app"
-        ],
-        "related_apps": []
-      }
-    },
-    {
-      "app_id": 3744553,
-      "total_tokens": "42929906970",
-      "total_requests": 17335227,
-      "rank": 13,
-      "app": {
-        "id": 3744553,
-        "created_at": "2026-05-18T22:13:24.387Z",
-        "description": null,
-        "title": "llmv:competitors",
-        "main_url": null,
-        "origin_url": "https://llmvis.searchatlas.com/",
-        "slug": null,
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [],
-        "related_apps": []
-      }
-    },
-    {
-      "app_id": 3356965,
-      "total_tokens": "41236779374",
-      "total_requests": 519576,
-      "rank": 14,
-      "app": {
-        "id": 3356965,
-        "created_at": "2026-04-22T01:40:58.408Z",
-        "description": "Inference API that improves with your traffic",
-        "title": "Pioneer (development)",
-        "main_url": null,
-        "origin_url": "https://pioneer.ai/",
-        "slug": null,
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [],
-        "related_apps": []
-      }
-    },
-    {
-      "app_id": 2699842,
-      "total_tokens": "30141138907",
-      "total_requests": 665710,
-      "rank": 15,
-      "app": {
-        "id": 2699842,
-        "created_at": "2026-01-21T19:15:22.288Z",
-        "description": "AI adventures. Travel with your favorite characters",
-        "title": "ISEKAI ZERO",
-        "main_url": null,
-        "origin_url": "https://www.isekai.world/",
-        "slug": "isekai-zero",
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [
-          "game"
+          "cli-agent"
         ],
         "related_apps": []
       }
     },
     {
       "app_id": 169155,
-      "total_tokens": "29717919697",
-      "total_requests": 2204673,
-      "rank": 16,
+      "total_tokens": "33921502302",
+      "total_requests": 2474659,
+      "rank": 13,
       "app": {
         "id": 169155,
         "created_at": "2023-12-09T18:30:01.148Z",
@@ -247,10 +185,52 @@
       }
     },
     {
+      "app_id": 2699842,
+      "total_tokens": "31502672859",
+      "total_requests": 763447,
+      "rank": 14,
+      "app": {
+        "id": 2699842,
+        "created_at": "2026-01-21T19:15:22.288Z",
+        "description": "AI adventures. Travel with your favorite characters",
+        "title": "ISEKAI ZERO",
+        "main_url": null,
+        "origin_url": "https://www.isekai.world/",
+        "slug": "isekai-zero",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "game"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3356965,
+      "total_tokens": "30371075870",
+      "total_requests": 355161,
+      "rank": 15,
+      "app": {
+        "id": 3356965,
+        "created_at": "2026-04-22T01:40:58.408Z",
+        "description": "Inference API that improves with your traffic",
+        "title": "Pioneer (staging)",
+        "main_url": null,
+        "origin_url": "https://pioneer.ai/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
       "app_id": 190604,
-      "total_tokens": "22849202569",
-      "total_requests": 254913,
-      "rank": 17,
+      "total_tokens": "22631859551",
+      "total_requests": 247832,
+      "rank": 16,
       "app": {
         "id": 190604,
         "created_at": "2024-10-09T07:53:24.932Z",
@@ -270,32 +250,10 @@
       }
     },
     {
-      "app_id": 2755681,
-      "total_tokens": "20371468450",
-      "total_requests": 2185055,
-      "rank": 19,
-      "app": {
-        "id": 2755681,
-        "created_at": "2026-02-04T18:26:22.875Z",
-        "description": "Pieces is a private, on-device, long-term memory layer for macOS, Linux, and Windows that proactively captures your work context as it happens. Over time, Pieces becomes your very own “internet of all context”—browse your artificial memories in the Pieces Desktop app, or plug them into the agents you already use: OpenClaw, Hermes, Claude, Cursor, Codex, etc.",
-        "title": "Pieces.app: Ambient Artificial Memory",
-        "main_url": null,
-        "origin_url": "https://pieces.app/",
-        "slug": "pieces",
-        "source_code_url": null,
-        "icon_class_name": "",
-        "favicon_url": null,
-        "categories": [
-          "personal-agent"
-        ],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 3261377,
-      "total_tokens": "19977265826",
-      "total_requests": 247230,
-      "rank": 20,
+      "total_tokens": "17015307089",
+      "total_requests": 247517,
+      "rank": 17,
       "app": {
         "id": 3261377,
         "created_at": "2026-04-08T15:22:53.278Z",
@@ -316,9 +274,9 @@
     },
     {
       "app_id": 3296290,
-      "total_tokens": "17310908913",
-      "total_requests": 1583807,
-      "rank": 21,
+      "total_tokens": "16932121944",
+      "total_requests": 1557489,
+      "rank": 18,
       "app": {
         "id": 3296290,
         "created_at": "2026-04-13T16:32:50.486Z",
@@ -337,59 +295,57 @@
       }
     },
     {
-      "app_id": 189563,
-      "total_tokens": "14815681070",
-      "total_requests": 295375,
-      "rank": 22,
+      "app_id": 2543813,
+      "total_tokens": "15010805417",
+      "total_requests": 45774,
+      "rank": 19,
       "app": {
-        "id": 189563,
-        "created_at": "2024-09-24T08:02:50.387Z",
-        "description": "AI coding agent that can run commands, browse the web, call APIs",
-        "title": "OpenHands",
+        "id": 2543813,
+        "created_at": "2025-11-18T14:15:37.009Z",
+        "description": null,
+        "title": "CoChat",
         "main_url": null,
-        "origin_url": "https://docs.all-hands.dev/",
-        "slug": "openhands",
+        "origin_url": "https://app.cochat.ai/",
+        "slug": null,
         "source_code_url": null,
-        "icon_class_name": "",
+        "icon_class_name": null,
         "favicon_url": null,
-        "categories": [
-          "cli-agent"
-        ],
+        "categories": [],
         "related_apps": []
       }
     },
     {
-      "app_id": 2668297,
-      "total_tokens": "12860126246",
-      "total_requests": 162276,
-      "rank": 23,
+      "app_id": 2755681,
+      "total_tokens": "13647267134",
+      "total_requests": 1394348,
+      "rank": 20,
       "app": {
-        "id": 2668297,
-        "created_at": "2026-01-10T03:00:25.305Z",
-        "description": "A coding agent that helps you build and ship with AI",
-        "title": "Codex",
-        "main_url": "https://openai.com/codex",
-        "origin_url": "https://openai.com/codex/",
-        "slug": "codex",
+        "id": 2755681,
+        "created_at": "2026-02-04T18:26:22.875Z",
+        "description": "Pieces is a private, on-device, long-term memory layer for macOS, Linux, and Windows that proactively captures your work context as it happens. Over time, Pieces becomes your very own “internet of all context”—browse your artificial memories in the Pieces Desktop app, or plug them into the agents you already use: OpenClaw, Hermes, Claude, Cursor, Codex, etc.",
+        "title": "Pieces.app: Ambient Artificial Memory",
+        "main_url": null,
+        "origin_url": "https://pieces.app/",
+        "slug": "pieces",
         "source_code_url": null,
-        "icon_class_name": null,
+        "icon_class_name": "",
         "favicon_url": null,
         "categories": [
-          "cli-agent"
+          "personal-agent"
         ],
         "related_apps": []
       }
     },
     {
       "app_id": 2344758,
-      "total_tokens": "10283124825",
-      "total_requests": 163091,
-      "rank": 25,
+      "total_tokens": "10749353193",
+      "total_requests": 166401,
+      "rank": 23,
       "app": {
         "id": 2344758,
         "created_at": "2025-07-22T19:28:05.101Z",
         "description": "All-in-one creator store",
-        "title": "Sahasra",
+        "title": "Stanley",
         "main_url": null,
         "origin_url": "https://stan.store/",
         "slug": "stan",
@@ -402,9 +358,9 @@
     },
     {
       "app_id": 142576,
-      "total_tokens": "8439176488",
-      "total_requests": 499441,
-      "rank": 26,
+      "total_tokens": "9666210448",
+      "total_requests": 543761,
+      "rank": 24,
       "app": {
         "id": 142576,
         "created_at": "2023-07-21T00:27:58.324Z",
@@ -424,9 +380,9 @@
     },
     {
       "app_id": 171054,
-      "total_tokens": "8004891946",
-      "total_requests": 200110,
-      "rank": 27,
+      "total_tokens": "8953608057",
+      "total_requests": 211218,
+      "rank": 25,
       "app": {
         "id": 171054,
         "created_at": "2024-02-13T23:05:26.009Z",
@@ -441,13 +397,53 @@
         "categories": [],
         "related_apps": []
       }
+    },
+    {
+      "app_id": 2879456,
+      "total_tokens": "8009784448",
+      "total_requests": 620296,
+      "rank": 26,
+      "app": {
+        "id": 2879456,
+        "created_at": "2026-02-18T17:49:48.465Z",
+        "description": null,
+        "title": "Reprompt AI",
+        "main_url": null,
+        "origin_url": "https://reprompt.ai/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 3906588,
+      "total_tokens": "7894444041",
+      "total_requests": 88058,
+      "rank": 27,
+      "app": {
+        "id": 3906588,
+        "created_at": "2026-05-29T13:28:04.121Z",
+        "description": null,
+        "title": "Zoo Code",
+        "main_url": null,
+        "origin_url": "https://github.com/Zoo-Code-Org/Zoo-Code",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
     }
   ],
   "week": [
     {
       "app_id": 3067167,
-      "total_tokens": "4858654180147",
-      "total_requests": 72755382,
+      "total_tokens": "5033115957553",
+      "total_requests": 74607732,
       "rank": 1,
       "app": {
         "id": 3067167,
@@ -472,8 +468,8 @@
     },
     {
       "app_id": 2725608,
-      "total_tokens": "1273417213616",
-      "total_requests": 26038842,
+      "total_tokens": "1282970039620",
+      "total_requests": 25600733,
       "rank": 4,
       "app": {
         "id": 2725608,
@@ -495,8 +491,8 @@
     },
     {
       "app_id": 2262242,
-      "total_tokens": "1199308191221",
-      "total_requests": 15800207,
+      "total_tokens": "1244160309531",
+      "total_requests": 16389086,
       "rank": 5,
       "app": {
         "id": 2262242,
@@ -520,8 +516,8 @@
     },
     {
       "app_id": 2627404,
-      "total_tokens": "596516733784",
-      "total_requests": 7393764,
+      "total_tokens": "616429218661",
+      "total_requests": 7691942,
       "rank": 7,
       "app": {
         "id": 2627404,
@@ -541,32 +537,10 @@
       }
     },
     {
-      "app_id": 3747309,
-      "total_tokens": "584163733139",
-      "total_requests": 6104323,
-      "rank": 8,
-      "app": {
-        "id": 3747309,
-        "created_at": "2026-05-19T04:31:40.618Z",
-        "description": "Collaborate on a live decentralized git network",
-        "title": "GitLawb",
-        "main_url": null,
-        "origin_url": "https://playground.gitlawb.com/",
-        "slug": "gitlawb",
-        "source_code_url": null,
-        "icon_class_name": "",
-        "favicon_url": null,
-        "categories": [
-          "cloud-agent"
-        ],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 2308106,
-      "total_tokens": "467159496652",
-      "total_requests": 7029974,
-      "rank": 9,
+      "total_tokens": "460555057346",
+      "total_requests": 6886518,
+      "rank": 8,
       "app": {
         "id": 2308106,
         "created_at": "2025-06-12T21:59:45.208Z",
@@ -586,9 +560,9 @@
     },
     {
       "app_id": 2853275,
-      "total_tokens": "399162481161",
-      "total_requests": 6776350,
-      "rank": 10,
+      "total_tokens": "387495955537",
+      "total_requests": 6278117,
+      "rank": 9,
       "app": {
         "id": 2853275,
         "created_at": "2026-02-15T08:18:07.110Z",
@@ -608,9 +582,9 @@
     },
     {
       "app_id": 2637375,
-      "total_tokens": "268216953486",
-      "total_requests": 7939811,
-      "rank": 12,
+      "total_tokens": "321388869848",
+      "total_requests": 9415409,
+      "rank": 10,
       "app": {
         "id": 2637375,
         "created_at": "2025-12-28T17:23:36.463Z",
@@ -630,14 +604,14 @@
     },
     {
       "app_id": 3356965,
-      "total_tokens": "245222024541",
-      "total_requests": 3190450,
-      "rank": 14,
+      "total_tokens": "270945669983",
+      "total_requests": 3274773,
+      "rank": 13,
       "app": {
         "id": 3356965,
         "created_at": "2026-04-22T01:40:58.408Z",
         "description": "Inference API that improves with your traffic",
-        "title": "Pioneer (development)",
+        "title": "Pioneer (production)",
         "main_url": null,
         "origin_url": "https://pioneer.ai/",
         "slug": null,
@@ -649,9 +623,31 @@
       }
     },
     {
+      "app_id": 3747309,
+      "total_tokens": "253760745254",
+      "total_requests": 2676050,
+      "rank": 14,
+      "app": {
+        "id": 3747309,
+        "created_at": "2026-05-19T04:31:40.618Z",
+        "description": "Collaborate on a live decentralized git network",
+        "title": "GitLawb",
+        "main_url": null,
+        "origin_url": "https://playground.gitlawb.com/",
+        "slug": "gitlawb",
+        "source_code_url": null,
+        "icon_class_name": "",
+        "favicon_url": null,
+        "categories": [
+          "cloud-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
       "app_id": 169155,
-      "total_tokens": "225400490169",
-      "total_requests": 16666375,
+      "total_tokens": "222029209923",
+      "total_requests": 16300535,
       "rank": 15,
       "app": {
         "id": 169155,
@@ -672,9 +668,9 @@
     },
     {
       "app_id": 2699842,
-      "total_tokens": "216461431946",
-      "total_requests": 5186899,
-      "rank": 17,
+      "total_tokens": "214033883030",
+      "total_requests": 5101622,
+      "rank": 16,
       "app": {
         "id": 2699842,
         "created_at": "2026-01-21T19:15:22.288Z",
@@ -694,9 +690,9 @@
     },
     {
       "app_id": 190604,
-      "total_tokens": "171027115436",
-      "total_requests": 1933208,
-      "rank": 18,
+      "total_tokens": "169969348799",
+      "total_requests": 1887951,
+      "rank": 17,
       "app": {
         "id": 190604,
         "created_at": "2024-10-09T07:53:24.932Z",
@@ -716,32 +712,10 @@
       }
     },
     {
-      "app_id": 3296290,
-      "total_tokens": "140402913776",
-      "total_requests": 11472850,
-      "rank": 19,
-      "app": {
-        "id": 3296290,
-        "created_at": "2026-04-13T16:32:50.486Z",
-        "description": "Mira is a Telegram-native AI assistant.",
-        "title": "Mira",
-        "main_url": null,
-        "origin_url": "https://mira.tg/",
-        "slug": "mira",
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [
-          "personal-agent"
-        ],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 2755681,
-      "total_tokens": "132718872635",
-      "total_requests": 14823888,
-      "rank": 20,
+      "total_tokens": "132287372120",
+      "total_requests": 14576471,
+      "rank": 19,
       "app": {
         "id": 2755681,
         "created_at": "2026-02-04T18:26:22.875Z",
@@ -760,15 +734,37 @@
       }
     },
     {
+      "app_id": 3296290,
+      "total_tokens": "129856106909",
+      "total_requests": 11184746,
+      "rank": 20,
+      "app": {
+        "id": 3296290,
+        "created_at": "2026-04-13T16:32:50.486Z",
+        "description": "Mira is a Telegram-native AI assistant.",
+        "title": "Mira",
+        "main_url": null,
+        "origin_url": "https://mira.tg/",
+        "slug": "mira",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "personal-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
       "app_id": 3744553,
-      "total_tokens": "131535927464",
-      "total_requests": 53686770,
+      "total_tokens": "128327048123",
+      "total_requests": 53175594,
       "rank": 21,
       "app": {
         "id": 3744553,
         "created_at": "2026-05-18T22:13:24.387Z",
         "description": null,
-        "title": "llmv:queries",
+        "title": "llmv:sentiment",
         "main_url": null,
         "origin_url": "https://llmvis.searchatlas.com/",
         "slug": null,
@@ -780,30 +776,10 @@
       }
     },
     {
-      "app_id": 2279192,
-      "total_tokens": "92365547743",
-      "total_requests": 12899203,
-      "rank": 22,
-      "app": {
-        "id": 2279192,
-        "created_at": "2025-05-05T20:35:07.459Z",
-        "description": "Applied research lab for frontier models",
-        "title": "AA-LCR Benchmark",
-        "main_url": null,
-        "origin_url": "https://afterquery.com/",
-        "slug": null,
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 3261377,
-      "total_tokens": "89399136630",
-      "total_requests": 1163273,
-      "rank": 23,
+      "total_tokens": "104575035071",
+      "total_requests": 1381257,
+      "rank": 22,
       "app": {
         "id": 3261377,
         "created_at": "2026-04-08T15:22:53.278Z",
@@ -823,30 +799,10 @@
       }
     },
     {
-      "app_id": 3923698,
-      "total_tokens": "79168845556",
-      "total_requests": 803965,
-      "rank": 25,
-      "app": {
-        "id": 3923698,
-        "created_at": "2026-05-31T03:56:37.434Z",
-        "description": null,
-        "title": "Finch",
-        "main_url": null,
-        "origin_url": "https://finchlegal.com/",
-        "slug": null,
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 189563,
-      "total_tokens": "74554291409",
-      "total_requests": 1796802,
-      "rank": 26,
+      "total_tokens": "85329864962",
+      "total_requests": 1999576,
+      "rank": 23,
       "app": {
         "id": 189563,
         "created_at": "2024-09-24T08:02:50.387Z",
@@ -865,10 +821,30 @@
       }
     },
     {
+      "app_id": 2279192,
+      "total_tokens": "75516001597",
+      "total_requests": 12904962,
+      "rank": 25,
+      "app": {
+        "id": 2279192,
+        "created_at": "2025-05-05T20:35:07.459Z",
+        "description": "Applied research lab for frontier models",
+        "title": "AA-LCR Benchmark",
+        "main_url": null,
+        "origin_url": "https://afterquery.com/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
       "app_id": 2668297,
-      "total_tokens": "73996611158",
-      "total_requests": 891738,
-      "rank": 27,
+      "total_tokens": "75245520835",
+      "total_requests": 904136,
+      "rank": 26,
       "app": {
         "id": 2668297,
         "created_at": "2026-01-10T03:00:25.305Z",
@@ -885,13 +861,35 @@
         ],
         "related_apps": []
       }
+    },
+    {
+      "app_id": 142576,
+      "total_tokens": "62375420715",
+      "total_requests": 3685591,
+      "rank": 28,
+      "app": {
+        "id": 142576,
+        "created_at": "2023-07-21T00:27:58.324Z",
+        "description": "SillyTavern is the LLM frontend for power users, a chat interface that connects to any model and gives deep control through character creation, roleplay, and prompt customization.",
+        "title": "SillyTavern",
+        "main_url": null,
+        "origin_url": "https://sillytavern.app/",
+        "slug": "sillytavern",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "roleplay"
+        ],
+        "related_apps": []
+      }
     }
   ],
   "month": [
     {
       "app_id": 3067167,
-      "total_tokens": "14323523092175",
-      "total_requests": 228310221,
+      "total_tokens": "15065045151987",
+      "total_requests": 236049428,
       "rank": 1,
       "app": {
         "id": 3067167,
@@ -916,8 +914,8 @@
     },
     {
       "app_id": 2725608,
-      "total_tokens": "5321232115180",
-      "total_requests": 108534768,
+      "total_tokens": "5064312273440",
+      "total_requests": 103954909,
       "rank": 4,
       "app": {
         "id": 2725608,
@@ -939,8 +937,8 @@
     },
     {
       "app_id": 2262242,
-      "total_tokens": "4580655275349",
-      "total_requests": 66634734,
+      "total_tokens": "4570392020281",
+      "total_requests": 65850778,
       "rank": 5,
       "app": {
         "id": 2262242,
@@ -964,8 +962,8 @@
     },
     {
       "app_id": 2627404,
-      "total_tokens": "1908014662358",
-      "total_requests": 24154017,
+      "total_tokens": "1871566601033",
+      "total_requests": 23672124,
       "rank": 7,
       "app": {
         "id": 2627404,
@@ -986,8 +984,8 @@
     },
     {
       "app_id": 2308106,
-      "total_tokens": "1737003553951",
-      "total_requests": 28487627,
+      "total_tokens": "1720242916060",
+      "total_requests": 27649835,
       "rank": 8,
       "app": {
         "id": 2308106,
@@ -1008,8 +1006,8 @@
     },
     {
       "app_id": 2853275,
-      "total_tokens": "1359073404161",
-      "total_requests": 22877340,
+      "total_tokens": "1334106924036",
+      "total_requests": 22397251,
       "rank": 10,
       "app": {
         "id": 2853275,
@@ -1030,8 +1028,8 @@
     },
     {
       "app_id": 169155,
-      "total_tokens": "879629479722",
-      "total_requests": 67310146,
+      "total_tokens": "884238021760",
+      "total_requests": 67419595,
       "rank": 12,
       "app": {
         "id": 169155,
@@ -1051,32 +1049,10 @@
       }
     },
     {
-      "app_id": 2699842,
-      "total_tokens": "796759546356",
-      "total_requests": 22607692,
-      "rank": 13,
-      "app": {
-        "id": 2699842,
-        "created_at": "2026-01-21T19:15:22.288Z",
-        "description": "AI adventures. Travel with your favorite characters",
-        "title": "ISEKAI ZERO",
-        "main_url": null,
-        "origin_url": "https://www.isekai.world/",
-        "slug": "isekai-zero",
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [
-          "game"
-        ],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 2637375,
-      "total_tokens": "755111888349",
-      "total_requests": 20253295,
-      "rank": 14,
+      "total_tokens": "808445406617",
+      "total_requests": 21851733,
+      "rank": 13,
       "app": {
         "id": 2637375,
         "created_at": "2025-12-28T17:23:36.463Z",
@@ -1095,9 +1071,31 @@
       }
     },
     {
+      "app_id": 2699842,
+      "total_tokens": "799814813951",
+      "total_requests": 21853167,
+      "rank": 14,
+      "app": {
+        "id": 2699842,
+        "created_at": "2026-01-21T19:15:22.288Z",
+        "description": "AI adventures. Travel with your favorite characters",
+        "title": "ISEKAI ZERO",
+        "main_url": null,
+        "origin_url": "https://www.isekai.world/",
+        "slug": "isekai-zero",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "game"
+        ],
+        "related_apps": []
+      }
+    },
+    {
       "app_id": 190604,
-      "total_tokens": "650850149123",
-      "total_requests": 7503682,
+      "total_tokens": "637547674404",
+      "total_requests": 7343424,
       "rank": 15,
       "app": {
         "id": 190604,
@@ -1119,8 +1117,8 @@
     },
     {
       "app_id": 3747309,
-      "total_tokens": "584165317040",
-      "total_requests": 6104584,
+      "total_tokens": "589852158178",
+      "total_requests": 6184803,
       "rank": 16,
       "app": {
         "id": 3747309,
@@ -1140,10 +1138,30 @@
       }
     },
     {
-      "app_id": 831074,
-      "total_tokens": "529577760737",
-      "total_requests": 5969393,
+      "app_id": 3356965,
+      "total_tokens": "535117234992",
+      "total_requests": 8333102,
       "rank": 17,
+      "app": {
+        "id": 3356965,
+        "created_at": "2026-04-22T01:40:58.408Z",
+        "description": "Inference API that improves with your traffic",
+        "title": "Pioneer (production)",
+        "main_url": null,
+        "origin_url": "https://pioneer.ai/",
+        "slug": null,
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 831074,
+      "total_tokens": "493463869490",
+      "total_requests": 5521877,
+      "rank": 19,
       "app": {
         "id": 831074,
         "created_at": "2024-12-09T15:49:26.866Z",
@@ -1163,30 +1181,10 @@
       }
     },
     {
-      "app_id": 3356965,
-      "total_tokens": "486118178323",
-      "total_requests": 7787693,
-      "rank": 18,
-      "app": {
-        "id": 3356965,
-        "created_at": "2026-04-22T01:40:58.408Z",
-        "description": "Inference API that improves with your traffic",
-        "title": "Pioneer (development)",
-        "main_url": null,
-        "origin_url": "https://pioneer.ai/",
-        "slug": null,
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 3296290,
-      "total_tokens": "438714085118",
-      "total_requests": 31390501,
-      "rank": 19,
+      "total_tokens": "454372085066",
+      "total_requests": 33230521,
+      "rank": 20,
       "app": {
         "id": 3296290,
         "created_at": "2026-04-13T16:32:50.486Z",
@@ -1205,32 +1203,10 @@
       }
     },
     {
-      "app_id": 142576,
-      "total_tokens": "246625092670",
-      "total_requests": 14883360,
-      "rank": 25,
-      "app": {
-        "id": 142576,
-        "created_at": "2023-07-21T00:27:58.324Z",
-        "description": "SillyTavern is the LLM frontend for power users, a chat interface that connects to any model and gives deep control through character creation, roleplay, and prompt customization.",
-        "title": "SillyTavern",
-        "main_url": null,
-        "origin_url": "https://sillytavern.app/",
-        "slug": "sillytavern",
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [
-          "roleplay"
-        ],
-        "related_apps": []
-      }
-    },
-    {
       "app_id": 2755681,
-      "total_tokens": "224361078612",
-      "total_requests": 24988730,
-      "rank": 28,
+      "total_tokens": "248270196176",
+      "total_requests": 27439666,
+      "rank": 25,
       "app": {
         "id": 2755681,
         "created_at": "2026-02-04T18:26:22.875Z",
@@ -1249,52 +1225,32 @@
       }
     },
     {
-      "app_id": 2524738,
-      "total_tokens": "215604110172",
-      "total_requests": 23579847,
-      "rank": 29,
+      "app_id": 142576,
+      "total_tokens": "247610955599",
+      "total_requests": 14910664,
+      "rank": 26,
       "app": {
-        "id": 2524738,
-        "created_at": "2025-11-07T08:17:49.811Z",
-        "description": "",
-        "title": "LangChain",
+        "id": 142576,
+        "created_at": "2023-07-21T00:27:58.324Z",
+        "description": "SillyTavern is the LLM frontend for power users, a chat interface that connects to any model and gives deep control through character creation, roleplay, and prompt customization.",
+        "title": "SillyTavern",
         "main_url": null,
-        "origin_url": "https://docs.langchain.com/",
-        "slug": "langchain",
-        "source_code_url": null,
-        "icon_class_name": null,
-        "favicon_url": null,
-        "categories": [],
-        "related_apps": []
-      }
-    },
-    {
-      "app_id": 2511276,
-      "total_tokens": "214007745058",
-      "total_requests": 4297444,
-      "rank": 30,
-      "app": {
-        "id": 2511276,
-        "created_at": "2025-10-31T03:48:14.023Z",
-        "description": "Generate music videos, shorts, and more from audio",
-        "title": "VidMuse",
-        "main_url": null,
-        "origin_url": "https://vidmuse.ai/",
-        "slug": "vidmuse",
+        "origin_url": "https://sillytavern.app/",
+        "slug": "sillytavern",
         "source_code_url": null,
         "icon_class_name": null,
         "favicon_url": null,
         "categories": [
-          "video-gen"
+          "roleplay"
         ],
         "related_apps": []
       }
     },
     {
       "app_id": 2279192,
-      "total_tokens": "207059948396",
-      "total_requests": 13383436,
-      "rank": 31,
+      "total_tokens": "215691946633",
+      "total_requests": 15368022,
+      "rank": 29,
       "app": {
         "id": 2279192,
         "created_at": "2025-05-05T20:35:07.459Z",
@@ -1311,10 +1267,30 @@
       }
     },
     {
+      "app_id": 2524738,
+      "total_tokens": "207917483514",
+      "total_requests": 24826989,
+      "rank": 30,
+      "app": {
+        "id": 2524738,
+        "created_at": "2025-11-07T08:17:49.811Z",
+        "description": "",
+        "title": "LangChain",
+        "main_url": null,
+        "origin_url": "https://docs.langchain.com/",
+        "slug": "langchain",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [],
+        "related_apps": []
+      }
+    },
+    {
       "app_id": 189563,
-      "total_tokens": "198096461279",
-      "total_requests": 5136352,
-      "rank": 34,
+      "total_tokens": "206174796871",
+      "total_requests": 5286271,
+      "rank": 31,
       "app": {
         "id": 189563,
         "created_at": "2024-09-24T08:02:50.387Z",
@@ -1328,6 +1304,28 @@
         "favicon_url": null,
         "categories": [
           "cli-agent"
+        ],
+        "related_apps": []
+      }
+    },
+    {
+      "app_id": 2511276,
+      "total_tokens": "195109882538",
+      "total_requests": 3906786,
+      "rank": 33,
+      "app": {
+        "id": 2511276,
+        "created_at": "2025-10-31T03:48:14.023Z",
+        "description": "Generate music videos, shorts, and more from audio",
+        "title": "VidMuse",
+        "main_url": null,
+        "origin_url": "https://vidmuse.ai/",
+        "slug": "vidmuse",
+        "source_code_url": null,
+        "icon_class_name": null,
+        "favicon_url": null,
+        "categories": [
+          "video-gen"
         ],
         "related_apps": []
       }

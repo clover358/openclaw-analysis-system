@@ -1,20 +1,5 @@
 [
   {
-    "x": "2025-12-08",
-    "ys": {
-      "google/gemini-2.5-flash": 64258626,
-      "openai/gpt-oss-120b": 57546471,
-      "google/gemini-2.0-flash-001": 38242622,
-      "google/gemini-2.5-flash-lite": 26636903,
-      "mistralai/mistral-nemo": 19246623,
-      "x-ai/grok-4.1-fast": 17550352,
-      "x-ai/grok-4-fast": 16621949,
-      "deepseek/deepseek-chat-v3-0324": 14592307,
-      "openai/gpt-4o-mini": 14586489,
-      "Others": 282723181
-    }
-  },
-  {
     "x": "2025-12-15",
     "ys": {
       "google/gemini-2.5-flash": 66759751,
@@ -377,16 +362,31 @@
   {
     "x": "2026-06-01",
     "ys": {
-      "google/gemini-2.5-flash-lite": 89625531,
-      "google/gemini-2.5-flash": 86094444,
-      "deepseek/deepseek-v4-flash-20260423": 84032966,
-      "meta-llama/llama-3.1-8b-instruct": 71644536,
-      "qwen/qwen3-235b-a22b-07-25": 63541101,
-      "google/gemini-3-flash-preview-20251217": 56734011,
-      "openai/gpt-4o-mini": 53129274,
-      "openai/gpt-oss-120b": 50586790,
-      "deepseek/deepseek-v3.2-20251201": 50473946,
-      "Others": 642652227
+      "google/gemini-2.5-flash-lite": 108896617,
+      "deepseek/deepseek-v4-flash-20260423": 105598209,
+      "google/gemini-2.5-flash": 103068801,
+      "meta-llama/llama-3.1-8b-instruct": 79860116,
+      "google/gemini-3-flash-preview-20251217": 68274860,
+      "qwen/qwen3-235b-a22b-07-25": 66299591,
+      "deepseek/deepseek-v3.2-20251201": 63898120,
+      "openai/gpt-oss-120b": 60881523,
+      "openai/gpt-4o-mini": 59910911,
+      "Others": 801382674
+    }
+  },
+  {
+    "x": "2026-06-08",
+    "ys": {
+      "deepseek/deepseek-v4-flash-20260423": 1155006,
+      "google/gemini-2.5-flash-lite": 955186,
+      "google/gemini-2.5-flash": 861384,
+      "deepseek/deepseek-v3.2-20251201": 763931,
+      "google/gemini-3-flash-preview-20251217": 672523,
+      "z-ai/glm-4.5-air": 632730,
+      "google/gemini-3.1-flash-lite-20260507": 605561,
+      "mistralai/mistral-nemo": 561406,
+      "meta-llama/llama-3.1-8b-instruct": 558206,
+      "Others": 8109136
     }
   }
 ]

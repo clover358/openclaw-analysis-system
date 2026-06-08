@@ -35,37 +35,37 @@ zhipu:
 # 各 Agent 的独立配置段（由对应负责人按需扩展）
 # ---------------------------------------------------------------------------
 collector:
-  ai_api_sources:
-    - path: "data/Market Share.json"
-      label: "API 厂商市场份额（按 Token 调用量）"
-      source_type: "api_market_share"
-    - path: "data/Top Model.json"
-      label: "热门大模型 API 调用排行"
-      source_type: "api_model_ranking"
-    - path: "data/Context Length.json"
-      label: "上下文长度维度 API 使用分布"
-      source_type: "api_context_length"
-    - path: "data/merged_rankings.json"
-      label: "多维度综合 API 排行榜"
-      source_type: "api_merged_rankings"
+  # 当前 Collector 为 Playwright + CDP 采集 OpenRouter rankings，运行时会生成 data/merged_rankings.json
+  rankings_json: "data/merged_rankings.json"
+  industry_report_url: "https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_4_economy.pdf"
+  industry_report_pdf: "data/ai_index_report_2026_chapter_4_economy.pdf"
 
 analyst:
+  data:
+    merged_rankings: "data/merged_rankings.json"
+    market_share: "data/Market Share.json"
+    top_model: "data/Top Model.json"
+    day_leaderboard: "data/day_leaderboard.json"
+    week_leaderboard: "data/week_leaderboard.json"
+    month_leaderboard: "data/month_leaderboard.json"
+    excel_output: "data/processed/openrouter_rankings.xlsx"
+    ai_index_pdf: "data/ai_index_report_2026_chapter_4_economy.pdf"
   rag:
-    chunk_size: 500
-    chunk_overlap: 50
-    top_k: 3
+    chunk_size: 1200
+    chunk_overlap: 120
+    top_k: 4
     vector_store_dir: "data/processed/faiss_index"
   debug:
     use_fake_embeddings: false
   retrieval:
-    sales_query: "DeepSeek OpenAI API token usage market share platform ranking"
-    industry_query: "LLM API industry trend context length model capability 2025"
-    competitor_query: "Anthropic Google Gemini Claude GPT competitor API comparison"
+    openai_query: "OpenAI GPT API token usage market share rank OpenRouter model leaderboard"
+    competitor_query: "Google Gemini Anthropic Claude DeepSeek Qwen Meta API competitor token usage market share"
+    industry_query: "LLM API industry trend context length open source model adoption OpenRouter Top Apps"
 
 generator:
   report:
-    title: "2025年大模型 API 竞品分析报告"
-    default_output: "data/processed/ai_api_competitor_report_2025.md"
+    title: ""
+    default_output: "data/processed/openrouter_llm_market_report.md"
 
 reviewer:
   llm:

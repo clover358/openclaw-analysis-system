@@ -397,19 +397,51 @@ class CollectorAgent(BaseAgent):
         return type(value).__name__
 
     @staticmethod
-    def _preview_ranking(value: Any, top_n: int = 8) -> str:
+    def _preview_ranking(value: Any, top_n: int = 10) -> str:
         """从原始榜单中抽出关键字段，生成简短的可读摘要（Reviewer 用）。"""
+        def _date_key(item: Any, field: str) -> str:
+            if not isinstance(item, dict):
+                return ""
+            raw = str(item.get(field) or "").strip()
+            if not raw:
+                return ""
+            return raw.replace("T", " ").split(" ")[0]
+
+        def _format_timeseries(items: list[dict[str, Any]], *, limit: int | None) -> str:
+            sorted_items = sorted(items, key=lambda item: _date_key(item, "x"), reverse=True)
+            selected = sorted_items if limit is None else sorted_items[:limit]
+            return "\n".join(f"- {it.get('x')}: {it.get('ys')}" for it in selected)
+
         try:
+            if isinstance(value, dict) and isinstance(value.get("data"), list):
+                rows = [item for item in value["data"] if isinstance(item, dict)]
+                return _format_timeseries(rows, limit=None)
+
+            if isinstance(value, list) and value and isinstance(value[0], dict) and "x" in value[0]:
+                ys_keys = set((value[0].get("ys") or {}).keys()) if isinstance(value[0].get("ys"), dict) else set()
+                is_market_share = bool({"openai", "google", "anthropic"} & ys_keys)
+                return _format_timeseries(value, limit=None if is_market_share else 1)
+
             if isinstance(value, list) and value and isinstance(value[0], dict):
                 rows: list[str] = []
-                for item in value[:top_n]:
+                items = value
+                if "date" in value[0]:
+                    items = sorted(value, key=lambda item: _date_key(item, "date"), reverse=True)
+                    latest_date = _date_key(items[0], "date") if items else ""
+                    items = [item for item in items if _date_key(item, "date") == latest_date]
+                for item in items[:top_n]:
                     rank = item.get("rank")
+                    date = item.get("date")
                     slug = item.get("model_permaslug") or item.get("model_slug") or item.get("title")
                     tokens = item.get("total_tokens")
+                    if tokens is None:
+                        tokens = (item.get("total_completion_tokens") or 0) + (item.get("total_prompt_tokens") or 0)
                     if rank is not None and slug is not None:
-                        rows.append(f"- rank {rank}: {slug} | tokens={tokens}")
+                        date_text = f"date {date} | " if date else ""
+                        rows.append(f"- {date_text}rank {rank}: {slug} | tokens={tokens}")
                 if rows:
                     return "\n".join(rows)
+
             if isinstance(value, dict) and any(g in value for g in ("day", "week", "month")):
                 rows = []
                 for gran in ("day", "week", "month"):
@@ -423,11 +455,6 @@ class CollectorAgent(BaseAgent):
                                 f"- [{gran}] rank {it.get('rank')}: {app.get('title')} | "
                                 f"tokens={it.get('total_tokens')}"
                             )
-                return "\n".join(rows)
-            if isinstance(value, list) and value and isinstance(value[0], dict) and "x" in value[0]:
-                rows = []
-                for it in value[:top_n]:
-                    rows.append(f"- {it.get('x')}: {it.get('ys')}")
                 return "\n".join(rows)
         except Exception:
             return ""
